@@ -1,0 +1,14 @@
+{
+  "name": "链潮 · 币圈趋势雷达",
+  "short_name": "链潮",
+  "description": "中文币圈热点、新趋势、异动和事件追踪工具",
+  "start_url": "./index.html",
+  "scope": "./",
+  "display": "standalone",
+  "background_color": "#080b10",
+  "theme_color": "#0a0e13",
+  "lang": "zh-CN",
+  "icons": [
+    {"src":"icon.svg","sizes":"any","type":"image/svg+xml","purpose":"any maskable"}
+  ]
+}

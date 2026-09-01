@@ -1,0 +1,1035 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+  <meta name="theme-color" content="#0a0e13">
+  <meta name="description" content="面向中文交易者的币圈热点、叙事、异动和事件追踪工具">
+  <title>链潮 · 币圈趋势雷达</title>
+  <link rel="manifest" href="manifest.webmanifest">
+  <link rel="icon" href="icon.svg" type="image/svg+xml">
+  <style>
+    :root {
+      color-scheme: dark;
+      --bg: #080b10;
+      --bg-soft: #0d1219;
+      --panel: rgba(18, 25, 34, .92);
+      --panel-2: #111822;
+      --panel-3: #17212d;
+      --line: rgba(255,255,255,.085);
+      --line-strong: rgba(255,255,255,.14);
+      --text: #f3f6f9;
+      --muted: #8f9baa;
+      --muted-2: #687585;
+      --green: #b6f25b;
+      --green-2: #6ee7a2;
+      --red: #ff6b77;
+      --amber: #ffcb66;
+      --blue: #74b8ff;
+      --purple: #b9a2ff;
+      --radius: 20px;
+      --shadow: 0 18px 55px rgba(0,0,0,.28);
+      font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI", "PingFang SC", "Microsoft YaHei", sans-serif;
+    }
+
+    * { box-sizing: border-box; }
+    html { scroll-behavior: smooth; background: var(--bg); }
+    body {
+      margin: 0;
+      min-height: 100vh;
+      color: var(--text);
+      background:
+        radial-gradient(circle at 12% -5%, rgba(182,242,91,.11), transparent 28rem),
+        radial-gradient(circle at 96% 8%, rgba(116,184,255,.08), transparent 30rem),
+        var(--bg);
+      -webkit-font-smoothing: antialiased;
+    }
+
+    button, input, select { font: inherit; }
+    button { color: inherit; }
+    a { color: inherit; text-decoration: none; }
+    .hidden { display: none !important; }
+    .sr-only { position:absolute; width:1px; height:1px; padding:0; margin:-1px; overflow:hidden; clip:rect(0,0,0,0); white-space:nowrap; border:0; }
+
+    .app-shell { width: min(1240px, calc(100% - 34px)); margin: 0 auto; padding: 22px 0 90px; }
+    .topbar {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 18px;
+      padding: 8px 2px 20px;
+    }
+    .brand { display: flex; align-items: center; gap: 12px; min-width: 0; }
+    .brand-mark {
+      width: 43px; height: 43px; border-radius: 14px;
+      display: grid; place-items: center;
+      color: #0b1205;
+      background: linear-gradient(145deg, #d9ff93, var(--green));
+      box-shadow: 0 8px 28px rgba(182,242,91,.18);
+      flex: 0 0 auto;
+    }
+    .brand-mark svg { width: 25px; height: 25px; }
+    .brand-copy { min-width: 0; }
+    .brand-copy h1 { margin: 0; font-size: 18px; letter-spacing: -.3px; }
+    .brand-copy p { margin: 3px 0 0; color: var(--muted); font-size: 12px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+    .top-actions { display: flex; align-items: center; gap: 8px; }
+
+    .status-pill, .chip, .tag {
+      display: inline-flex; align-items: center; gap: 7px;
+      border: 1px solid var(--line);
+      background: rgba(255,255,255,.035);
+      color: var(--muted);
+      border-radius: 999px;
+      white-space: nowrap;
+    }
+    .status-pill { height: 36px; padding: 0 12px; font-size: 12px; }
+    .status-dot { width: 7px; height: 7px; border-radius: 50%; background: var(--amber); box-shadow: 0 0 0 4px rgba(255,203,102,.09); }
+    .status-dot.live { background: var(--green-2); box-shadow: 0 0 0 4px rgba(110,231,162,.09); }
+    .status-dot.offline { background: var(--red); box-shadow: 0 0 0 4px rgba(255,107,119,.09); }
+
+    .icon-btn, .primary-btn, .ghost-btn {
+      border: 1px solid var(--line);
+      border-radius: 12px;
+      background: rgba(255,255,255,.045);
+      cursor: pointer;
+      transition: transform .18s ease, border-color .18s ease, background .18s ease;
+    }
+    .icon-btn:hover, .ghost-btn:hover { border-color: var(--line-strong); background: rgba(255,255,255,.075); }
+    button:active { transform: translateY(1px); }
+    .icon-btn { width: 38px; height: 38px; display: grid; place-items: center; padding: 0; }
+    .icon-btn svg { width: 18px; height: 18px; }
+    .icon-btn.spinning svg { animation: spin .8s linear infinite; }
+    .primary-btn { padding: 11px 15px; color: #101607; border-color: transparent; background: var(--green); font-weight: 750; }
+    .ghost-btn { padding: 10px 13px; color: var(--text); }
+    .small-btn { padding: 8px 11px; font-size: 12px; border-radius: 10px; }
+    @keyframes spin { to { transform: rotate(360deg); } }
+
+    .desktop-nav {
+      display: flex; align-items: center; gap: 4px;
+      padding: 5px;
+      margin-bottom: 18px;
+      border: 1px solid var(--line);
+      border-radius: 15px;
+      background: rgba(11,16,23,.72);
+      backdrop-filter: blur(18px);
+      position: sticky; top: 10px; z-index: 30;
+      width: fit-content;
+      box-shadow: 0 10px 35px rgba(0,0,0,.16);
+    }
+    .nav-btn {
+      border: 0; background: transparent; color: var(--muted);
+      border-radius: 10px; padding: 9px 14px; cursor: pointer; font-size: 13px;
+    }
+    .nav-btn.active { background: var(--panel-3); color: var(--text); box-shadow: inset 0 0 0 1px rgba(255,255,255,.05); }
+
+    .view { display: none; animation: rise .28s ease both; }
+    .view.active { display: block; }
+    @keyframes rise { from { opacity: 0; transform: translateY(5px); } to { opacity: 1; transform: none; } }
+
+    .hero {
+      border: 1px solid var(--line);
+      border-radius: 26px;
+      overflow: hidden;
+      background:
+        linear-gradient(118deg, rgba(182,242,91,.1), transparent 42%),
+        linear-gradient(300deg, rgba(116,184,255,.07), transparent 38%),
+        var(--panel);
+      box-shadow: var(--shadow);
+      padding: 28px;
+      margin-bottom: 16px;
+      position: relative;
+    }
+    .hero::after {
+      content: ""; position: absolute; width: 280px; height: 280px; right: -110px; top: -150px;
+      border: 1px solid rgba(182,242,91,.13); border-radius: 50%; box-shadow: 0 0 0 36px rgba(182,242,91,.025), 0 0 0 72px rgba(182,242,91,.018);
+      pointer-events: none;
+    }
+    .eyebrow { margin: 0 0 9px; color: var(--green); text-transform: uppercase; letter-spacing: 1.4px; font-weight: 750; font-size: 11px; }
+    .hero h2 { margin: 0; max-width: 720px; font-size: clamp(25px, 4vw, 42px); line-height: 1.12; letter-spacing: -1.25px; }
+    .hero h2 span { color: var(--green); }
+    .hero-sub { margin: 12px 0 0; color: var(--muted); font-size: 14px; line-height: 1.75; max-width: 690px; }
+    .hero-meta { display: flex; align-items: center; gap: 10px; flex-wrap: wrap; margin-top: 21px; }
+    .chip { padding: 7px 10px; font-size: 11px; }
+    .chip strong { color: var(--text); font-weight: 650; }
+
+    .metric-grid { display: grid; grid-template-columns: repeat(4, minmax(0,1fr)); gap: 12px; margin-bottom: 16px; }
+    .metric-card, .panel {
+      border: 1px solid var(--line);
+      background: var(--panel);
+      border-radius: var(--radius);
+      box-shadow: 0 13px 35px rgba(0,0,0,.13);
+    }
+    .metric-card { padding: 17px; min-height: 118px; position: relative; overflow: hidden; }
+    .metric-card::after { content:""; position:absolute; width:70px; height:70px; border-radius:50%; right:-30px; bottom:-32px; background:var(--metric-color, var(--green)); opacity:.1; filter:blur(4px); }
+    .metric-label { color: var(--muted); font-size: 12px; display:flex; align-items:center; justify-content:space-between; gap:8px; }
+    .metric-label span:last-child { color: var(--muted-2); font-size: 10px; }
+    .metric-value { font-size: clamp(21px, 2.4vw, 28px); font-weight: 780; letter-spacing: -.7px; margin-top: 13px; }
+    .metric-foot { display:flex; align-items:center; gap:8px; margin-top:7px; color: var(--muted); font-size:11px; }
+    .delta { font-variant-numeric: tabular-nums; font-weight: 680; }
+    .delta.up { color: var(--green-2); }
+    .delta.down { color: var(--red); }
+    .delta.flat { color: var(--muted); }
+
+    .overview-grid { display:grid; grid-template-columns: 1.22fr .78fr; gap: 16px; }
+    .panel { padding: 21px; }
+    .panel-head { display:flex; align-items:flex-start; justify-content:space-between; gap:15px; margin-bottom:18px; }
+    .panel-title { margin:0; font-size:17px; letter-spacing:-.25px; }
+    .panel-note { margin:5px 0 0; color:var(--muted); font-size:11px; line-height:1.5; }
+    .freshness { color: var(--muted-2); font-size:10px; white-space:nowrap; padding-top:3px; }
+
+    .regime-wrap { display:grid; grid-template-columns: 160px 1fr; gap:23px; align-items:center; }
+    .gauge {
+      width: 148px; aspect-ratio:1; border-radius:50%;
+      display:grid; place-items:center;
+      background: conic-gradient(var(--green) calc(var(--score, 58) * 1%), rgba(255,255,255,.06) 0);
+      position:relative;
+    }
+    .gauge::after { content:""; position:absolute; inset:12px; border-radius:50%; background:var(--panel-2); border:1px solid var(--line); }
+    .gauge-copy { position:relative; z-index:1; text-align:center; }
+    .gauge-copy strong { display:block; font-size:30px; letter-spacing:-1px; }
+    .gauge-copy span { color:var(--muted); font-size:10px; }
+    .regime-copy h3 { margin:0 0 7px; font-size:20px; }
+    .regime-copy p { margin:0; color:var(--muted); font-size:13px; line-height:1.7; }
+    .signal-list { display:grid; gap:8px; margin-top:14px; }
+    .signal { display:flex; align-items:center; justify-content:space-between; gap:10px; font-size:11px; color:var(--muted); }
+    .signal-bar { flex:1; height:5px; background:rgba(255,255,255,.06); border-radius:99px; overflow:hidden; margin-left:8px; }
+    .signal-bar i { display:block; height:100%; width:var(--w,50%); background:var(--c,var(--green)); border-radius:inherit; }
+
+    .brief-list { list-style:none; padding:0; margin:0; display:grid; gap:12px; }
+    .brief-list li { display:grid; grid-template-columns:24px 1fr; gap:10px; align-items:start; color:#d9dfe6; font-size:13px; line-height:1.65; }
+    .brief-num { width:23px; height:23px; border-radius:8px; display:grid; place-items:center; background:rgba(182,242,91,.09); color:var(--green); font-size:10px; font-weight:800; }
+    .disclaimer { margin:16px 0 0; padding-top:13px; border-top:1px solid var(--line); color:var(--muted-2); font-size:10px; line-height:1.6; }
+
+    .section-block { margin-top:16px; }
+    .section-title-row { display:flex; align-items:end; justify-content:space-between; gap:16px; padding:6px 2px 13px; }
+    .section-title-row h2 { margin:0; font-size:21px; letter-spacing:-.5px; }
+    .section-title-row p { margin:4px 0 0; color:var(--muted); font-size:12px; }
+    .text-link { border:0; background:transparent; color:var(--green); cursor:pointer; font-size:12px; padding:6px; }
+
+    .narrative-grid { display:grid; grid-template-columns:repeat(3,minmax(0,1fr)); gap:12px; }
+    .narrative-card {
+      padding:18px; border:1px solid var(--line); border-radius:18px; background:var(--panel);
+      min-height:230px; display:flex; flex-direction:column; transition:transform .2s ease,border-color .2s ease;
+    }
+    .narrative-card:hover { transform:translateY(-2px); border-color:rgba(182,242,91,.22); }
+    .narrative-top { display:flex; align-items:center; justify-content:space-between; gap:12px; }
+    .narrative-rank { color:var(--muted-2); font-size:10px; font-weight:800; letter-spacing:1px; }
+    .heat-score { display:flex; align-items:center; gap:7px; color:var(--muted); font-size:10px; }
+    .heat-score strong { color:var(--text); font-size:13px; }
+    .heat-dot { width:8px; height:8px; border-radius:50%; background:var(--heat,var(--green)); box-shadow:0 0 14px var(--heat,var(--green)); }
+    .narrative-card h3 { margin:17px 0 7px; font-size:18px; letter-spacing:-.25px; }
+    .narrative-card p { margin:0; color:var(--muted); font-size:12px; line-height:1.7; }
+    .narrative-metric { display:flex; align-items:center; justify-content:space-between; gap:10px; margin-top:auto; padding-top:15px; }
+    .tag { padding:5px 8px; font-size:10px; }
+    .tag.live { color:var(--green-2); border-color:rgba(110,231,162,.18); background:rgba(110,231,162,.06); }
+    .tag.warning { color:var(--amber); border-color:rgba(255,203,102,.18); background:rgba(255,203,102,.06); }
+    .tag.risk { color:var(--red); border-color:rgba(255,107,119,.18); background:rgba(255,107,119,.06); }
+    .category-change { font-size:11px; color:var(--muted); text-align:right; }
+
+    .hot-list { display:grid; gap:8px; }
+    .coin-row {
+      display:grid; grid-template-columns:minmax(170px,1.35fr) .8fr .7fr .72fr .72fr auto;
+      align-items:center; gap:12px; padding:12px 13px;
+      border:1px solid var(--line); background:rgba(255,255,255,.018); border-radius:14px;
+    }
+    .coin-row.header { color:var(--muted-2); font-size:10px; padding-top:0; padding-bottom:7px; border:0; background:transparent; }
+    .coin-id { display:flex; align-items:center; gap:11px; min-width:0; }
+    .coin-avatar { width:34px; height:34px; border-radius:50%; object-fit:cover; background:var(--panel-3); border:1px solid var(--line); flex:0 0 auto; }
+    .coin-placeholder { display:grid; place-items:center; font-size:11px; font-weight:800; color:var(--green); }
+    .coin-name { min-width:0; }
+    .coin-name strong { display:block; font-size:13px; white-space:nowrap; overflow:hidden; text-overflow:ellipsis; }
+    .coin-name span { color:var(--muted); font-size:10px; text-transform:uppercase; }
+    .coin-cell { font-size:12px; font-variant-numeric:tabular-nums; }
+    .coin-cell small { display:block; color:var(--muted-2); margin-top:2px; }
+    .risk-badge { display:inline-flex; padding:5px 8px; border-radius:99px; font-size:9px; border:1px solid var(--line); }
+    .risk-badge.high { color:var(--red); background:rgba(255,107,119,.07); border-color:rgba(255,107,119,.15); }
+    .risk-badge.mid { color:var(--amber); background:rgba(255,203,102,.06); border-color:rgba(255,203,102,.15); }
+    .risk-badge.normal { color:var(--green-2); background:rgba(110,231,162,.06); border-color:rgba(110,231,162,.15); }
+    .row-actions { display:flex; gap:5px; justify-content:flex-end; }
+    .mini-icon { width:31px; height:31px; display:grid; place-items:center; border:1px solid var(--line); border-radius:9px; background:rgba(255,255,255,.025); cursor:pointer; }
+    .mini-icon.active { color:var(--green); border-color:rgba(182,242,91,.24); background:rgba(182,242,91,.07); }
+
+    .toolbar { display:flex; gap:9px; align-items:center; justify-content:space-between; margin-bottom:13px; }
+    .segmented { display:flex; gap:4px; padding:4px; border:1px solid var(--line); border-radius:12px; background:rgba(255,255,255,.02); }
+    .segmented button { border:0; border-radius:8px; background:transparent; color:var(--muted); padding:7px 10px; font-size:11px; cursor:pointer; }
+    .segmented button.active { color:var(--text); background:var(--panel-3); }
+    .searchbox { position:relative; width:min(320px,100%); }
+    .searchbox input, .form-control {
+      width:100%; border:1px solid var(--line); border-radius:12px; color:var(--text); background:var(--panel-2); outline:none; padding:11px 13px;
+    }
+    .searchbox input:focus, .form-control:focus { border-color:rgba(182,242,91,.3); box-shadow:0 0 0 3px rgba(182,242,91,.05); }
+    .search-results { position:absolute; z-index:50; left:0; right:0; top:calc(100% + 7px); max-height:300px; overflow:auto; background:#111923; border:1px solid var(--line-strong); border-radius:14px; box-shadow:var(--shadow); padding:6px; }
+    .search-result { width:100%; display:flex; align-items:center; gap:10px; padding:9px; border:0; border-radius:9px; background:transparent; color:var(--text); cursor:pointer; text-align:left; }
+    .search-result:hover { background:rgba(255,255,255,.05); }
+    .search-result img { width:27px; height:27px; border-radius:50%; }
+    .search-result span { color:var(--muted); font-size:10px; margin-left:auto; }
+
+    .calendar-layout { display:grid; grid-template-columns:minmax(0,1.25fr) minmax(280px,.75fr); gap:15px; }
+    .event-list { display:grid; gap:9px; }
+    .event-card { display:grid; grid-template-columns:70px 1fr auto; align-items:center; gap:14px; border:1px solid var(--line); border-radius:15px; padding:13px; background:rgba(255,255,255,.02); }
+    .event-date { text-align:center; border-right:1px solid var(--line); padding-right:13px; }
+    .event-date strong { display:block; font-size:19px; }
+    .event-date span { color:var(--muted); font-size:10px; }
+    .event-copy h3 { margin:0 0 5px; font-size:13px; }
+    .event-copy p { margin:0; color:var(--muted); font-size:10px; line-height:1.55; }
+    .impact { display:grid; justify-items:end; gap:5px; }
+    .impact strong { font-size:10px; }
+    .impact small { color:var(--muted-2); font-size:9px; }
+    .impact.high strong { color:var(--red); }
+    .impact.mid strong { color:var(--amber); }
+    .impact.low strong { color:var(--green-2); }
+    .event-card.past { opacity:.48; }
+    .calendar-aside { display:grid; gap:12px; align-content:start; }
+    .callout { border-radius:16px; padding:17px; background:linear-gradient(145deg,rgba(182,242,91,.1),rgba(182,242,91,.025)); border:1px solid rgba(182,242,91,.13); }
+    .callout h3 { margin:0 0 7px; font-size:14px; }
+    .callout p { margin:0; color:var(--muted); font-size:11px; line-height:1.65; }
+
+    .watch-grid { display:grid; grid-template-columns:repeat(2,minmax(0,1fr)); gap:10px; }
+    .watch-card { border:1px solid var(--line); border-radius:17px; background:rgba(255,255,255,.02); padding:15px; }
+    .watch-head { display:flex; align-items:center; justify-content:space-between; gap:12px; }
+    .watch-price { font-size:22px; font-weight:780; margin:14px 0 2px; letter-spacing:-.5px; }
+    .sparkline { height:50px; margin-top:11px; }
+    .sparkline svg { width:100%; height:100%; overflow:visible; }
+    .alert-line { display:flex; justify-content:space-between; gap:10px; color:var(--muted); font-size:10px; padding-top:11px; margin-top:9px; border-top:1px solid var(--line); }
+
+    .source-grid { display:grid; grid-template-columns:repeat(3,minmax(0,1fr)); gap:11px; }
+    .source-card { display:block; padding:18px; border:1px solid var(--line); border-radius:17px; background:var(--panel); transition:.2s ease; }
+    .source-card:hover { transform:translateY(-2px); border-color:rgba(182,242,91,.2); }
+    .source-card span { display:block; color:var(--green); font-size:10px; font-weight:800; letter-spacing:.8px; }
+    .source-card h3 { margin:11px 0 6px; font-size:15px; }
+    .source-card p { margin:0; color:var(--muted); font-size:11px; line-height:1.6; }
+    .method-list { display:grid; grid-template-columns:repeat(3,minmax(0,1fr)); gap:10px; counter-reset:method; }
+    .method-item { counter-increment:method; border:1px solid var(--line); border-radius:15px; padding:15px; background:rgba(255,255,255,.018); }
+    .method-item::before { content:"0" counter(method); color:var(--green); font-size:10px; font-weight:800; }
+    .method-item h3 { margin:10px 0 5px; font-size:13px; }
+    .method-item p { margin:0; color:var(--muted); font-size:10px; line-height:1.6; }
+
+    .empty { padding:35px 15px; text-align:center; color:var(--muted); border:1px dashed var(--line-strong); border-radius:15px; }
+    .empty strong { display:block; color:var(--text); margin-bottom:7px; }
+
+    dialog { width:min(480px,calc(100% - 28px)); color:var(--text); background:#111821; border:1px solid var(--line-strong); border-radius:20px; padding:0; box-shadow:0 24px 100px rgba(0,0,0,.65); }
+    dialog::backdrop { background:rgba(3,5,8,.72); backdrop-filter:blur(4px); }
+    .dialog-body { padding:22px; }
+    .dialog-head { display:flex; align-items:center; justify-content:space-between; gap:15px; margin-bottom:18px; }
+    .dialog-head h2 { margin:0; font-size:18px; }
+    .form-grid { display:grid; gap:12px; }
+    .form-label { display:grid; gap:6px; color:var(--muted); font-size:11px; }
+    .form-row { display:grid; grid-template-columns:1fr 1fr; gap:10px; }
+    .dialog-actions { display:flex; justify-content:flex-end; gap:8px; margin-top:18px; }
+
+    .toast {
+      position:fixed; left:50%; bottom:84px; transform:translate(-50%,18px); opacity:0; pointer-events:none;
+      background:#eef8df; color:#10170a; padding:11px 14px; border-radius:12px; font-size:12px; font-weight:700; z-index:100;
+      transition:.24s ease; box-shadow:0 12px 38px rgba(0,0,0,.35);
+    }
+    .toast.show { opacity:1; transform:translate(-50%,0); }
+
+    .mobile-nav { display:none; }
+    .skeleton { position:relative; overflow:hidden; color:transparent !important; border-radius:6px; background:rgba(255,255,255,.05); min-width:60px; }
+    .skeleton::after { content:""; position:absolute; inset:0; transform:translateX(-100%); background:linear-gradient(90deg,transparent,rgba(255,255,255,.075),transparent); animation:shimmer 1.3s infinite; }
+    @keyframes shimmer { to { transform:translateX(100%); } }
+
+    @media (max-width: 920px) {
+      .metric-grid { grid-template-columns:repeat(2,minmax(0,1fr)); }
+      .overview-grid, .calendar-layout { grid-template-columns:1fr; }
+      .narrative-grid, .source-grid { grid-template-columns:repeat(2,minmax(0,1fr)); }
+      .coin-row { grid-template-columns:minmax(155px,1.3fr) .8fr .72fr auto; }
+      .coin-row > :nth-child(4), .coin-row > :nth-child(5) { display:none; }
+    }
+
+    @media (max-width: 640px) {
+      .app-shell { width:min(100% - 22px,1240px); padding-top:10px; padding-bottom:96px; }
+      .topbar { padding-bottom:14px; }
+      .brand-mark { width:39px; height:39px; border-radius:12px; }
+      .brand-copy h1 { font-size:16px; }
+      .top-actions .status-pill { display:none; }
+      .desktop-nav { display:none; }
+      .hero { padding:22px 19px; border-radius:21px; }
+      .hero h2 { font-size:27px; max-width:290px; }
+      .hero-sub { font-size:12px; }
+      .metric-grid { gap:8px; }
+      .metric-card { padding:14px; min-height:104px; border-radius:16px; }
+      .metric-value { font-size:21px; }
+      .panel { padding:17px; border-radius:18px; }
+      .regime-wrap { grid-template-columns:115px 1fr; gap:16px; }
+      .gauge { width:112px; }
+      .gauge::after { inset:9px; }
+      .gauge-copy strong { font-size:25px; }
+      .regime-copy h3 { font-size:17px; }
+      .regime-copy p { font-size:11px; }
+      .signal-list { display:none; }
+      .section-title-row h2 { font-size:19px; }
+      .narrative-grid, .source-grid, .method-list, .watch-grid { grid-template-columns:1fr; }
+      .narrative-card { min-height:205px; }
+      .toolbar { align-items:stretch; flex-direction:column; }
+      .searchbox { width:100%; }
+      .coin-row { grid-template-columns:minmax(135px,1.3fr) .8fr .68fr auto; gap:8px; padding:11px 9px; }
+      .coin-row.header { display:none; }
+      .coin-avatar { width:31px; height:31px; }
+      .coin-cell { font-size:11px; }
+      .event-card { grid-template-columns:58px 1fr; gap:11px; }
+      .event-date { padding-right:10px; }
+      .impact { grid-column:2; justify-items:start; display:flex; align-items:center; }
+      .form-row { grid-template-columns:1fr; }
+      .mobile-nav {
+        display:grid; grid-template-columns:repeat(6,1fr); position:fixed; z-index:80;
+        left:10px; right:10px; bottom:max(10px,env(safe-area-inset-bottom));
+        padding:7px 5px; border:1px solid var(--line-strong); border-radius:18px;
+        background:rgba(13,18,25,.91); backdrop-filter:blur(20px); box-shadow:0 15px 45px rgba(0,0,0,.42);
+      }
+      .mobile-nav .nav-btn { display:grid; justify-items:center; gap:4px; padding:6px 2px; font-size:9px; }
+      .mobile-nav svg { width:17px; height:17px; }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      *, *::before, *::after { animation-duration:.01ms !important; animation-iteration-count:1 !important; scroll-behavior:auto !important; }
+    }
+  </style>
+</head>
+<body>
+  <div class="app-shell">
+    <header class="topbar">
+      <div class="brand">
+        <div class="brand-mark" aria-hidden="true">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M4 17l4.4-5 3.2 3 5.8-8L20 10"/><path d="M16 7h4v4"/><path d="M4 21h16"/></svg>
+        </div>
+        <div class="brand-copy">
+          <h1>链潮 · 币圈趋势雷达</h1>
+          <p>看主线，也看风险 · 北京时间</p>
+        </div>
+      </div>
+      <div class="top-actions">
+        <div class="status-pill" id="dataStatus"><i class="status-dot"></i><span>正在连接数据</span></div>
+        <button class="ghost-btn small-btn hidden" id="installBtn">安装到手机</button>
+        <button class="icon-btn" id="refreshBtn" aria-label="刷新数据" title="刷新数据">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 11a8.1 8.1 0 0 0-14.9-4M4 4v5h5"/><path d="M4 13a8.1 8.1 0 0 0 14.9 4M20 20v-5h-5"/></svg>
+        </button>
+      </div>
+    </header>
+
+    <nav class="desktop-nav" aria-label="主要导航">
+      <button class="nav-btn active" data-view="overview">总览</button>
+      <button class="nav-btn" data-view="narratives">新趋势</button>
+      <button class="nav-btn" data-view="hot">热门币</button>
+      <button class="nav-btn" data-view="calendar">事件日历</button>
+      <button class="nav-btn" data-view="watchlist">我的自选</button>
+      <button class="nav-btn" data-view="sources">资料库</button>
+    </nav>
+
+    <main>
+      <section class="view active" id="view-overview">
+        <div class="hero">
+          <p class="eyebrow">市场情报 · 实时追踪</p>
+          <h2 id="heroTitle">现在不是全面普涨，<span>先找资金主线</span></h2>
+          <p class="hero-sub" id="heroSub">自动追踪市场总量、BTC 市占率、热门搜索和板块轮动，再把“突然很火”与“真正有持续性”分开。</p>
+          <div class="hero-meta">
+            <span class="chip"><span>行情</span><strong id="lastUpdated">等待刷新</strong></span>
+            <span class="chip"><span>频率</span><strong id="refreshFrequency">每 10 分钟</strong></span>
+            <span class="chip"><span>研究观点</span><strong>2026-09-01</strong></span>
+          </div>
+        </div>
+
+        <div class="metric-grid">
+          <article class="metric-card" style="--metric-color:var(--green)">
+            <div class="metric-label"><span>加密总市值</span><span>全市场</span></div>
+            <div class="metric-value skeleton" id="totalMarketCap">$0</div>
+            <div class="metric-foot"><span class="delta flat" id="marketCapChange">—</span><span>24小时</span></div>
+          </article>
+          <article class="metric-card" style="--metric-color:var(--blue)">
+            <div class="metric-label"><span>BTC 市占率</span><span>市场占比</span></div>
+            <div class="metric-value skeleton" id="btcDominance">0%</div>
+            <div class="metric-foot"><span id="dominanceHint">判断山寨扩散程度</span></div>
+          </article>
+          <article class="metric-card" style="--metric-color:var(--purple)">
+            <div class="metric-label"><span>24小时成交额</span><span>交易规模</span></div>
+            <div class="metric-value skeleton" id="totalVolume">$0</div>
+            <div class="metric-foot"><span id="volumeHint">全市场现货与衍生品参考</span></div>
+          </article>
+          <article class="metric-card" style="--metric-color:var(--amber)">
+            <div class="metric-label"><span>恐惧贪婪指数</span><span>市场情绪</span></div>
+            <div class="metric-value skeleton" id="fearGreed">—</div>
+            <div class="metric-foot"><span id="fearGreedLabel">等待数据</span></div>
+          </article>
+        </div>
+
+        <div class="overview-grid">
+          <article class="panel">
+            <div class="panel-head">
+              <div><h2 class="panel-title">市场阶段判断</h2><p class="panel-note">根据总市值、BTC占比、情绪和自选广度自动计算</p></div>
+              <span class="freshness" id="regimeFreshness">规则模型</span>
+            </div>
+            <div class="regime-wrap">
+              <div class="gauge" id="marketGauge" style="--score:58"><div class="gauge-copy"><strong id="marketScore">58</strong><span>风险偏好</span></div></div>
+              <div class="regime-copy">
+                <h3 id="marketRegime">局部轮动</h3>
+                <p id="marketRegimeText">BTC 市占率仍高，资金更可能集中在少数叙事和龙头，而不是所有山寨币一起上涨。</p>
+                <div class="signal-list">
+                  <div class="signal"><span>市场动量</span><div class="signal-bar"><i id="momentumBar" style="--w:55%"></i></div><strong id="momentumText">中性</strong></div>
+                  <div class="signal"><span>山寨扩散</span><div class="signal-bar"><i id="breadthBar" style="--w:36%;--c:var(--blue)"></i></div><strong id="breadthText">偏弱</strong></div>
+                  <div class="signal"><span>情绪拥挤</span><div class="signal-bar"><i id="crowdingBar" style="--w:62%;--c:var(--amber)"></i></div><strong id="crowdingText">中等</strong></div>
+                </div>
+              </div>
+            </div>
+          </article>
+
+          <article class="panel">
+            <div class="panel-head">
+              <div><h2 class="panel-title">今日自动简报</h2><p class="panel-note">根据当前数据生成，不编造新闻</p></div>
+              <span class="tag live">自动更新</span>
+            </div>
+            <ol class="brief-list" id="dailyBrief">
+              <li><span class="brief-num">1</span><span>正在读取市场数据……</span></li>
+              <li><span class="brief-num">2</span><span>正在识别热门搜索……</span></li>
+              <li><span class="brief-num">3</span><span>正在计算风险信号……</span></li>
+            </ol>
+            <p class="disclaimer">自动简报是规则分析，不构成投资建议。热点上涨越快，越要检查资金费率、流通市值、FDV 与解锁。</p>
+          </article>
+        </div>
+
+        <div class="section-block">
+          <div class="section-title-row"><div><h2>当前主线</h2><p>综合研究强度与实时板块变化</p></div><button class="text-link" data-go="narratives">查看全部 →</button></div>
+          <div class="narrative-grid" id="overviewNarratives"></div>
+        </div>
+
+        <div class="section-block">
+          <div class="section-title-row"><div><h2>正在升温</h2><p>热门搜索不是买点，只是注意力温度计</p></div><button class="text-link" data-go="hot">查看更多 →</button></div>
+          <article class="panel"><div class="hot-list" id="overviewHotList"></div></article>
+        </div>
+      </section>
+
+      <section class="view" id="view-narratives">
+        <div class="section-title-row"><div><h2>新趋势与高讨论叙事</h2><p>“结构性主线”与“短线注意力”分开评分</p></div><span class="chip"><span>研究更新</span><strong>9月1日</strong></span></div>
+        <div class="narrative-grid" id="allNarratives"></div>
+        <article class="panel section-block">
+          <div class="panel-head"><div><h2 class="panel-title">怎么读热度分</h2><p class="panel-note">不是涨幅排名，更不是买入推荐</p></div></div>
+          <div class="method-list">
+            <div class="method-item"><h3>真实采用</h3><p>活跃用户、成交量、手续费、稳定币流入是否同步增长。</p></div>
+            <div class="method-item"><h3>代币捕获</h3><p>协议收入是否真实进入回购、销毁或质押收益，而非只靠补贴。</p></div>
+            <div class="method-item"><h3>筹码风险</h3><p>流通市值、FDV、未来解锁、资金费率和未平仓量是否过度拥挤。</p></div>
+          </div>
+        </article>
+      </section>
+
+      <section class="view" id="view-hot">
+        <div class="section-title-row"><div><h2>热门币与异动雷达</h2><p>来自 CoinGecko 热门搜索及核心观察池</p></div><span class="chip"><span>刷新</span><strong id="hotUpdated">—</strong></span></div>
+        <article class="panel">
+          <div class="toolbar">
+            <div class="segmented" id="hotFilter"><button class="active" data-filter="trending">热搜</button><button data-filter="movers">涨幅异动</button><button data-filter="core">主线池</button></div>
+            <span class="tag warning">热门 ≠ 值得追</span>
+          </div>
+          <div class="hot-list" id="fullHotList"></div>
+        </article>
+        <article class="panel section-block">
+          <div class="panel-head"><div><h2 class="panel-title">异动检查表</h2><p class="panel-note">点进任何突然爆红的币之前，先回答这四个问题</p></div></div>
+          <div class="method-list">
+            <div class="method-item"><h3>谁在买？</h3><p>自然用户、做市商、巨鲸还是被清算的空头？逼空不能当长期需求。</p></div>
+            <div class="method-item"><h3>钱从哪来？</h3><p>协议真实收入、资金迁移，还是平台补贴和刷量？</p></div>
+            <div class="method-item"><h3>谁能卖？</h3><p>团队、VC、做市商和解锁筹码的成本与你是否相同？</p></div>
+          </div>
+        </article>
+      </section>
+
+      <section class="view" id="view-calendar">
+        <div class="section-title-row"><div><h2>事件与解锁日历</h2><p>所有时间按北京时间显示；内置研究日历需版本更新</p></div><button class="primary-btn small-btn" id="addEventBtn">＋ 添加事件</button></div>
+        <div class="calendar-layout">
+          <article class="panel"><div class="event-list" id="eventList"></div></article>
+          <aside class="calendar-aside">
+            <div class="callout"><h3>本周最大变量</h3><p>9月4日美国非农数据可能同时影响美元、美债收益率、美股和加密市场，重要性高于单个项目利好。</p></div>
+            <div class="panel"><h3 class="panel-title">日历状态</h3><p class="panel-note" style="margin-top:9px">行情数据会自动更新；项目解锁和宏观日历是研究内容，当前版本更新至 2026-09-01。你添加的事件保存在本机。</p></div>
+          </aside>
+        </div>
+      </section>
+
+      <section class="view" id="view-watchlist">
+        <div class="section-title-row"><div><h2>我的自选</h2><p>数据自动刷新，列表和价格提醒保存在当前设备</p></div><button class="ghost-btn small-btn" id="notifyBtn">开启浏览器提醒</button></div>
+        <div class="toolbar">
+          <div class="searchbox">
+            <input id="coinSearch" type="search" autocomplete="off" placeholder="搜索币名或代码，例如 ETH、Aster">
+            <div class="search-results hidden" id="searchResults"></div>
+          </div>
+          <span class="tag" id="watchCount">0 个自选</span>
+        </div>
+        <div class="watch-grid" id="watchGrid"></div>
+      </section>
+
+      <section class="view" id="view-sources">
+        <div class="section-title-row"><div><h2>研究资料库</h2><p>数字与叙事分开验证，避免只看博主截图</p></div></div>
+        <div class="source-grid">
+          <a class="source-card" href="https://www.coingecko.com/en/highlights/trending-crypto/united-states" target="_blank" rel="noopener"><span>注意力</span><h3>CoinGecko 热搜</h3><p>看当前搜索热度、价格和成交量。适合发现异动，不代表买入信号。</p></a>
+          <a class="source-card" href="https://defillama.com" target="_blank" rel="noopener"><span>基本面</span><h3>DefiLlama</h3><p>检查 TVL、手续费、协议收入、DEX 交易量和稳定币流入。</p></a>
+          <a class="source-card" href="https://app.rwa.xyz" target="_blank" rel="noopener"><span>RWA</span><h3>RWA.xyz</h3><p>追踪代币化国债、股票、信贷产品的规模、持有人与发行平台。</p></a>
+          <a class="source-card" href="https://tokenomist.ai" target="_blank" rel="noopener"><span>筹码</span><h3>Tokenomist</h3><p>查看代币解锁日期、数量和占流通比例，防止忽略潜在抛压。</p></a>
+          <a class="source-card" href="https://dune.com" target="_blank" rel="noopener"><span>链上数据</span><h3>Dune</h3><p>用公开看板核对用户数、交易笔数、资金流和协议使用情况。</p></a>
+          <a class="source-card" href="https://www.panewslab.com/zh" target="_blank" rel="noopener"><span>中文资讯</span><h3>PANews</h3><p>查看中文快讯、项目进展和每周事件日历，再回到链上验证。</p></a>
+        </div>
+        <article class="panel section-block">
+          <div class="panel-head"><div><h2 class="panel-title">每天 10 分钟使用流程</h2><p class="panel-note">先找变化，再判断有没有持续性</p></div></div>
+          <div class="method-list">
+            <div class="method-item"><h3>看市场阶段</h3><p>总市值、BTC占比和情绪决定今天适合进攻还是防守。</p></div>
+            <div class="method-item"><h3>找异常变化</h3><p>检查热搜、24小时涨幅和成交量，找到突然增加的注意力。</p></div>
+            <div class="method-item"><h3>回到基本面</h3><p>用手续费、真实用户、代币捕获和解锁结构淘汰伪热点。</p></div>
+          </div>
+        </article>
+      </section>
+    </main>
+  </div>
+
+  <nav class="mobile-nav" aria-label="手机导航">
+    <button class="nav-btn active" data-view="overview"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 12l9-9 9 9"/><path d="M5 10v10h14V10"/></svg><span>总览</span></button>
+    <button class="nav-btn" data-view="narratives"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 19V9m5 10V5m5 14v-7m5 7V3"/></svg><span>趋势</span></button>
+    <button class="nav-btn" data-view="hot"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M13 2S6 9 6 15a6 6 0 0 0 12 0c0-3-2-6-5-8 0 3-2 4-2 4s1-5 2-9Z"/></svg><span>热门</span></button>
+    <button class="nav-btn" data-view="calendar"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="5" width="18" height="16" rx="2"/><path d="M16 3v4M8 3v4M3 10h18"/></svg><span>日历</span></button>
+    <button class="nav-btn" data-view="watchlist"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="m12 3 2.8 5.7 6.2.9-4.5 4.4 1.1 6.2-5.6-2.9-5.6 2.9 1.1-6.2L3 9.6l6.2-.9L12 3Z"/></svg><span>自选</span></button>
+    <button class="nav-btn" data-view="sources"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 5.5A2.5 2.5 0 0 1 6.5 3H11v16H6.5A2.5 2.5 0 0 0 4 21.5v-16Z"/><path d="M20 5.5A2.5 2.5 0 0 0 17.5 3H13v16h4.5a2.5 2.5 0 0 1 2.5 2.5v-16Z"/></svg><span>资料</span></button>
+  </nav>
+
+  <dialog id="eventDialog">
+    <form class="dialog-body" id="eventForm" method="dialog">
+      <div class="dialog-head"><h2>添加自定义事件</h2><button type="button" class="icon-btn" data-close-dialog="eventDialog">×</button></div>
+      <div class="form-grid">
+        <label class="form-label">事件名称<input class="form-control" name="title" required placeholder="例如：某项目解锁"></label>
+        <label class="form-label">说明<input class="form-control" name="description" placeholder="影响原因或观察重点"></label>
+        <div class="form-row">
+          <label class="form-label">北京时间<input class="form-control" name="datetime" type="datetime-local" required></label>
+          <label class="form-label">影响等级<select class="form-control" name="impact"><option value="high">高</option><option value="mid" selected>中</option><option value="low">低</option></select></label>
+        </div>
+        <label class="form-label">类型<select class="form-control" name="type"><option>项目</option><option>解锁</option><option>宏观</option><option>监管</option></select></label>
+      </div>
+      <div class="dialog-actions"><button type="button" class="ghost-btn" data-close-dialog="eventDialog">取消</button><button class="primary-btn" type="submit">保存事件</button></div>
+    </form>
+  </dialog>
+
+  <dialog id="alertDialog">
+    <form class="dialog-body" id="alertForm" method="dialog">
+      <div class="dialog-head"><h2 id="alertTitle">设置价格提醒</h2><button type="button" class="icon-btn" data-close-dialog="alertDialog">×</button></div>
+      <input type="hidden" name="coinId">
+      <div class="form-grid">
+        <label class="form-label">价格高于（美元）<input class="form-control" name="above" type="number" min="0" step="any" placeholder="留空则不提醒"></label>
+        <label class="form-label">价格低于（美元）<input class="form-control" name="below" type="number" min="0" step="any" placeholder="留空则不提醒"></label>
+      </div>
+      <p class="panel-note" style="margin-top:12px">浏览器提醒只在页面打开或支持后台运行时触发，不是交易所级实时推送。</p>
+      <div class="dialog-actions"><button type="button" class="ghost-btn" id="clearAlertBtn">清除提醒</button><button class="primary-btn" type="submit">保存提醒</button></div>
+    </form>
+  </dialog>
+
+  <div class="toast" id="toast" role="status"></div>
+
+  <script>
+  (() => {
+    'use strict';
+
+    const API = 'https://api.coingecko.com/api/v3';
+    const STORAGE = {
+      cache: 'chainpulse:data:v1',
+      watchlist: 'chainpulse:watchlist:v1',
+      alerts: 'chainpulse:alerts:v1',
+      events: 'chainpulse:events:v1',
+      settings: 'chainpulse:settings:v1'
+    };
+    const CORE_IDS = ['bitcoin','ethereum','solana','hyperliquid','aster-2','uniswap','zcash','helium','ethena','ondo-finance'];
+
+    const RESEARCH_NARRATIVES = [
+      { id:'perp', title:'链上永续合约 DEX', base:96, stage:'主线 · 强势', risk:'估值与监管', color:'var(--green)', match:['perpetual','decentralized exchange'], projects:'HYPE · ASTER · Lighter', desc:'高杠杆交易继续从中心化平台迁移到链上。当前最关键的是交易量、未平仓量和协议收入，而不是单看代币涨幅。' },
+      { id:'robinhood', title:'Robinhood Chain 生态', base:94, stage:'刚起势 · 扩散', risk:'生态集中度', color:'var(--green)', match:[], projects:'PONS · LONG · Fomo', desc:'代币化股票、Launchpad 与社交交易开始形成同一套资金循环。PONS 等项目已经出现明显财富效应，也意味着追高风险快速上升。' },
+      { id:'rwa', title:'代币化股票 / RWA 2.0', base:92, stage:'中长期 · 主线', risk:'合规与映射', color:'var(--blue)', match:['real world','rwa','tokenized stock'], projects:'ONDO · BUIDL · xStocks', desc:'叙事从“资产上链”升级为抵押、保证金和稳定币储备。重点看真实资产规模、法律权属和 DeFi 可组合性。' },
+      { id:'revenue', title:'协议收入回购与销毁', base:89, stage:'估值框架 · 升温', risk:'收入不可持续', color:'var(--purple)', match:[], projects:'HYPE · UNI · PUMP · PONS', desc:'市场开始按手续费、净收入和代币价值捕获重新估值。要扣除代币激励，不能把宣传中的“回购比例”直接等同利润。' },
+      { id:'prediction', title:'预测市场', base:84, stage:'放量 · 成熟中', risk:'体育盘占比较高', color:'var(--blue)', match:['prediction'], projects:'Kalshi · Polymarket · Opinion', desc:'交易规模持续扩大，体育赛事贡献大量成交。需要分别观察真实信息市场和短周期博彩交易，不能混为一谈。' },
+      { id:'agent', title:'稳定币支付 + AI Agent', base:82, stage:'早期 · 有产品', risk:'代币映射较弱', color:'var(--purple)', match:['stablecoin','artificial intelligence'], projects:'USDC · Base · x402', desc:'AI 自动购买 API、算力和数据正在成为真实支付场景。更直接的受益者可能是稳定币和支付基础设施，而非随机 AI Meme。' },
+      { id:'privacy', title:'隐私币与 ZK', base:79, stage:'事件驱动 · 回归', risk:'催化已兑现', color:'var(--amber)', match:['privacy','zero knowledge'], projects:'ZEC · XMR', desc:'ETF 与移动端证明效率改善带来新催化。隐私结算是真需求，但政策和交易所支持仍决定估值上限。' },
+      { id:'depin', title:'DePIN + Physical AI', base:76, stage:'局部轮动', risk:'排放与真实收入', color:'var(--amber)', match:['depin','physical'], projects:'HNT · RNDR · AKT', desc:'无线网络、算力和机器人空间数据重新获得关注。必须验证付费客户、设备利用率和扣除代币补贴后的收入。' },
+      { id:'collectibles', title:'实物收藏品上链', base:68, stage:'新兴 · 小众', risk:'托管与博彩属性', color:'var(--amber)', match:['collectible','non-fungible'], projects:'CARDS · Courtyard', desc:'实体卡牌托管后铸造成链上资产，成交增长快；随机开包占比很高，需警惕流动性和中心化托管风险。' }
+    ];
+
+    const BUILTIN_EVENTS = [
+      { id:'ena-unlock', datetime:'2026-09-02T08:00:00+08:00', title:'ENA 解锁与回购议题', description:'约 4,063 万枚解锁，同时关注基金会回购和 VC 解锁调整。', type:'解锁', impact:'mid' },
+      { id:'fed-beige', datetime:'2026-09-03T02:00:00+08:00', title:'美联储褐皮书与官员讲话', description:'观察就业、通胀与经济活动描述是否改变降息预期。', type:'宏观', impact:'high' },
+      { id:'binance-delist', datetime:'2026-09-03T11:00:00+08:00', title:'币安下架 ICX / SCRT / STORJ', description:'持仓用户需提前检查现货订单、理财和转账安排。', type:'交易所', impact:'mid' },
+      { id:'us-nfp', datetime:'2026-09-04T20:30:00+08:00', title:'美国 8 月非农与失业率', description:'本周最重要宏观数据，可能同时影响美元、美债、美股和加密市场。', type:'宏观', impact:'high' },
+      { id:'hype-unlock', datetime:'2026-09-06T08:00:00+08:00', title:'HYPE 解锁约 43.3 万枚', description:'占流通比例约 0.1%，比例不大但美元金额较高。', type:'解锁', impact:'mid' },
+      { id:'sol-v1', datetime:'2026-09-09T08:00:00+08:00', title:'Solana Transaction V1', description:'观察新交易格式的上线进度及生态兼容情况。', type:'协议', impact:'mid' }
+    ];
+
+    const FALLBACK = {
+      timestamp: '2026-09-01T03:00:00Z',
+      global: { data: { total_market_cap:{usd:2730000000000}, total_volume:{usd:118000000000}, market_cap_percentage:{btc:57.5,eth:10.9}, market_cap_change_percentage_24h_usd:-0.4 } },
+      fear: { data:[{value:'48', value_classification:'Neutral'}] },
+      trending: { coins:[
+        {item:{id:'bitcoin',name:'Bitcoin',symbol:'BTC',market_cap_rank:1,thumb:'',score:0,data:{price:78800,price_change_percentage_24h:{usd:-0.6},total_volume:'$42.0B',market_cap:'$1.57T'}}},
+        {item:{id:'pons',name:'Pons',symbol:'PONS',market_cap_rank:130,thumb:'',score:1,data:{price:0.31,price_change_percentage_24h:{usd:34},total_volume:'$111.8M',market_cap:'$310.7M'}}},
+        {item:{id:'helium',name:'Helium',symbol:'HNT',market_cap_rank:80,thumb:'',score:2,data:{price:6.4,price_change_percentage_24h:{usd:24},total_volume:'$196M',market_cap:'$1.2B'}}},
+        {item:{id:'seeker',name:'Seeker',symbol:'SKR',market_cap_rank:190,thumb:'',score:3,data:{price:0.08,price_change_percentage_24h:{usd:31},total_volume:'$96M',market_cap:'$410M'}}},
+        {item:{id:'hyperliquid',name:'Hyperliquid',symbol:'HYPE',market_cap_rank:12,thumb:'',score:4,data:{price:84,price_change_percentage_24h:{usd:3.1},total_volume:'$560M',market_cap:'$28.1B'}}}
+      ]},
+      categories: [
+        {id:'perpetuals',name:'Perpetuals',market_cap:49800000000,volume_24h:17000000000,market_cap_change_24h:2.8},
+        {id:'real-world-assets-rwa',name:'Real World Assets (RWA)',market_cap:68500000000,volume_24h:6100000000,market_cap_change_24h:1.6},
+        {id:'prediction-markets',name:'Prediction Markets',market_cap:7300000000,volume_24h:1700000000,market_cap_change_24h:4.2},
+        {id:'privacy-coins',name:'Privacy Coins',market_cap:30800000000,volume_24h:2800000000,market_cap_change_24h:5.4},
+        {id:'depin',name:'Decentralized Physical Infrastructure Network (DePIN)',market_cap:23900000000,volume_24h:3200000000,market_cap_change_24h:3.1}
+      ],
+      markets: [
+        {id:'bitcoin',symbol:'btc',name:'Bitcoin',image:'',current_price:78800,price_change_percentage_24h:-0.6,price_change_percentage_7d_in_currency:-2.1,market_cap:1570000000000,total_volume:42000000000},
+        {id:'ethereum',symbol:'eth',name:'Ethereum',image:'',current_price:2480,price_change_percentage_24h:0.8,price_change_percentage_7d_in_currency:7.4,market_cap:299000000000,total_volume:21000000000},
+        {id:'solana',symbol:'sol',name:'Solana',image:'',current_price:104,price_change_percentage_24h:1.9,price_change_percentage_7d_in_currency:9.7,market_cap:61000000000,total_volume:5100000000},
+        {id:'hyperliquid',symbol:'hype',name:'Hyperliquid',image:'',current_price:84,price_change_percentage_24h:3.1,price_change_percentage_7d_in_currency:18.4,market_cap:28100000000,total_volume:560000000},
+        {id:'aster-2',symbol:'aster',name:'Aster',image:'',current_price:0.70,price_change_percentage_24h:2.4,price_change_percentage_7d_in_currency:12.8,market_cap:1900000000,total_volume:480000000},
+        {id:'uniswap',symbol:'uni',name:'Uniswap',image:'',current_price:5.4,price_change_percentage_24h:4.9,price_change_percentage_7d_in_currency:21.2,market_cap:3400000000,total_volume:420000000},
+        {id:'zcash',symbol:'zec',name:'Zcash',image:'',current_price:154,price_change_percentage_24h:5.2,price_change_percentage_7d_in_currency:44.6,market_cap:2500000000,total_volume:380000000}
+      ]
+    };
+
+    const state = {
+      global: null, fear: null, trending: [], categories: [], markets: [],
+      dataMode: 'loading', lastUpdated: null, currentView:'overview', hotFilter:'trending',
+      watchlist: readJSON(STORAGE.watchlist, ['bitcoin','ethereum','solana','hyperliquid','aster-2','uniswap']),
+      alerts: readJSON(STORAGE.alerts, {}),
+      customEvents: readJSON(STORAGE.events, []),
+      settings: readJSON(STORAGE.settings, { refreshMinutes:10 }),
+      deferredInstall: null
+    };
+
+    const $ = (s, root=document) => root.querySelector(s);
+    const $$ = (s, root=document) => [...root.querySelectorAll(s)];
+    const nf = new Intl.NumberFormat('zh-CN', {maximumFractionDigits:2});
+    const moneyCompact = new Intl.NumberFormat('zh-CN', {style:'currency',currency:'USD',notation:'compact',maximumFractionDigits:2});
+
+    function readJSON(key, fallback) { try { const v=localStorage.getItem(key); return v ? JSON.parse(v) : fallback; } catch { return fallback; } }
+    function writeJSON(key, value) { try { localStorage.setItem(key, JSON.stringify(value)); } catch {} }
+    function clamp(n,min,max){ return Math.min(max,Math.max(min,n)); }
+    function escapeHtml(value=''){ return String(value).replace(/[&<>'"]/g, c=>({'&':'&amp;','<':'&lt;','>':'&gt;',"'":'&#39;','"':'&quot;'}[c])); }
+    function formatMoney(n){ if(!Number.isFinite(Number(n))) return '—'; const x=Number(n); if(Math.abs(x)<1) return '$'+x.toLocaleString('en-US',{maximumSignificantDigits:4}); if(Math.abs(x)<1000) return '$'+x.toLocaleString('en-US',{maximumFractionDigits:2}); return moneyCompact.format(x); }
+    function formatPct(n){ if(!Number.isFinite(Number(n))) return '—'; const x=Number(n); return `${x>0?'+':''}${x.toFixed(Math.abs(x)>=100?0:1)}%`; }
+    function deltaClass(n){ return !Number.isFinite(Number(n))?'flat':Number(n)>0?'up':Number(n)<0?'down':'flat'; }
+    function cnTime(date=new Date()){ return new Intl.DateTimeFormat('zh-CN',{timeZone:'Asia/Shanghai',month:'2-digit',day:'2-digit',hour:'2-digit',minute:'2-digit',hour12:false}).format(date); }
+    function toast(message){ const el=$('#toast'); el.textContent=message; el.classList.add('show'); clearTimeout(toast.timer); toast.timer=setTimeout(()=>el.classList.remove('show'),2200); }
+    function timeoutFetch(url, ms=9000){ const controller=new AbortController(); const timer=setTimeout(()=>controller.abort(),ms); return fetch(url,{signal:controller.signal,headers:{accept:'application/json'}}).finally(()=>clearTimeout(timer)); }
+
+    function loadFallback(){
+      state.global=FALLBACK.global;
+      state.fear=FALLBACK.fear;
+      state.trending=FALLBACK.trending.coins;
+      state.categories=FALLBACK.categories;
+      state.markets=FALLBACK.markets;
+      state.lastUpdated=new Date(FALLBACK.timestamp);
+      state.dataMode='fallback';
+    }
+
+    function loadCache(){
+      const cache=readJSON(STORAGE.cache,null);
+      if(!cache || !cache.timestamp) return false;
+      state.global=cache.global||null;
+      state.fear=cache.fear||null;
+      state.trending=cache.trending||[];
+      state.categories=cache.categories||[];
+      state.markets=cache.markets||[];
+      state.lastUpdated=new Date(cache.timestamp);
+      state.dataMode='cache';
+      return true;
+    }
+
+    async function fetchJSON(url){
+      const res=await timeoutFetch(url);
+      if(!res.ok) throw new Error(`${res.status}`);
+      return res.json();
+    }
+
+    async function refreshData(showToast=false){
+      const btn=$('#refreshBtn'); btn.classList.add('spinning'); btn.disabled=true;
+      const ids=[...new Set([...CORE_IDS,...state.watchlist])].slice(0,40).join(',');
+      const endpoints={
+        global:`${API}/global`,
+        trending:`${API}/search/trending`,
+        categories:`${API}/coins/categories?order=market_cap_desc`,
+        markets:`${API}/coins/markets?vs_currency=usd&ids=${encodeURIComponent(ids)}&order=market_cap_desc&sparkline=true&price_change_percentage=1h,24h,7d`,
+        fear:'https://api.alternative.me/fng/?limit=1&format=json'
+      };
+      const keys=Object.keys(endpoints);
+      const results=await Promise.allSettled(keys.map(k=>fetchJSON(endpoints[k])));
+      let successes=0;
+      results.forEach((result,i)=>{
+        if(result.status!=='fulfilled') return;
+        successes++;
+        const key=keys[i], value=result.value;
+        if(key==='global') state.global=value;
+        if(key==='fear') state.fear=value;
+        if(key==='trending') state.trending=Array.isArray(value.coins)?value.coins:[];
+        if(key==='categories') state.categories=Array.isArray(value)?value:[];
+        if(key==='markets') state.markets=Array.isArray(value)?value:[];
+      });
+      if(successes){
+        state.lastUpdated=new Date();
+        state.dataMode=successes===keys.length?'live':'partial';
+        writeJSON(STORAGE.cache,{timestamp:state.lastUpdated.toISOString(),global:state.global,fear:state.fear,trending:state.trending,categories:state.categories,markets:state.markets});
+      } else if(!state.global){ loadFallback(); }
+      renderAll();
+      btn.classList.remove('spinning'); btn.disabled=false;
+      if(showToast) toast(successes?'数据已刷新':'实时接口暂不可用，已显示最近缓存');
+    }
+
+    function updateStatus(){
+      const el=$('#dataStatus'), dot=$('.status-dot',el), text=$('span',el);
+      dot.className='status-dot';
+      const modes={live:'实时数据',partial:'部分实时',cache:'最近缓存',fallback:'离线示例',loading:'正在连接数据'};
+      text.textContent=modes[state.dataMode]||'数据状态未知';
+      if(state.dataMode==='live') dot.classList.add('live');
+      if(state.dataMode==='fallback') dot.classList.add('offline');
+      $('#lastUpdated').textContent=state.lastUpdated?`${cnTime(state.lastUpdated)} · ${modes[state.dataMode]}`:'等待刷新';
+      $('#hotUpdated').textContent=state.lastUpdated?cnTime(state.lastUpdated):'—';
+      $('#refreshFrequency').textContent=`每 ${state.settings.refreshMinutes||10} 分钟`;
+    }
+
+    function renderMetrics(){
+      const d=state.global?.data||{};
+      const cap=Number(d.total_market_cap?.usd), volume=Number(d.total_volume?.usd), dom=Number(d.market_cap_percentage?.btc), change=Number(d.market_cap_change_percentage_24h_usd);
+      $('#totalMarketCap').textContent=formatMoney(cap); $('#totalMarketCap').classList.remove('skeleton');
+      $('#totalVolume').textContent=formatMoney(volume); $('#totalVolume').classList.remove('skeleton');
+      $('#btcDominance').textContent=Number.isFinite(dom)?`${dom.toFixed(1)}%`:'—'; $('#btcDominance').classList.remove('skeleton');
+      $('#marketCapChange').textContent=formatPct(change); $('#marketCapChange').className=`delta ${deltaClass(change)}`;
+      $('#dominanceHint').textContent=dom>=58?'BTC高度主导，山寨扩散偏弱':dom>=54?'BTC主导，局部山寨轮动':'山寨扩散程度较高';
+      const fg=Number(state.fear?.data?.[0]?.value), fgEn=state.fear?.data?.[0]?.value_classification;
+      const fgMap={'Extreme Fear':'极度恐惧','Fear':'恐惧','Neutral':'中性','Greed':'贪婪','Extreme Greed':'极度贪婪'};
+      $('#fearGreed').textContent=Number.isFinite(fg)?String(fg):'—'; $('#fearGreed').classList.remove('skeleton');
+      $('#fearGreedLabel').textContent=fgMap[fgEn]||'暂无情绪数据';
+    }
+
+    function categoryFor(n){
+      const search=n.match.map(x=>x.toLowerCase());
+      if(!search.length) return null;
+      return state.categories.find(c=>search.some(x=>String(c.name||'').toLowerCase().includes(x)||String(c.id||'').toLowerCase().includes(x)))||null;
+    }
+
+    function scoredNarratives(){
+      return RESEARCH_NARRATIVES.map(n=>{
+        const cat=categoryFor(n), move=Number(cat?.market_cap_change_24h);
+        const adjustment=Number.isFinite(move)?clamp(move*.7,-6,6):0;
+        return {...n,cat,score:Math.round(clamp(n.base+adjustment,1,99))};
+      }).sort((a,b)=>b.score-a.score);
+    }
+
+    function narrativeHTML(n, index){
+      const move=Number(n.cat?.market_cap_change_24h);
+      const metric=n.cat?`板块24小时 <span class="delta ${deltaClass(move)}">${formatPct(move)}</span>`:'研究跟踪';
+      return `<article class="narrative-card">
+        <div class="narrative-top"><span class="narrative-rank">#${String(index+1).padStart(2,'0')} · ${escapeHtml(n.stage)}</span><span class="heat-score"><i class="heat-dot" style="--heat:${n.color}"></i><strong>${n.score}</strong>/100</span></div>
+        <h3>${escapeHtml(n.title)}</h3><p>${escapeHtml(n.desc)}</p>
+        <div class="narrative-metric"><div><span class="tag ${n.score>=88?'live':n.score>=76?'warning':'risk'}">${escapeHtml(n.projects)}</span><div class="panel-note" style="margin-top:7px">风险：${escapeHtml(n.risk)}</div></div><div class="category-change">${metric}</div></div>
+      </article>`;
+    }
+
+    function renderNarratives(){
+      const list=scoredNarratives();
+      $('#overviewNarratives').innerHTML=list.slice(0,3).map(n=>narrativeHTML(n,list.indexOf(n))).join('');
+      $('#allNarratives').innerHTML=list.map((n,i)=>narrativeHTML(n,i)).join('');
+    }
+
+    function getTrendingData(item){
+      const data=item.data||{};
+      const p24=Number(data.price_change_percentage_24h?.usd ?? item.price_change_percentage_24h);
+      const price=Number(data.price ?? item.current_price);
+      const score=clamp(Math.round(65 + Math.min(Math.abs(p24||0),40)*.7 - Number(item.score||0)*2),15,99);
+      return {id:item.id,name:item.name,symbol:item.symbol,rank:item.market_cap_rank,image:item.thumb||item.small||item.image,price,p24,volume:data.total_volume||'—',marketCap:data.market_cap||'—',heat:score};
+    }
+
+    function getHotItems(filter=state.hotFilter){
+      const trending=state.trending.map(x=>getTrendingData(x.item||x));
+      const markets=state.markets.map(m=>({id:m.id,name:m.name,symbol:m.symbol,rank:m.market_cap_rank,image:m.image,price:Number(m.current_price),p24:Number(m.price_change_percentage_24h),p7:Number(m.price_change_percentage_7d_in_currency),volume:formatMoney(m.total_volume),marketCap:formatMoney(m.market_cap),heat:clamp(Math.round(55+Math.abs(Number(m.price_change_percentage_24h)||0)*1.2+Math.abs(Number(m.price_change_percentage_7d_in_currency)||0)*.25),20,99)}));
+      if(filter==='movers') return markets.sort((a,b)=>Math.abs(b.p24||0)-Math.abs(a.p24||0));
+      if(filter==='core') return markets;
+      return trending;
+    }
+
+    function riskFor(item){ const x=Math.max(Math.abs(item.p24||0),Math.abs(item.p7||0)/3); return x>=25?['极高','high']:x>=10?['偏高','mid']:['正常','normal']; }
+    function coinAvatar(item){ return item.image?`<img class="coin-avatar" src="${escapeHtml(item.image)}" alt="" loading="lazy" referrerpolicy="no-referrer">`:`<span class="coin-avatar coin-placeholder">${escapeHtml((item.symbol||'?').slice(0,2).toUpperCase())}</span>`; }
+    function coinRowHTML(item, compact=false){
+      const [risk,riskClass]=riskFor(item), watched=state.watchlist.includes(item.id);
+      return `<div class="coin-row" data-coin-id="${escapeHtml(item.id)}">
+        <div class="coin-id">${coinAvatar(item)}<div class="coin-name"><strong>${escapeHtml(item.name||item.id)}</strong><span>${escapeHtml(item.symbol||'—')} · #${item.rank||'—'}</span></div></div>
+        <div class="coin-cell">${formatMoney(item.price)}<small>当前价格</small></div>
+        <div class="coin-cell delta ${deltaClass(item.p24)}">${formatPct(item.p24)}<small>24小时</small></div>
+        <div class="coin-cell">${escapeHtml(item.volume||'—')}<small>成交额</small></div>
+        <div class="coin-cell"><span class="risk-badge ${riskClass}">${risk}风险</span><small>热度 ${item.heat||'—'}</small></div>
+        <div class="row-actions"><button class="mini-icon watch-toggle ${watched?'active':''}" data-id="${escapeHtml(item.id)}" title="${watched?'移出':'加入'}自选">☆</button></div>
+      </div>`;
+    }
+
+    function coinHeader(){ return `<div class="coin-row header"><span>项目</span><span>价格</span><span>24小时</span><span>成交额</span><span>风险</span><span></span></div>`; }
+    function renderHot(){
+      const all=getHotItems(state.hotFilter).slice(0,12);
+      $('#fullHotList').innerHTML=coinHeader()+(all.length?all.map(x=>coinRowHTML(x)).join(''):`<div class="empty"><strong>暂时没有实时数据</strong>点击右上角刷新，或稍后再试。</div>`);
+      const top=getHotItems('trending').slice(0,5);
+      $('#overviewHotList').innerHTML=top.length?top.map(x=>coinRowHTML(x,true)).join(''):`<div class="empty">暂无热门搜索数据</div>`;
+    }
+
+    function marketModel(){
+      const d=state.global?.data||{}, change=Number(d.market_cap_change_percentage_24h_usd)||0, dom=Number(d.market_cap_percentage?.btc)||57;
+      const fg=Number(state.fear?.data?.[0]?.value)||50;
+      const valid=state.markets.filter(m=>Number.isFinite(Number(m.price_change_percentage_24h)));
+      const positive=valid.filter(m=>Number(m.price_change_percentage_24h)>0).length;
+      const breadth=valid.length?positive/valid.length*100:45;
+      const momentum=clamp(50+change*7,5,95), altBreadth=clamp(breadth-(dom-55)*4,5,95), crowding=clamp(fg,5,95);
+      const score=Math.round(clamp(momentum*.42+altBreadth*.33+(100-Math.abs(fg-55))*.25,8,92));
+      let title='局部轮动', text='BTC 市占率仍高，资金更可能集中在少数叙事和龙头，而不是所有山寨币一起上涨。';
+      if(change<-2||score<35){ title='防守与去杠杆'; text='全市场动量偏弱，优先控制仓位和杠杆，等待成交与市场广度修复。'; }
+      else if(score>=70&&dom<55){ title='风险偏好扩散'; text='市场广度与总量同步改善，山寨扩散条件较好，但仍需防范短期过热。'; }
+      else if(change>1.5){ title='局部进攻'; text='总市值动量改善，但BTC占比仍高，资金更偏向强叙事和高流动性项目。'; }
+      return {score,title,text,momentum,altBreadth,crowding,change,dom,breadth,fg};
+    }
+
+    function levelText(x){ return x>=68?'偏强':x>=45?'中性':'偏弱'; }
+    function renderRegime(){
+      const m=marketModel();
+      $('#marketScore').textContent=m.score; $('#marketGauge').style.setProperty('--score',m.score);
+      $('#marketRegime').textContent=m.title; $('#marketRegimeText').textContent=m.text;
+      $('#momentumBar').style.setProperty('--w',`${m.momentum}%`); $('#momentumText').textContent=levelText(m.momentum);
+      $('#breadthBar').style.setProperty('--w',`${m.altBreadth}%`); $('#breadthText').textContent=levelText(m.altBreadth);
+      $('#crowdingBar').style.setProperty('--w',`${m.crowding}%`); $('#crowdingText').textContent=m.crowding>=75?'拥挤':m.crowding<=30?'恐惧':'中等';
+      if(m.title==='防守与去杠杆') $('#heroTitle').innerHTML='市场进入防守，<span>先控制杠杆</span>';
+      else if(m.title==='风险偏好扩散') $('#heroTitle').innerHTML='资金开始扩散，<span>但别把普涨当永久</span>';
+      else $('#heroTitle').innerHTML='现在不是全面普涨，<span>先找资金主线</span>';
+    }
+
+    function renderBrief(){
+      const m=marketModel(), list=scoredNarratives(), hot=getHotItems('trending');
+      const hottest=list[0], hotNames=hot.slice(0,3).map(x=>x.symbol?.toUpperCase()).filter(Boolean).join('、')||'暂无';
+      const mover=[...hot].sort((a,b)=>Math.abs(b.p24||0)-Math.abs(a.p24||0))[0];
+      const items=[
+        `市场总市值24小时 ${formatPct(m.change)}，BTC市占率约 ${m.dom.toFixed(1)}%。当前模型判断为“${m.title}”。`,
+        `结构性热度最高的是“${hottest.title}”，研究热度 ${hottest.score}/100；热搜前列为 ${hotNames}。`,
+        mover?`${mover.symbol?.toUpperCase()} 的24小时波动约 ${formatPct(mover.p24)}，属于${riskFor(mover)[0]}风险异动，追涨前先检查成交量与筹码结构。`:'当前没有足够的异动数据，暂不生成项目判断。'
+      ];
+      $('#dailyBrief').innerHTML=items.map((x,i)=>`<li><span class="brief-num">${i+1}</span><span>${escapeHtml(x)}</span></li>`).join('');
+    }
+
+    function eventCountdown(date){
+      const diff=date-Date.now(); if(diff<0) return '已发生';
+      const h=Math.floor(diff/36e5), d=Math.floor(h/24); return d>0?`${d}天后`:`${Math.max(1,h)}小时后`;
+    }
+    function renderEvents(){
+      const events=[...BUILTIN_EVENTS,...state.customEvents].sort((a,b)=>new Date(a.datetime)-new Date(b.datetime));
+      $('#eventList').innerHTML=events.map(e=>{
+        const dt=new Date(e.datetime), past=dt<Date.now(), date=new Intl.DateTimeFormat('zh-CN',{timeZone:'Asia/Shanghai',month:'numeric',day:'numeric'}).format(dt), time=new Intl.DateTimeFormat('zh-CN',{timeZone:'Asia/Shanghai',hour:'2-digit',minute:'2-digit',hour12:false}).format(dt);
+        return `<article class="event-card ${past?'past':''}"><div class="event-date"><strong>${escapeHtml(date)}</strong><span>${escapeHtml(time)}</span></div><div class="event-copy"><h3>${escapeHtml(e.title)} <span class="tag">${escapeHtml(e.type)}</span></h3><p>${escapeHtml(e.description||'用户添加事件')}</p></div><div class="impact ${escapeHtml(e.impact)}"><strong>${e.impact==='high'?'高影响':e.impact==='mid'?'中影响':'低影响'}</strong><small>${eventCountdown(dt)}</small>${e.custom?`<button class="text-link delete-event" data-id="${escapeHtml(e.id)}">删除</button>`:''}</div></article>`;
+      }).join('')||`<div class="empty">暂无事件</div>`;
+    }
+
+    function marketById(id){ return state.markets.find(m=>m.id===id); }
+    function sparklineSVG(points=[], positive=true){
+      if(!Array.isArray(points)||points.length<2) return `<svg viewBox="0 0 100 40"><path d="M0 25 C20 18,35 30,50 19 S80 13,100 18" fill="none" stroke="${positive?'#6ee7a2':'#ff6b77'}" stroke-width="2" opacity=".45"/></svg>`;
+      const sampled=points.filter((_,i)=>i%Math.max(1,Math.floor(points.length/40))===0).slice(-48), min=Math.min(...sampled), max=Math.max(...sampled), range=max-min||1;
+      const coords=sampled.map((p,i)=>`${(i/(sampled.length-1)*100).toFixed(1)},${(38-(p-min)/range*34).toFixed(1)}`).join(' ');
+      return `<svg viewBox="0 0 100 40" preserveAspectRatio="none"><polyline points="${coords}" fill="none" stroke="${positive?'#6ee7a2':'#ff6b77'}" stroke-width="1.8" vector-effect="non-scaling-stroke"/><polyline points="0,40 ${coords} 100,40" fill="${positive?'rgba(110,231,162,.06)':'rgba(255,107,119,.06)'}" stroke="none"/></svg>`;
+    }
+    function renderWatchlist(){
+      const list=state.watchlist.map(id=>marketById(id)||{id,name:id,symbol:id.slice(0,5),current_price:NaN,price_change_percentage_24h:NaN,price_change_percentage_7d_in_currency:NaN}).filter(Boolean);
+      $('#watchCount').textContent=`${list.length} 个自选`;
+      $('#watchGrid').innerHTML=list.length?list.map(m=>{
+        const p24=Number(m.price_change_percentage_24h), alert=state.alerts[m.id]||{};
+        const alertText=[alert.above?`高于 $${alert.above}`:'',alert.below?`低于 $${alert.below}`:''].filter(Boolean).join(' · ')||'未设置价格提醒';
+        return `<article class="watch-card"><div class="watch-head"><div class="coin-id">${coinAvatar(m)}<div class="coin-name"><strong>${escapeHtml(m.name)}</strong><span>${escapeHtml(m.symbol||'')}</span></div></div><div class="row-actions"><button class="mini-icon set-alert" data-id="${escapeHtml(m.id)}" title="价格提醒">◉</button><button class="mini-icon remove-watch" data-id="${escapeHtml(m.id)}" title="移出自选">×</button></div></div><div class="watch-price">${formatMoney(m.current_price)}</div><div class="delta ${deltaClass(p24)}">${formatPct(p24)} · 24小时　${formatPct(m.price_change_percentage_7d_in_currency)} · 7天</div><div class="sparkline">${sparklineSVG(m.sparkline_in_7d?.price,p24>=0)}</div><div class="alert-line"><span>${escapeHtml(alertText)}</span><span>成交量 ${formatMoney(m.total_volume)}</span></div></article>`;
+      }).join(''):`<div class="empty" style="grid-column:1/-1"><strong>还没有自选币</strong>在上方搜索币名，或者从热门币页面点击星标添加。</div>`;
+      checkAlerts();
+    }
+
+    function checkAlerts(){
+      Object.entries(state.alerts).forEach(([id,a])=>{
+        const m=marketById(id), price=Number(m?.current_price); if(!Number.isFinite(price)) return;
+        const hit=(a.above&&price>=Number(a.above))||(a.below&&price<=Number(a.below));
+        if(!hit||a.lastHit&&Date.now()-a.lastHit<3600000) return;
+        a.lastHit=Date.now(); writeJSON(STORAGE.alerts,state.alerts);
+        const message=`${m.symbol.toUpperCase()} 当前 ${formatMoney(price)}，已触发你的价格提醒`;
+        toast(message);
+        if('Notification'in window&&Notification.permission==='granted') new Notification('链潮价格提醒',{body:message,icon:'icon.svg'});
+      });
+    }
+
+    function renderAll(){
+      updateStatus(); renderMetrics(); renderRegime(); renderNarratives(); renderHot(); renderBrief(); renderEvents(); renderWatchlist();
+    }
+
+    function switchView(view){
+      state.currentView=view;
+      $$('.view').forEach(v=>v.classList.toggle('active',v.id===`view-${view}`));
+      $$('.nav-btn[data-view]').forEach(b=>b.classList.toggle('active',b.dataset.view===view));
+      window.scrollTo({top:0,behavior:'smooth'});
+    }
+
+    function toggleWatch(id){
+      const idx=state.watchlist.indexOf(id);
+      if(idx>=0){ state.watchlist.splice(idx,1); toast('已移出自选'); }
+      else { state.watchlist.push(id); toast('已加入自选'); }
+      writeJSON(STORAGE.watchlist,state.watchlist); renderHot(); renderWatchlist();
+      if(idx<0&&!marketById(id)) refreshData(false);
+    }
+
+    let searchTimer;
+    async function searchCoins(query){
+      const box=$('#searchResults');
+      if(query.trim().length<2){ box.classList.add('hidden'); return; }
+      box.classList.remove('hidden'); box.innerHTML='<div class="search-result">正在搜索……</div>';
+      try {
+        const data=await fetchJSON(`${API}/search?query=${encodeURIComponent(query.trim())}`), coins=(data.coins||[]).slice(0,8);
+        box.innerHTML=coins.length?coins.map(c=>`<button class="search-result" data-search-id="${escapeHtml(c.id)}"><img src="${escapeHtml(c.thumb||'')}" alt=""><strong>${escapeHtml(c.name)}</strong><span>${escapeHtml(c.symbol)} · #${c.market_cap_rank||'—'}</span></button>`).join(''):'<div class="search-result">没有找到对应项目</div>';
+      } catch { box.innerHTML='<div class="search-result">搜索暂不可用，请稍后再试</div>'; }
+    }
+
+    function openAlert(id){
+      const form=$('#alertForm'), m=marketById(id), a=state.alerts[id]||{};
+      form.elements.coinId.value=id; form.elements.above.value=a.above||''; form.elements.below.value=a.below||'';
+      $('#alertTitle').textContent=`设置 ${m?.symbol?.toUpperCase()||id} 价格提醒`;
+      $('#alertDialog').showModal();
+    }
+
+    function bindEvents(){
+      document.addEventListener('click',e=>{
+        const nav=e.target.closest('[data-view]'); if(nav){ switchView(nav.dataset.view); return; }
+        const go=e.target.closest('[data-go]'); if(go){ switchView(go.dataset.go); return; }
+        const watch=e.target.closest('.watch-toggle'); if(watch){ toggleWatch(watch.dataset.id); return; }
+        const remove=e.target.closest('.remove-watch'); if(remove){ toggleWatch(remove.dataset.id); return; }
+        const alert=e.target.closest('.set-alert'); if(alert){ openAlert(alert.dataset.id); return; }
+        const result=e.target.closest('[data-search-id]'); if(result){ const id=result.dataset.searchId; if(!state.watchlist.includes(id)) toggleWatch(id); $('#coinSearch').value=''; $('#searchResults').classList.add('hidden'); return; }
+        const close=e.target.closest('[data-close-dialog]'); if(close){ document.getElementById(close.dataset.closeDialog).close(); return; }
+        const del=e.target.closest('.delete-event'); if(del){ state.customEvents=state.customEvents.filter(x=>x.id!==del.dataset.id); writeJSON(STORAGE.events,state.customEvents); renderEvents(); toast('事件已删除'); }
+        if(!e.target.closest('.searchbox')) $('#searchResults').classList.add('hidden');
+      });
+      $('#refreshBtn').addEventListener('click',()=>refreshData(true));
+      $('#hotFilter').addEventListener('click',e=>{ const b=e.target.closest('button[data-filter]'); if(!b)return; state.hotFilter=b.dataset.filter; $$('#hotFilter button').forEach(x=>x.classList.toggle('active',x===b)); renderHot(); });
+      $('#coinSearch').addEventListener('input',e=>{ clearTimeout(searchTimer); searchTimer=setTimeout(()=>searchCoins(e.target.value),450); });
+      $('#addEventBtn').addEventListener('click',()=>$('#eventDialog').showModal());
+      $('#eventForm').addEventListener('submit',e=>{
+        e.preventDefault(); const fd=new FormData(e.currentTarget), raw=fd.get('datetime');
+        const event={id:`custom-${Date.now()}`,datetime:`${raw}:00+08:00`,title:fd.get('title'),description:fd.get('description'),impact:fd.get('impact'),type:fd.get('type'),custom:true};
+        state.customEvents.push(event); writeJSON(STORAGE.events,state.customEvents); renderEvents(); $('#eventDialog').close(); e.currentTarget.reset(); toast('事件已添加');
+      });
+      $('#alertForm').addEventListener('submit',e=>{
+        e.preventDefault(); const fd=new FormData(e.currentTarget), id=fd.get('coinId'), above=fd.get('above'), below=fd.get('below');
+        if(above||below) state.alerts[id]={above:above||null,below:below||null}; else delete state.alerts[id];
+        writeJSON(STORAGE.alerts,state.alerts); renderWatchlist(); $('#alertDialog').close(); toast('提醒已保存');
+      });
+      $('#clearAlertBtn').addEventListener('click',()=>{ const id=$('#alertForm').elements.coinId.value; delete state.alerts[id]; writeJSON(STORAGE.alerts,state.alerts); renderWatchlist(); $('#alertDialog').close(); toast('提醒已清除'); });
+      $('#notifyBtn').addEventListener('click',async()=>{
+        if(!('Notification'in window)){ toast('当前浏览器不支持通知'); return; }
+        const p=await Notification.requestPermission(); toast(p==='granted'?'浏览器提醒已开启':'没有获得通知权限');
+      });
+      window.addEventListener('online',()=>refreshData(false));
+      window.addEventListener('offline',()=>{ state.dataMode=state.global?'cache':'fallback'; updateStatus(); });
+      window.addEventListener('beforeinstallprompt',e=>{ e.preventDefault(); state.deferredInstall=e; $('#installBtn').classList.remove('hidden'); });
+      $('#installBtn').addEventListener('click',async()=>{
+        if(state.deferredInstall){ state.deferredInstall.prompt(); await state.deferredInstall.userChoice; state.deferredInstall=null; $('#installBtn').classList.add('hidden'); }
+        else if(/iphone|ipad|ipod/i.test(navigator.userAgent)) alert('请点击 Safari 底部“分享”按钮，再选择“添加到主屏幕”。');
+      });
+    }
+
+    function init(){
+      if(!loadCache()) loadFallback();
+      bindEvents(); renderAll(); refreshData(false);
+      if(/iphone|ipad|ipod/i.test(navigator.userAgent)&&!navigator.standalone) $('#installBtn').classList.remove('hidden');
+      const interval=Math.max(5,Number(state.settings.refreshMinutes)||10)*60000;
+      setInterval(()=>{ if(!document.hidden&&navigator.onLine) refreshData(false); },interval);
+      if('serviceWorker'in navigator&&location.protocol.startsWith('http')) navigator.serviceWorker.register('./sw.js').catch(()=>{});
+    }
+
+    init();
+  })();
+  </script>
+</body>
+</html>
