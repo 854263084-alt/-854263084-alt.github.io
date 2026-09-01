@@ -19,6 +19,16 @@ https://854263084-alt.github.io/-854263084-alt.github.io/
 - 本机快照：用上一次市场观察计算成交额变化和持续性。首次出现的币种会显示“待验证”，不会假装已验证趋势。
 - 本机保存：自选币、自定义事件和价格提醒。
 
+## 后台快照与提醒
+
+- GitHub Actions 会约每 2 小时运行一次 `.github/workflows/radar-record.yml`，使用同一批免 Key 的公开数据源，把**已验证的**行情、热搜、DEX 注意力、新闻、宏观日历和历史点位写入 `data/radar-history.json`。
+- 网页每次打开仍先尝试实时刷新；实时接口暂时不可用时，才读取最近一次后台快照，并明确标记为“后台缓存”。后台快照只用于连续记录和降级展示，不会把旧数据伪装成实时数据。
+- 热点币会显示首次发现时间、已持续时长、阶段、发现原因、风险和一句中文结论。阶段由热搜、DEX 注意力、成交量变化与价格动量的少量可见规则判断，不使用黑箱复杂评分。
+- 浏览器提醒包括价格提醒、新热点、刚起势、升温变加速、成交量异常、新进入热搜、重大新闻和临近的 CPI / 非农 / FOMC 等事件；提醒只在页面打开时可运行，并对同一币种做去重和冷却。
+- 真正的网页关闭后 Push 需要额外的 Push 服务、订阅存储和 VAPID 配置。本项目已在 Service Worker 中预留接收接口，但未配置前不会声称可后台推送。
+
+若 GitHub Actions 没有写入快照，请在仓库 **Settings → Actions → General → Workflow permissions** 中确认允许工作流拥有 **Read and write permissions**，再从 Actions 页面手动运行一次 “Record ChainPulse radar data”。
+
 ## 数据可用性
 
 这是纯 GitHub Pages 前端，没有 API Key，也不会把密钥放进仓库。公开接口可能限流、跨域受限或临时不可用：

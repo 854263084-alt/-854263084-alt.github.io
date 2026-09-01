@@ -3,11 +3,12 @@ import { resolve } from 'node:path';
 
 const root = process.cwd();
 const output = resolve(root, 'dist');
-const files = ['index.html', 'manifest.webmanifest', 'sw.js', 'icon.svg'];
+const files = ['index.html', 'manifest.webmanifest', 'sw.js', 'icon.svg', 'data/radar-history.json'];
 
 await rm(output, { recursive: true, force: true });
 await mkdir(output, { recursive: true });
 await mkdir(resolve(output, 'server'), { recursive: true });
+await mkdir(resolve(output, 'data'), { recursive: true });
 
 for (const file of files) {
   await cp(resolve(root, file), resolve(output, file));
@@ -20,7 +21,8 @@ const TYPES = {
   'index.html': 'text/html; charset=utf-8',
   'manifest.webmanifest': 'application/manifest+json; charset=utf-8',
   'sw.js': 'text/javascript; charset=utf-8',
-  'icon.svg': 'image/svg+xml; charset=utf-8'
+  'icon.svg': 'image/svg+xml; charset=utf-8',
+  'data/radar-history.json': 'application/json; charset=utf-8'
 };
 
 export default {

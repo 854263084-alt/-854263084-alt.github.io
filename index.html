@@ -343,6 +343,11 @@
     .form-grid { display:grid; gap:12px; }
     .form-label { display:grid; gap:6px; color:var(--muted); font-size:11px; }
     .form-row { display:grid; grid-template-columns:1fr 1fr; gap:10px; }
+    .check-grid { display:grid; grid-template-columns:repeat(2,minmax(0,1fr)); gap:8px; }
+    .check-option { display:flex; align-items:flex-start; gap:8px; min-height:50px; padding:10px; border:1px solid var(--line); border-radius:12px; color:var(--muted); font-size:11px; line-height:1.45; background:rgba(255,255,255,.018); cursor:pointer; }
+    .check-option input { width:16px; height:16px; margin:0; accent-color:var(--green); flex:0 0 auto; }
+    .check-option strong { display:block; color:var(--text); font-size:11px; }
+    .notification-state { margin:0; padding:10px 11px; border:1px solid var(--line); border-radius:12px; color:var(--muted); font-size:10px; line-height:1.6; background:rgba(255,255,255,.018); }
     .dialog-actions { display:flex; justify-content:flex-end; gap:8px; margin-top:18px; }
 
     .toast {
@@ -399,6 +404,7 @@
       .event-date { padding-right:10px; }
       .impact { grid-column:2; justify-items:start; display:flex; align-items:center; }
       .form-row { grid-template-columns:1fr; }
+      .check-grid { grid-template-columns:1fr; }
       .mobile-nav {
         display:grid; grid-template-columns:repeat(6,1fr); position:fixed; z-index:80;
         left:10px; right:10px; bottom:max(10px,env(safe-area-inset-bottom));
@@ -539,7 +545,7 @@
         <div class="section-title-row"><div><h2>新趋势与高讨论叙事</h2><p>热度、成交变化、持续性和风险由最新快照重新计算</p></div><span class="chip"><span>模型更新</span><strong id="narrativeUpdated">等待数据</strong></span></div>
         <div class="narrative-grid" id="allNarratives"></div>
         <article class="panel section-block">
-          <div class="panel-head"><div><h2 class="panel-title">怎么读热度分</h2><p class="panel-note">不是涨幅排名，更不是买入推荐</p></div></div>
+          <div class="panel-head"><div><h2 class="panel-title">怎么读热点信号</h2><p class="panel-note">信号叠加不等于买入推荐</p></div></div>
           <div class="method-list">
             <div class="method-item"><h3>真实采用</h3><p>活跃用户、成交量、手续费、稳定币流入是否同步增长。</p></div>
             <div class="method-item"><h3>代币捕获</h3><p>协议收入是否真实进入回购、销毁或质押收益，而非只靠补贴。</p></div>
@@ -580,7 +586,7 @@
       </section>
 
       <section class="view" id="view-watchlist">
-        <div class="section-title-row"><div><h2>我的自选</h2><p>数据自动刷新，列表和价格提醒保存在当前设备</p></div><button class="ghost-btn small-btn" id="notifyBtn">开启浏览器提醒</button></div>
+        <div class="section-title-row"><div><h2>我的自选</h2><p>数据自动刷新，列表和价格提醒保存在当前设备</p></div><button class="ghost-btn small-btn" id="notifyBtn">提醒设置</button></div>
         <div class="toolbar">
           <div class="searchbox">
             <input id="coinSearch" type="search" autocomplete="off" placeholder="搜索币名或代码，例如 ETH、Aster">
@@ -651,6 +657,24 @@
     </form>
   </dialog>
 
+  <dialog id="notificationDialog">
+    <form class="dialog-body" id="notificationForm" method="dialog">
+      <div class="dialog-head"><h2>提醒设置</h2><button type="button" class="icon-btn" data-close-dialog="notificationDialog">×</button></div>
+      <p class="notification-state" id="notificationCapability">正在检查浏览器提醒能力……</p>
+      <div class="check-grid" style="margin-top:12px">
+        <label class="check-option"><input name="newHot" type="checkbox"><span><strong>新热点提醒</strong>首次进入热点池时提示</span></label>
+        <label class="check-option"><input name="emerging" type="checkbox"><span><strong>刚起势提醒</strong>出现早期有效信号时提示</span></label>
+        <label class="check-option"><input name="accelerating" type="checkbox"><span><strong>升温变加速</strong>阶段切换为加速时提示</span></label>
+        <label class="check-option"><input name="volume" type="checkbox"><span><strong>成交量异常</strong>较上次快照明显放大时提示</span></label>
+        <label class="check-option"><input name="trending" type="checkbox"><span><strong>新进入热搜</strong>新进入公开热搜时提示</span></label>
+        <label class="check-option"><input name="news" type="checkbox"><span><strong>重大新闻</strong>新出现的高影响公告/事件</span></label>
+        <label class="check-option"><input name="macro" type="checkbox"><span><strong>宏观事件</strong>CPI、非农、FOMC 临近时提示</span></label>
+      </div>
+      <p class="panel-note" style="margin-top:12px">同一币种会去重并设置冷却时间。网页关闭后，当前版本不会假装后台 Push；已预留 Web Push 接口，未来接入推送服务后才可真正后台通知。</p>
+      <div class="dialog-actions"><button type="button" class="ghost-btn" data-close-dialog="notificationDialog">取消</button><button class="primary-btn" type="submit">保存设置</button></div>
+    </form>
+  </dialog>
+
   <div class="toast" id="toast" role="status"></div>
 
   <script>
@@ -667,9 +691,14 @@
       'https://www.binance.com/bapi/composite/v1/public/cms/article/list/query?type=1&pageNo=1&pageSize=20',
       'https://api.gdeltproject.org/api/v2/doc/doc?query=(bitcoin%20OR%20ethereum%20OR%20cryptocurrency)&mode=artlist&format=json&maxrecords=20&timespan=1d'
     ];
+    const BACKGROUND_SNAPSHOT_URL = './data/radar-history.json';
+    // 只有未来接入自己的推送服务并配置公开 VAPID Key 后，才会真正订阅 Web Push。
+    // 当前特意留空，避免把不存在的“后台推送”伪装成已开启。
+    const PUSH_CONFIG = Object.freeze({ endpoint:'', vapidPublicKey:'' });
     const STORAGE = {
       cache: 'chainpulse:data:v2', history: 'chainpulse:history:v2', sourceState: 'chainpulse:sources:v2',
-      watchlist: 'chainpulse:watchlist:v1', alerts: 'chainpulse:alerts:v1', events: 'chainpulse:events:v1', settings: 'chainpulse:settings:v1'
+      watchlist: 'chainpulse:watchlist:v1', alerts: 'chainpulse:alerts:v1', events: 'chainpulse:events:v1', settings: 'chainpulse:settings:v1',
+      notificationSettings: 'chainpulse:notification-settings:v1', notificationLedger: 'chainpulse:notification-ledger:v1'
     };
     const CORE_IDS = ['bitcoin','ethereum','solana','hyperliquid','aster-2','uniswap','zcash','helium','ethena','ondo-finance'];
     const NARRATIVE_RULES = [
@@ -693,6 +722,10 @@
       alerts: readJSON(STORAGE.alerts, {}),
       customEvents: readJSON(STORAGE.events, []),
       settings: readJSON(STORAGE.settings, { refreshMinutes:10 }),
+      notificationSettings: normaliseNotificationSettings(readJSON(STORAGE.notificationSettings, null)),
+      notificationLedger: normaliseNotificationLedger(readJSON(STORAGE.notificationLedger, null)),
+      backgroundUpdated: null,
+      backgroundLoaded: false,
       deferredInstall: null
     };
 
@@ -703,6 +736,15 @@
 
     function readJSON(key, fallback) { try { const v=localStorage.getItem(key); return v ? JSON.parse(v) : fallback; } catch { return fallback; } }
     function writeJSON(key, value) { try { localStorage.setItem(key, JSON.stringify(value)); } catch {} }
+    function normaliseNotificationSettings(input){
+      const defaults={newHot:true,emerging:true,accelerating:true,volume:true,trending:true,news:true,macro:true};
+      return {...defaults,...(input&&typeof input==='object'?input:{})};
+    }
+    function normaliseNotificationLedger(input){
+      const source=input&&typeof input==='object'?input:{};
+      return {ready:Boolean(source.ready),coins:source.coins&&typeof source.coins==='object'?source.coins:{},news:source.news&&typeof source.news==='object'?source.news:{},events:source.events&&typeof source.events==='object'?source.events:{},sent:source.sent&&typeof source.sent==='object'?source.sent:{}};
+    }
+    function saveNotificationState(){ writeJSON(STORAGE.notificationSettings,state.notificationSettings); writeJSON(STORAGE.notificationLedger,state.notificationLedger); }
     function clamp(n,min,max){ return Math.min(max,Math.max(min,n)); }
     function escapeHtml(value=''){ return String(value).replace(/[&<>'"]/g, c=>({'&':'&amp;','<':'&lt;','>':'&gt;',"'":'&#39;','"':'&quot;'}[c])); }
     function formatMoney(n){ if(!Number.isFinite(Number(n))) return '—'; const x=Number(n); if(Math.abs(x)<1) return '$'+x.toLocaleString('en-US',{maximumSignificantDigits:4}); if(Math.abs(x)<1000) return '$'+x.toLocaleString('en-US',{maximumFractionDigits:2}); return moneyCompact.format(x); }
@@ -737,10 +779,10 @@
     function setSource(name,status,at){ state.sourceState[name]={status:status,at:at===undefined?new Date().toISOString():at}; }
     function markSourceFailure(name){
       const old=sourceInfo(name);
-      state.sourceState[name]={status:sourceHasData(name)?'cache':'unavailable',at:old.at||null};
+      state.sourceState[name]={status:sourceHasData(name)?(old.status==='background'?'background':'cache'):'unavailable',at:old.at||null};
     }
     function sourceLabel(name){ return ({coingecko:'CoinGecko 行情',sentiment:'市场情绪',dex:'DEX 注意力',macro:'宏观日历',news:'新闻事件'}[name]||name); }
-    function sourceStatusLabel(status){ return ({live:'实时',partial:'部分实时',cache:'缓存',unavailable:'不可用',loading:'连接中'}[status]||'未知'); }
+    function sourceStatusLabel(status){ return ({live:'实时',partial:'部分实时',cache:'缓存',background:'后台缓存',unavailable:'不可用',loading:'连接中'}[status]||'未知'); }
     function sourceSummary(names){ return names.map(name=>'<strong>'+escapeHtml(sourceLabel(name))+'</strong> '+escapeHtml(sourceStatusLabel(sourceInfo(name).status))).join(' · '); }
     function updateDataMode(){
       const market=sourceInfo('coingecko').status, sentiment=sourceInfo('sentiment').status;
@@ -784,6 +826,61 @@
       });
       state.dataMode='cache';
       return true;
+    }
+
+    function mergeBackgroundBucket(target, incoming, fields){
+      if(!incoming||typeof incoming!=='object') return;
+      Object.entries(incoming).forEach(([id,record])=>{
+        const rows=Array.isArray(record)?record:Array.isArray(record&&record.points)?record.points:[];
+        const converted=rows.map(row=>{
+          if(!Array.isArray(row)||!Number.isFinite(finite(row[0]))) return null;
+          const point={t:finite(row[0])};
+          fields.forEach((field,index)=>{ point[field]=finite(row[index+1]); });
+          return point;
+        }).filter(Boolean);
+        if(!converted.length) return;
+        const local=Array.isArray(target[id])?target[id]:[];
+        const merged=uniqueBy([...local,...converted].sort((a,b)=>finite(a.t)-finite(b.t)),point=>String(finite(point.t)));
+        target[id]=merged.slice(-96);
+      });
+    }
+    function mergeBackgroundHistory(history){
+      if(!history||typeof history!=='object') return;
+      mergeBackgroundBucket(state.history.coins,history.coins,['p','v','m']);
+      mergeBackgroundBucket(state.history.categories,history.categories,['v','m','c']);
+      writeJSON(STORAGE.history,state.history);
+    }
+    function applyBackgroundSnapshot(payload){
+      const snapshot=payload&&payload.snapshot&&typeof payload.snapshot==='object'?payload.snapshot:null;
+      const updated=parseDate(payload&&payload.updatedAt);
+      if(!snapshot||!updated) return false;
+      mergeBackgroundHistory(payload.history);
+      state.backgroundUpdated=updated;
+      state.backgroundLoaded=true;
+      const current=state.lastUpdated&&state.lastUpdated.getTime?state.lastUpdated.getTime():0;
+      const shouldUse=!current||updated.getTime()>=current;
+      if(shouldUse){
+        state.global=snapshot.global||null; state.fear=snapshot.fear||null; state.trending=Array.isArray(snapshot.trending)?snapshot.trending:[]; state.categories=Array.isArray(snapshot.categories)?snapshot.categories:[];
+        state.markets=Array.isArray(snapshot.markets)?snapshot.markets:[]; state.dexPairs=Array.isArray(snapshot.dexPairs)?snapshot.dexPairs:[]; state.macroEvents=Array.isArray(snapshot.macroEvents)?snapshot.macroEvents:[];
+        state.cryptoEvents=Array.isArray(snapshot.cryptoEvents)?snapshot.cryptoEvents:[]; state.news=Array.isArray(snapshot.news)?snapshot.news:[]; state.lastUpdated=updated;
+        const incoming=payload.sourceState&&typeof payload.sourceState==='object'?payload.sourceState:{};
+        ['coingecko','sentiment','dex','macro','news'].forEach(name=>{
+          const old=incoming[name]||{};
+          state.sourceState[name]={status:sourceHasData(name)?'background':'unavailable',at:old.at||updated.toISOString()};
+        });
+        updateDataMode(); saveCache();
+      }
+      return true;
+    }
+    async function loadBackgroundSnapshot(){
+      try {
+        const payload=await fetchJSON(BACKGROUND_SNAPSHOT_URL,8000);
+        const applied=applyBackgroundSnapshot(payload);
+        if(applied){ renderAll(); checkSignalAlerts(); }
+        return applied;
+      } catch {
+        return false;
+      }
     }
 
     async function fetchJSON(url, ms){
@@ -925,7 +1022,7 @@
         if(extras[1].status==='fulfilled'){ state.macroEvents=extras[1].value; setSource('macro','live'); anyLive=true; } else markSourceFailure('macro');
         if(extras[2].status==='fulfilled'){ state.news=extras[2].value; state.cryptoEvents=newsEvents(state.news); setSource('news','live'); anyLive=true; } else markSourceFailure('news');
         if(marketSuccess) recordSnapshots();
-        updateDataMode(); saveCache(); renderAll();
+        updateDataMode(); saveCache(); renderAll(); checkSignalAlerts();
         if(showToast) toast(anyLive?'数据已刷新':'实时源暂不可用，未展示示例数据');
       } catch {
         updateDataMode(); renderAll();
@@ -946,7 +1043,7 @@
       $('#hotUpdated').textContent=state.lastUpdated?cnTime(state.lastUpdated):'不可用';
       $('#researchUpdated').textContent=state.lastUpdated?cnTime(state.lastUpdated):'等待数据';
       $('#narrativeUpdated').textContent=state.lastUpdated?cnTime(state.lastUpdated):'不可用';
-      $('#radarFreshness').textContent=state.lastUpdated?(state.dataMode==='cache'?'缓存数据':'已计算'):'数据不可用';
+      $('#radarFreshness').textContent=state.lastUpdated?(state.dataMode==='cache'&&state.backgroundUpdated?'后台缓存':'已计算'):'数据不可用';
       $('#refreshFrequency').textContent='每 '+(state.settings.refreshMinutes||10)+' 分钟';
     }
 
@@ -987,38 +1084,45 @@
       const hours=Math.max(0,((state.lastUpdated?state.lastUpdated.getTime():Date.now())-finite(info.first&&info.first.t))/3600000);
       return hours>=24?'已跟踪约 '+Math.round(hours/24)+' 天':'已跟踪约 '+Math.max(1,Math.round(hours))+' 小时';
     }
+    function firstSeenText(info){
+      const date=parseDate(info.first&&info.first.t);
+      return date?'首次发现 '+cnDateTime(date)+'（北京时间）':'首次发现时间待下一次快照确认';
+    }
     function stageFromMetrics(metrics){
-      const p1=finite(metrics.p1h), p24=finite(metrics.p24), volume=finite(metrics.volumeChange), attention=finite(metrics.attention)||0, samples=metrics.samples||0;
+      const p1=finite(metrics.p1h), p24=finite(metrics.p24), volume=finite(metrics.volumeChange), attention=finite(metrics.attentionSignals??metrics.attention)||0, samples=metrics.samples||0;
       if((Number.isFinite(p1)&&p1<=-1.6)||(Number.isFinite(p24)&&p24<=-8)||(Number.isFinite(volume)&&volume<=-40&&p24<=0)) return '退潮';
-      if((Number.isFinite(p24)&&p24>=20)||(Number.isFinite(p1)&&p1>=7)||(attention>=82&&p24>=12)) return '过热';
+      if((Number.isFinite(p24)&&p24>=20)||(Number.isFinite(p1)&&p1>=7)||(attention>=3&&p24>=12)) return '过热';
       if((Number.isFinite(p1)&&p1>=2.5)||(Number.isFinite(p24)&&p24>=10&&Number.isFinite(volume)&&volume>=20)) return '加速';
-      if((Number.isFinite(p1)&&p1>=.7&&p24>=2)||(Number.isFinite(p24)&&p24>=5&&attention>=45)) return '升温';
-      if((attention>=40&&samples<=1&&p24>-6&&p24<12)||(samples<=1&&p1>0&&p24>=0)) return '刚起势';
+      if((Number.isFinite(p1)&&p1>=.7&&p24>=2)||(Number.isFinite(p24)&&p24>=5&&attention>=2)) return '升温';
+      if((attention>=1&&samples<=1&&p24>-6&&p24<12)||(samples<=1&&p1>0&&p24>=0)) return '刚起势';
       return '观察中';
     }
     function stageClass(stage){ return ({'刚起势':'emerging','升温':'warming','加速':'accelerating','过热':'overheated','退潮':'fading','观察中':'watching'}[stage]||'watching'); }
     function scoredNarratives(){
       const build=(rule,cat)=>{
         const info=priorPoint(state.history.categories,cat.id), move=finite(cat.market_cap_change_24h), volumeChange=changeSince(cat.volume_24h,info.prior&&info.prior.v);
-        const score=Math.round(clamp(50+(Number.isFinite(move)?move*2.2:0)+(Number.isFinite(volumeChange)?clamp(volumeChange*.22,-14,24):0)+Math.min(12,info.samples*2),1,99));
-        const stage=stageFromMetrics({p24:move,volumeChange:volumeChange,attention:score,samples:info.samples});
+        const attentionSignals=[move>0,volumeChange>0,info.samples>1].filter(Boolean).length;
+        const stage=stageFromMetrics({p24:move,volumeChange:volumeChange,attentionSignals:attentionSignals,samples:info.samples});
+        const stageOrder={'过热':5,'加速':4,'升温':3,'刚起势':2,'观察中':1,'退潮':0}[stage]||0;
+        const sortKey=stageOrder*10+attentionSignals+(Number.isFinite(move)?clamp(move/20,-1,1):0);
+        const signalLabel=attentionSignals>=3?'三项信号':attentionSignals===2?'双信号':attentionSignals===1?'单项信号':'待验证';
         const persistence=persistenceText(info);
         const risk=stage==='过热'||Math.abs(move)>=12?'高波动与拥挤风险':stage==='刚起势'?'持续性尚待验证':rule.risk;
         const volumeText=Number.isFinite(volumeChange)?'成交额较上次快照 '+formatPct(volumeChange):'成交额变化待下一次快照验证';
-        return {id:rule.id,title:rule.title,cat:cat,stage:stage,risk:risk,color:rule.color,score:score,projects:persistence,desc:'板块 24 小时 '+formatPct(move)+'；'+volumeText+'。'+persistence};
+        return {id:rule.id,title:rule.title,cat:cat,stage:stage,risk:risk,color:rule.color,sortKey:sortKey,signalCount:attentionSignals,signalLabel:signalLabel,projects:persistence,desc:'板块 24 小时 '+formatPct(move)+'；'+volumeText+'。'+persistence};
       };
       const matched=NARRATIVE_RULES.map(rule=>({rule:rule,cat:categoryFor(rule)})).filter(item=>item.cat).map(item=>build(item.rule,item.cat));
       const fallback=matched.length?[]:state.categories.slice().sort((a,b)=>Math.abs(finite(b.market_cap_change_24h))-Math.abs(finite(a.market_cap_change_24h))).slice(0,6).map(cat=>build({id:cat.id,title:'分类：'+String(cat.name||cat.id),risk:'分类数据不等于项目基本面',color:'var(--amber)'},cat));
-      return [...matched,...fallback].sort((a,b)=>b.score-a.score);
+      return [...matched,...fallback].sort((a,b)=>b.sortKey-a.sortKey);
     }
 
     function narrativeHTML(n, index){
       const move=Number(n.cat?.market_cap_change_24h);
       const metric=n.cat?`板块24小时 <span class="delta ${deltaClass(move)}">${formatPct(move)}</span>`:'研究跟踪';
       return `<article class="narrative-card">
-        <div class="narrative-top"><span class="narrative-rank">#${String(index+1).padStart(2,'0')} · ${escapeHtml(n.stage)}</span><span class="heat-score"><i class="heat-dot" style="--heat:${n.color}"></i><strong>${n.score}</strong>/100</span></div>
+        <div class="narrative-top"><span class="narrative-rank">#${String(index+1).padStart(2,'0')} · ${escapeHtml(n.stage)}</span><span class="heat-score"><i class="heat-dot" style="--heat:${n.color}"></i><strong>${escapeHtml(n.signalLabel)}</strong></span></div>
         <h3>${escapeHtml(n.title)}</h3><p>${escapeHtml(n.desc)}</p>
-        <div class="narrative-metric"><div><span class="tag ${n.score>=88?'live':n.score>=76?'warning':'risk'}">${escapeHtml(n.projects)}</span><div class="panel-note" style="margin-top:7px">风险：${escapeHtml(n.risk)}</div></div><div class="category-change">${metric}</div></div>
+        <div class="narrative-metric"><div><span class="tag ${n.signalCount>=2?'live':n.signalCount===1?'warning':'risk'}">${escapeHtml(n.projects)}</span><div class="panel-note" style="margin-top:7px">风险：${escapeHtml(n.risk)}</div></div><div class="category-change">${metric}</div></div>
       </article>`;
     }
 
@@ -1040,27 +1144,37 @@
       return all.map(item=>{
         const info=priorPoint(state.history.coins,item.id), p1h=finite(item.price_change_percentage_1h_in_currency), p24=finite(item.price_change_percentage_24h), p7=finite(item.price_change_percentage_7d_in_currency);
         const volumeChange=changeSince(item.total_volume,info.prior&&info.prior.v), trendRank=trendRanks.has(item.id)?trendRanks.get(item.id):null;
-        const attention=(trendRank!==null?Math.max(8,34-trendRank*2):0)+(item.dexBoost?18:0);
-        const heat=Math.round(clamp(30+attention+(Number.isFinite(p24)?Math.max(-10,p24)*1.15:0)+(Number.isFinite(p1h)?Math.max(-5,p1h)*2.4:0)+(Number.isFinite(volumeChange)?clamp(volumeChange*.16,-12,20):0)+Math.min(10,info.samples*1.8),1,99));
-        const stage=stageFromMetrics({p1h:p1h,p24:p24,volumeChange:volumeChange,attention:heat,samples:info.samples});
+        const reasons=[];
+        if(trendRank!==null) reasons.push('进入公开热搜 #'+(trendRank+1));
+        if(item.dexBoost) reasons.push('DEX 关注增加');
+        if(Number.isFinite(volumeChange)&&volumeChange>=35) reasons.push('成交量较上次快照放大 '+formatPct(volumeChange));
+        if(Number.isFinite(p1h)&&p1h>=1.3) reasons.push('1小时上涨 '+formatPct(p1h));
+        if(Number.isFinite(p24)&&p24>=5) reasons.push('24小时上涨 '+formatPct(p24));
+        if(!reasons.length&&item.source==='CoinGecko') reasons.push('进入高成交量观察池');
+        const attentionSignals=reasons.length;
+        const stage=stageFromMetrics({p1h:p1h,p24:p24,volumeChange:volumeChange,attentionSignals:attentionSignals,samples:info.samples});
         let risk='正常', riskClass='normal';
         if(item.dexBoost&&(finite(item.liquidity)<100000||!Number.isFinite(finite(item.market_cap)))||Math.abs(p24)>=30||Math.abs(p1h)>=9){ risk='极高'; riskClass='high'; }
         else if(Math.abs(p24)>=12||Math.abs(p1h)>=4||item.dexBoost){ risk='偏高'; riskClass='mid'; }
-        const facts=[];
-        if(trendRank!==null) facts.push('热搜 #'+(trendRank+1));
-        if(item.dexBoost) facts.push('DEX 注意力信号');
-        if(Number.isFinite(p1h)) facts.push('1小时 '+formatPct(p1h));
-        if(Number.isFinite(p24)) facts.push('24小时 '+formatPct(p24));
-        if(Number.isFinite(volumeChange)) facts.push('成交额较上次 '+formatPct(volumeChange));
-        return {id:item.id,name:item.name||item.id,symbol:item.symbol||'—',rank:item.rank||item.market_cap_rank||'—',image:item.image,price:finite(item.current_price),p1h:p1h,p24:p24,p7:p7,volume:formatMoney(item.total_volume),marketCap:formatMoney(item.market_cap),volumeChange:volumeChange,heat:heat,stage:stage,persistence:persistenceText(info),conclusion:(facts.length?facts.join('，')+'；':'')+persistenceText(info)+'。',risk:risk,riskClass:riskClass,trendingRank:trendRank,dexBoost:Boolean(item.dexBoost),source:item.source||'CoinGecko',url:item.url||''};
+        const conclusionMap={
+          '刚起势':'信号刚出现，先等下一次快照确认持续性。',
+          '升温':'注意力与价格开始同步，仍要核对成交是否持续。',
+          '加速':'短线动量加快，追高前先检查流动性和仓位风险。',
+          '过热':'波动和拥挤风险上升，不等同于立刻反转。',
+          '退潮':'动量正在减弱，观察成交是否继续收缩。',
+          '观察中':'当前证据不足，暂不作趋势判断。'
+        };
+        const priority=({ '过热':6,'加速':5,'升温':4,'刚起势':3,'退潮':2,'观察中':1 }[stage]||0)*10+attentionSignals;
+        const heatLabel=attentionSignals>=4?'多信号':attentionSignals===3?'三项信号':attentionSignals===2?'双信号':'单项信号';
+        return {id:item.id,name:item.name||item.id,symbol:item.symbol||'—',rank:item.rank||item.market_cap_rank||'—',image:item.image,price:finite(item.current_price),p1h:p1h,p24:p24,p7:p7,volume:formatMoney(item.total_volume),marketCap:formatMoney(item.market_cap),volumeChange:volumeChange,heat:attentionSignals,heatLabel:heatLabel,priority:priority,stage:stage,persistence:persistenceText(info),firstSeen:firstSeenText(info),discoveryReasons:reasons,conclusion:conclusionMap[stage],risk:risk,riskClass:riskClass,trendingRank:trendRank,dexBoost:Boolean(item.dexBoost),source:item.source||'CoinGecko',url:item.url||''};
       });
     }
     function getHotItems(filter=state.hotFilter){
       const all=buildCoinSignals();
-      if(filter==='early') return all.filter(item=>item.stage==='刚起势'||item.stage==='升温').sort((a,b)=>b.heat-a.heat);
+      if(filter==='early') return all.filter(item=>item.stage==='刚起势'||item.stage==='升温').sort((a,b)=>b.priority-a.priority);
       if(filter==='movers') return all.slice().sort((a,b)=>Math.abs(b.p24||0)-Math.abs(a.p24||0));
-      if(filter==='core') return all.filter(item=>CORE_IDS.includes(item.id)).sort((a,b)=>b.heat-a.heat);
-      return all.filter(item=>item.trendingRank!==null||item.dexBoost).sort((a,b)=>b.heat-a.heat);
+      if(filter==='core') return all.filter(item=>CORE_IDS.includes(item.id)).sort((a,b)=>b.priority-a.priority);
+      return all.filter(item=>item.trendingRank!==null||item.dexBoost).sort((a,b)=>b.priority-a.priority);
     }
 
     function riskFor(item){ if(item.risk) return [item.risk,item.riskClass||'normal']; const x=Math.max(Math.abs(item.p24||0),Math.abs(item.p7||0)/3); return x>=25?['极高','high']:x>=10?['偏高','mid']:['正常','normal']; }
@@ -1074,9 +1188,9 @@
         '<div class="coin-cell">'+formatMoney(item.price)+'<small>当前价格</small></div>'+
         '<div class="coin-cell delta '+deltaClass(item.p24)+'">'+formatPct(item.p24)+'<small>24小时 / '+formatPct(item.p1h)+' 1小时</small></div>'+
         '<div class="coin-cell">'+escapeHtml(item.volume||'—')+'<small>成交额'+escapeHtml(volumeChange)+'</small></div>'+
-        '<div class="coin-cell"><span class="risk-badge '+riskClass+'">'+risk+'风险</span><small>热度 '+(item.heat||'—')+'</small></div>'+
+        '<div class="coin-cell"><span class="risk-badge '+riskClass+'">'+risk+'风险</span><small>热度：'+escapeHtml(item.heatLabel||'待确认')+'</small></div>'+
         '<div class="row-actions"><button class="mini-icon watch-toggle '+(watched?'active':'')+'" data-id="'+escapeHtml(item.id)+'" title="'+(watched?'移出':'加入')+'自选">☆</button></div>'+
-        '<p class="coin-thesis">'+stage+' '+escapeHtml(item.conclusion||item.persistence||'持续性待验证')+'</p>'+
+        '<p class="coin-thesis">'+stage+' <strong>· '+escapeHtml(item.firstSeen||'首次发现时间待确认')+' · '+escapeHtml(item.persistence||'持续性待验证')+'</strong><br>发现原因：'+escapeHtml((item.discoveryReasons||[]).join('、')||'当前数据尚不足以说明')+'。'+escapeHtml(item.conclusion||'持续性待验证')+'</p>'+
       '</div>';
     }
 
@@ -1138,7 +1252,7 @@
       const items=[];
       if(Number.isFinite(m.change)&&Number.isFinite(m.dom)) items.push('市场总市值24小时 '+formatPct(m.change)+'，BTC 市占率约 '+m.dom.toFixed(1)+'%。当前模型判断为“'+m.title+'”。');
       else items.push('当前未获得可验证的市场总览，因此不生成方向性市场结论。');
-      if(hottest) items.push('结构性热度最高的是“'+hottest.title+'”，热度 '+hottest.score+'/100；热门币包括 '+hotNames+'。');
+      if(hottest) items.push('当前信号最集中的叙事是“'+hottest.title+'”，'+hottest.signalLabel+'；热门币包括 '+hotNames+'。');
       else items.push('叙事分类数据暂不可用，等待市场分类接口恢复。');
       if(mover) items.push(String(mover.symbol||'').toUpperCase()+' 24小时 '+formatPct(mover.p24)+'，阶段为“'+mover.stage+'”，'+mover.persistence+'；追涨前先核对成交额和筹码结构。');
       else items.push('暂未发现可验证的热门币异动。');
@@ -1207,6 +1321,73 @@
       });
     }
 
+    function notificationCapabilityText(){
+      if(!('Notification'in window)) return '当前浏览器不支持网页通知；页面仍会在可见时显示提醒提示。';
+      if(Notification.permission==='granted') return '浏览器提醒已授权：页面打开时可显示价格、热点、新闻与宏观提醒。';
+      if(Notification.permission==='denied') return '浏览器通知已被拒绝；请到浏览器或系统设置中重新允许此网站通知。';
+      return '尚未授权浏览器通知；保存设置后可在系统弹窗中允许。';
+    }
+    function renderNotificationDialog(){
+      const form=$('#notificationForm');
+      Object.keys(state.notificationSettings).forEach(key=>{ if(form.elements[key]) form.elements[key].checked=Boolean(state.notificationSettings[key]); });
+      $('#notificationCapability').textContent=notificationCapabilityText()+(PUSH_CONFIG.endpoint&&PUSH_CONFIG.vapidPublicKey?' Web Push 服务已配置。':' 网页关闭后的后台 Push 尚未配置。');
+    }
+    function pruneNotificationLedger(){
+      const cutoff=Date.now()-8*24*3600000, ledger=state.notificationLedger;
+      ['news','events','sent'].forEach(bucket=>Object.keys(ledger[bucket]).forEach(key=>{ if(finite(ledger[bucket][key])<cutoff) delete ledger[bucket][key]; }));
+      Object.keys(ledger.coins).forEach(key=>{ if(finite(ledger.coins[key]&&ledger.coins[key].at)<cutoff) delete ledger.coins[key]; });
+    }
+    function showSignalNotification(title,body,key,cooldown=6*3600000){
+      const now=Date.now(), last=finite(state.notificationLedger.sent[key]);
+      if(Number.isFinite(last)&&now-last<cooldown) return false;
+      state.notificationLedger.sent[key]=now; pruneNotificationLedger(); saveNotificationState();
+      toast(body);
+      if(!('Notification'in window)||Notification.permission!=='granted') return true;
+      const options={body:body,icon:'icon.svg',tag:'chainpulse-'+key,renotify:false,data:{url:'./'}};
+      navigator.serviceWorker?.ready.then(registration=>registration.showNotification(title,options)).catch(()=>new Notification(title,options));
+      return true;
+    }
+    function checkSignalAlerts(){
+      const signals=buildCoinSignals().filter(item=>item.trendingRank!==null||item.dexBoost||item.stage!=='观察中');
+      const ledger=state.notificationLedger, settings=state.notificationSettings;
+      const now=Date.now();
+      if(!ledger.ready){
+        signals.forEach(item=>{ ledger.coins[item.id]={stage:item.stage,trending:item.trendingRank!==null,at:now}; });
+        state.news.forEach(item=>{ ledger.news[item.id]=now; });
+        [...state.macroEvents,...state.cryptoEvents].forEach(item=>{ if(item&&item.id) ledger.events[item.id]=now; });
+        ledger.ready=true; pruneNotificationLedger(); saveNotificationState();
+        return;
+      }
+      let emitted=0;
+      signals.forEach(item=>{
+        const previous=ledger.coins[item.id], symbol=String(item.symbol||item.name||item.id).toUpperCase();
+        let alert=null;
+        if(!previous&&settings.newHot) alert={kind:'new-hot',title:'链潮 · 新热点',body:`${symbol} 新进入热点跟踪：${(item.discoveryReasons||[]).slice(0,2).join('、')}。`};
+        else if(previous&&previous.stage!=='刚起势'&&item.stage==='刚起势'&&settings.emerging) alert={kind:'emerging',title:'链潮 · 刚起势',body:`${symbol} 进入“刚起势”：${(item.discoveryReasons||[]).slice(0,2).join('、')}。`};
+        else if(previous&&previous.stage!=='加速'&&item.stage==='加速'&&settings.accelerating) alert={kind:'accelerating',title:'链潮 · 升温变加速',body:`${symbol} 阶段切换为“加速”，先核对成交量与流动性。`};
+        else if(previous&&Number.isFinite(finite(item.volumeChange))&&item.volumeChange>=60&&settings.volume) alert={kind:'volume',title:'链潮 · 成交量异常',body:`${symbol} 成交量较上次快照放大 ${formatPct(item.volumeChange)}。`};
+        else if(previous&&!previous.trending&&item.trendingRank!==null&&settings.trending) alert={kind:'trending',title:'链潮 · 新进入热搜',body:`${symbol} 进入公开热搜 #${item.trendingRank+1}。`};
+        if(alert&&emitted<2&&showSignalNotification(alert.title,alert.body,`${alert.kind}:${item.id}`)) emitted++;
+        ledger.coins[item.id]={stage:item.stage,trending:item.trendingRank!==null,at:now};
+      });
+      const newsCutoff=now-12*3600000;
+      state.news.filter(item=>item.impact==='high'||(item.type!=='市场资讯'&&item.impact==='mid')).forEach(item=>{
+        const published=parseDate(item.publishedAt);
+        if(!published||published.getTime()<newsCutoff||ledger.news[item.id]) return;
+        if(settings.news&&emitted<2&&showSignalNotification('链潮 · 重大新闻',`${item.type}：${item.title}`,`news:${item.id}`,12*3600000)) emitted++;
+        ledger.news[item.id]=now;
+      });
+      [...state.macroEvents,...state.cryptoEvents].filter(item=>item&&item.id&&item.impact==='high').forEach(item=>{
+        const date=parseDate(item.datetime), diff=date?date.getTime()-now:NaN;
+        if(!Number.isFinite(diff)||diff<0||diff>2*3600000) return;
+        const isMacro=item.type==='宏观';
+        const enabled=isMacro?settings.macro:settings.news;
+        if(enabled&&emitted<2&&showSignalNotification(isMacro?'链潮 · 重要宏观事件':'链潮 · 重要事件',`${item.title} 将在 ${cnDateTime(date)}（北京时间）发生。`,`event:${item.id}`,12*3600000)) emitted++;
+        ledger.events[item.id]=now;
+      });
+      pruneNotificationLedger(); saveNotificationState();
+    }
+
     function radarEmpty(kicker,title,copy,view){
       return '<div class="radar-kicker">'+escapeHtml(kicker)+'</div><h3 class="radar-value">'+escapeHtml(title)+'</h3><p class="radar-copy">'+escapeHtml(copy)+'</p><div class="radar-meta"><span class="source-status">'+sourceSummary(view==='calendar'?['macro','news']:['coingecko','dex'])+'</span></div>';
     }
@@ -1214,22 +1395,26 @@
       return '<div class="radar-item"><div><strong>'+escapeHtml(item.name||item.symbol||item.id)+'</strong><p>'+escapeHtml(item.conclusion||item.persistence||'持续性待验证')+'</p></div><div><span class="stage-badge stage-'+stageClass(item.stage)+'">'+escapeHtml(item.stage||'观察中')+'</span><p class="delta '+deltaClass(item.p24)+'">'+formatPct(item.p24)+'</p></div></div>';
     }
     function renderHomeRadar(){
-      const narratives=scoredNarratives(), strongest=narratives[0], hot=getHotItems('trending').slice(0,2), early=getHotItems('early').slice(0,2);
-      const overheated=buildCoinSignals().filter(item=>item.stage==='过热').sort((a,b)=>b.heat-a.heat).slice(0,2);
+      const narratives=scoredNarratives(), strongest=narratives[0], signals=buildCoinSignals();
+      const starting=signals.filter(item=>item.stage==='刚起势').sort((a,b)=>b.priority-a.priority).slice(0,1);
+      const warming=signals.filter(item=>item.stage==='升温'||item.stage==='加速').sort((a,b)=>b.priority-a.priority).slice(0,2);
+      const opportunities=[...starting,...warming].slice(0,2);
+      const fallbackHot=getHotItems('trending').slice(0,2);
+      const risks=signals.filter(item=>item.stage==='过热'||item.stage==='退潮').sort((a,b)=>b.priority-a.priority).slice(0,2);
       const now=Date.now(), allEvents=[...state.macroEvents,...state.cryptoEvents,...state.customEvents].filter(item=>parseDate(item.datetime));
       const futureEvents=allEvents.filter(item=>new Date(item.datetime).getTime()>=now-5*60000).sort((a,b)=>new Date(a.datetime)-new Date(b.datetime)).slice(0,2);
       const recentEvents=allEvents.filter(item=>{ const time=new Date(item.datetime).getTime(); return time<now-5*60000&&time>=now-24*3600000; }).sort((a,b)=>new Date(b.datetime)-new Date(a.datetime)).slice(0,2);
       const events=futureEvents.length?futureEvents:recentEvents, eventKicker=futureEvents.length?'今日 / 近期重要事件':'今日已发生的重要事件';
       $('#todayNarrative').innerHTML=strongest?
-        '<div class="radar-kicker">今天最强叙事</div><h3 class="radar-value">'+escapeHtml(strongest.title)+'</h3><p class="radar-copy">'+escapeHtml(strongest.desc)+'</p><div class="radar-meta"><span class="stage-badge stage-'+stageClass(strongest.stage)+'">'+escapeHtml(strongest.stage)+'</span><span class="tag '+(strongest.score>=76?'live':'warning')+'">热度 '+strongest.score+'/100</span><button class="text-link" data-go="narratives">查看趋势</button></div>':
+        '<div class="radar-kicker">今天最强叙事</div><h3 class="radar-value">'+escapeHtml(strongest.title)+'</h3><p class="radar-copy">'+escapeHtml(strongest.desc)+'</p><div class="radar-meta"><span class="stage-badge stage-'+stageClass(strongest.stage)+'">'+escapeHtml(strongest.stage)+'</span><span class="tag '+(strongest.signalCount>=2?'live':'warning')+'">'+escapeHtml(strongest.signalLabel)+'</span><button class="text-link" data-go="narratives">查看趋势</button></div>':
         radarEmpty('今天最强叙事','暂无可验证叙事','等待市场分类与行情数据。','narratives');
-      const hotOrEarly=early.length?early:hot;
+      const hotOrEarly=opportunities.length?opportunities:fallbackHot;
       $('#emergingRadar').innerHTML=hotOrEarly.length?
-        '<div class="radar-kicker">最新热点币 / 刚起势机会</div><h3 class="radar-value">'+(early.length?'先看刚起势与升温':'当前热门币')+'</h3><div class="radar-list">'+hotOrEarly.map(radarSignalRow).join('')+'</div><div class="radar-meta"><button class="text-link" data-go="hot">查看热门币</button></div>':
+        '<div class="radar-kicker">刚起势 / 升温 / 加速</div><h3 class="radar-value">'+(opportunities.length?'现在值得跟踪的变化':'当前热门币')+'</h3><div class="radar-list">'+hotOrEarly.map(radarSignalRow).join('')+'</div><div class="radar-meta"><button class="text-link" data-go="hot">查看热门币</button></div>':
         radarEmpty('最新热点币 / 刚起势机会','暂无可验证信号','热搜和 DEX 注意力源恢复后会自动计算。','hot');
-      $('#overheatRadar').innerHTML=overheated.length?
-        '<div class="radar-kicker">过热风险</div><h3 class="radar-value">注意拥挤与波动</h3><div class="radar-list">'+overheated.map(radarSignalRow).join('')+'</div><div class="radar-meta"><span class="risk-badge high">不等同于做空信号</span><button class="text-link" data-go="hot">查看异动</button></div>':
-        radarEmpty('过热风险','未检测到过热币','不代表低风险；仍请查看成交额和流动性。','hot');
+      $('#overheatRadar').innerHTML=risks.length?
+        '<div class="radar-kicker">过热 / 退潮风险</div><h3 class="radar-value">注意拥挤与动量转弱</h3><div class="radar-list">'+risks.map(radarSignalRow).join('')+'</div><div class="radar-meta"><span class="risk-badge high">不等同于做空信号</span><button class="text-link" data-go="hot">查看异动</button></div>':
+        radarEmpty('过热 / 退潮风险','未检测到明显风险阶段','不代表低风险；仍请查看成交额和流动性。','hot');
       $('#todayEventsRadar').innerHTML=events.length?
         '<div class="radar-kicker">'+eventKicker+'</div><h3 class="radar-value">'+escapeHtml(events[0].title)+'</h3><p class="radar-copy">'+escapeHtml(cnDateTime(new Date(events[0].datetime)))+'（北京时间） · '+escapeHtml(events[0].description||'请打开来源核实')+'</p><div class="radar-meta"><span class="tag '+(events[0].impact==='high'?'risk':events[0].impact==='mid'?'warning':'live')+'">'+(events[0].impact==='high'?'高影响':events[0].impact==='mid'?'中影响':'低影响')+'</span><button class="text-link" data-go="calendar">查看日历</button></div>':
         radarEmpty('今日 / 近期重要事件','暂无可验证事件','宏观和新闻源不可用时不会显示固定日历。','calendar');
@@ -1300,8 +1485,15 @@
       });
       $('#clearAlertBtn').addEventListener('click',()=>{ const id=$('#alertForm').elements.coinId.value; delete state.alerts[id]; writeJSON(STORAGE.alerts,state.alerts); renderWatchlist(); $('#alertDialog').close(); toast('提醒已清除'); });
       $('#notifyBtn').addEventListener('click',async()=>{
-        if(!('Notification'in window)){ toast('当前浏览器不支持通知'); return; }
-        const p=await Notification.requestPermission(); toast(p==='granted'?'浏览器提醒已开启':'没有获得通知权限');
+        if('Notification'in window&&Notification.permission==='default'){
+          try { await Notification.requestPermission(); } catch {}
+        }
+        renderNotificationDialog(); $('#notificationDialog').showModal();
+      });
+      $('#notificationForm').addEventListener('submit',e=>{
+        e.preventDefault(); const form=e.currentTarget;
+        Object.keys(state.notificationSettings).forEach(key=>{ if(form.elements[key]) state.notificationSettings[key]=Boolean(form.elements[key].checked); });
+        saveNotificationState(); checkSignalAlerts(); $('#notificationDialog').close(); toast('提醒设置已保存');
       });
       window.addEventListener('online',()=>refreshData(false));
       window.addEventListener('offline',()=>{
@@ -1315,9 +1507,10 @@
       });
     }
 
-    function init(){
+    async function init(){
       if(!loadCache()) loadFallback();
       bindEvents(); renderAll(); refreshData(false);
+      await loadBackgroundSnapshot();
       if(/iphone|ipad|ipod/i.test(navigator.userAgent)&&!navigator.standalone) $('#installBtn').classList.remove('hidden');
       const interval=Math.max(5,Number(state.settings.refreshMinutes)||10)*60000;
       setInterval(()=>{ if(!document.hidden&&navigator.onLine) refreshData(false); },interval);
