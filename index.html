@@ -200,6 +200,28 @@
     .brief-num { width:23px; height:23px; border-radius:8px; display:grid; place-items:center; background:rgba(182,242,91,.09); color:var(--green); font-size:10px; font-weight:800; }
     .disclaimer { margin:16px 0 0; padding-top:13px; border-top:1px solid var(--line); color:var(--muted-2); font-size:10px; line-height:1.6; }
 
+    .radar-grid { display:grid; grid-template-columns:repeat(2,minmax(0,1fr)); gap:12px; }
+    .radar-panel { min-height:208px; display:flex; flex-direction:column; }
+    .radar-panel .panel-head { margin-bottom:12px; }
+    .radar-kicker { color:var(--muted-2); font-size:10px; letter-spacing:.9px; font-weight:800; text-transform:uppercase; }
+    .radar-value { margin:7px 0 4px; font-size:21px; letter-spacing:-.45px; }
+    .radar-copy { margin:0; color:var(--muted); font-size:12px; line-height:1.65; }
+    .radar-meta { display:flex; align-items:center; flex-wrap:wrap; gap:7px; margin-top:auto; padding-top:14px; }
+    .radar-list { display:grid; gap:8px; }
+    .radar-item { display:grid; grid-template-columns:1fr auto; gap:10px; align-items:start; padding:10px 0; border-top:1px solid var(--line); }
+    .radar-item:first-child { border-top:0; padding-top:1px; }
+    .radar-item strong { display:block; font-size:12px; }
+    .radar-item p { margin:3px 0 0; color:var(--muted); font-size:10px; line-height:1.55; }
+    .stage-badge { display:inline-flex; align-items:center; width:max-content; padding:4px 7px; border-radius:99px; border:1px solid var(--line); font-size:9px; white-space:nowrap; }
+    .stage-emerging { color:var(--blue); background:rgba(116,184,255,.07); border-color:rgba(116,184,255,.18); }
+    .stage-warming { color:var(--green-2); background:rgba(110,231,162,.07); border-color:rgba(110,231,162,.18); }
+    .stage-accelerating { color:var(--green); background:rgba(182,242,91,.09); border-color:rgba(182,242,91,.2); }
+    .stage-overheated { color:var(--red); background:rgba(255,107,119,.08); border-color:rgba(255,107,119,.2); }
+    .stage-fading { color:var(--muted); background:rgba(255,255,255,.035); }
+    .stage-watching { color:var(--amber); background:rgba(255,203,102,.06); border-color:rgba(255,203,102,.16); }
+    .source-status { color:var(--muted-2); font-size:10px; line-height:1.65; }
+    .source-status strong { color:var(--muted); font-weight:650; }
+
     .section-block { margin-top:16px; }
     .section-title-row { display:flex; align-items:end; justify-content:space-between; gap:16px; padding:6px 2px 13px; }
     .section-title-row h2 { margin:0; font-size:21px; letter-spacing:-.5px; }
@@ -241,6 +263,7 @@
     .coin-name span { color:var(--muted); font-size:10px; text-transform:uppercase; }
     .coin-cell { font-size:12px; font-variant-numeric:tabular-nums; }
     .coin-cell small { display:block; color:var(--muted-2); margin-top:2px; }
+    .coin-thesis { grid-column:1 / -1; margin:0; padding-top:9px; border-top:1px solid var(--line); color:var(--muted); font-size:10px; line-height:1.55; }
     .risk-badge { display:inline-flex; padding:5px 8px; border-radius:99px; font-size:9px; border:1px solid var(--line); }
     .risk-badge.high { color:var(--red); background:rgba(255,107,119,.07); border-color:rgba(255,107,119,.15); }
     .risk-badge.mid { color:var(--amber); background:rgba(255,203,102,.06); border-color:rgba(255,203,102,.15); }
@@ -283,6 +306,11 @@
     .callout { border-radius:16px; padding:17px; background:linear-gradient(145deg,rgba(182,242,91,.1),rgba(182,242,91,.025)); border:1px solid rgba(182,242,91,.13); }
     .callout h3 { margin:0 0 7px; font-size:14px; }
     .callout p { margin:0; color:var(--muted); font-size:11px; line-height:1.65; }
+    .news-list { display:grid; gap:9px; }
+    .news-card { display:grid; grid-template-columns:auto 1fr; gap:10px; align-items:start; border:1px solid var(--line); border-radius:14px; padding:12px; background:rgba(255,255,255,.018); }
+    .news-card h3 { margin:0; font-size:12px; line-height:1.45; }
+    .news-card p { margin:4px 0 0; color:var(--muted); font-size:10px; line-height:1.55; }
+    .news-meta { display:flex; flex-wrap:wrap; gap:6px; margin-top:7px; color:var(--muted-2); font-size:9px; }
 
     .watch-grid { display:grid; grid-template-columns:repeat(2,minmax(0,1fr)); gap:10px; }
     .watch-card { border:1px solid var(--line); border-radius:17px; background:rgba(255,255,255,.02); padding:15px; }
@@ -332,7 +360,7 @@
     @media (max-width: 920px) {
       .metric-grid { grid-template-columns:repeat(2,minmax(0,1fr)); }
       .overview-grid, .calendar-layout { grid-template-columns:1fr; }
-      .narrative-grid, .source-grid { grid-template-columns:repeat(2,minmax(0,1fr)); }
+      .narrative-grid, .source-grid, .radar-grid { grid-template-columns:repeat(2,minmax(0,1fr)); }
       .coin-row { grid-template-columns:minmax(155px,1.3fr) .8fr .72fr auto; }
       .coin-row > :nth-child(4), .coin-row > :nth-child(5) { display:none; }
     }
@@ -359,7 +387,7 @@
       .regime-copy p { font-size:11px; }
       .signal-list { display:none; }
       .section-title-row h2 { font-size:19px; }
-      .narrative-grid, .source-grid, .method-list, .watch-grid { grid-template-columns:1fr; }
+      .narrative-grid, .source-grid, .method-list, .watch-grid, .radar-grid { grid-template-columns:1fr; }
       .narrative-card { min-height:205px; }
       .toolbar { align-items:stretch; flex-direction:column; }
       .searchbox { width:100%; }
@@ -425,7 +453,17 @@
           <div class="hero-meta">
             <span class="chip"><span>行情</span><strong id="lastUpdated">等待刷新</strong></span>
             <span class="chip"><span>频率</span><strong id="refreshFrequency">每 10 分钟</strong></span>
-            <span class="chip"><span>研究观点</span><strong>2026-09-01</strong></span>
+            <span class="chip"><span>情报模型</span><strong id="researchUpdated">自动计算</strong></span>
+          </div>
+        </div>
+
+        <div class="section-block">
+          <div class="section-title-row"><div><h2>今日机会与风险雷达</h2><p>只基于已获取的数据生成；首个快照会明确标注“待验证”</p></div><span class="tag live" id="radarFreshness">正在计算</span></div>
+          <div class="radar-grid">
+            <article class="panel radar-panel" id="todayNarrative"></article>
+            <article class="panel radar-panel" id="emergingRadar"></article>
+            <article class="panel radar-panel" id="overheatRadar"></article>
+            <article class="panel radar-panel" id="todayEventsRadar"></article>
           </div>
         </div>
 
@@ -487,18 +525,18 @@
         </div>
 
         <div class="section-block">
-          <div class="section-title-row"><div><h2>当前主线</h2><p>综合研究强度与实时板块变化</p></div><button class="text-link" data-go="narratives">查看全部 →</button></div>
+          <div class="section-title-row"><div><h2>当前主线</h2><p>由板块涨幅、成交变化和持续性自动排序</p></div><button class="text-link" data-go="narratives">查看全部 →</button></div>
           <div class="narrative-grid" id="overviewNarratives"></div>
         </div>
 
         <div class="section-block">
-          <div class="section-title-row"><div><h2>正在升温</h2><p>热门搜索不是买点，只是注意力温度计</p></div><button class="text-link" data-go="hot">查看更多 →</button></div>
+          <div class="section-title-row"><div><h2>正在升温</h2><p>热搜、价格动量与成交变化交叉验证</p></div><button class="text-link" data-go="hot">查看更多 →</button></div>
           <article class="panel"><div class="hot-list" id="overviewHotList"></div></article>
         </div>
       </section>
 
       <section class="view" id="view-narratives">
-        <div class="section-title-row"><div><h2>新趋势与高讨论叙事</h2><p>“结构性主线”与“短线注意力”分开评分</p></div><span class="chip"><span>研究更新</span><strong>9月1日</strong></span></div>
+        <div class="section-title-row"><div><h2>新趋势与高讨论叙事</h2><p>热度、成交变化、持续性和风险由最新快照重新计算</p></div><span class="chip"><span>模型更新</span><strong id="narrativeUpdated">等待数据</strong></span></div>
         <div class="narrative-grid" id="allNarratives"></div>
         <article class="panel section-block">
           <div class="panel-head"><div><h2 class="panel-title">怎么读热度分</h2><p class="panel-note">不是涨幅排名，更不是买入推荐</p></div></div>
@@ -511,12 +549,13 @@
       </section>
 
       <section class="view" id="view-hot">
-        <div class="section-title-row"><div><h2>热门币与异动雷达</h2><p>来自 CoinGecko 热门搜索及核心观察池</p></div><span class="chip"><span>刷新</span><strong id="hotUpdated">—</strong></span></div>
+        <div class="section-title-row"><div><h2>热门币与异动雷达</h2><p>来自热搜、价格动量、成交变化和 DEX 注意力信号</p></div><span class="chip"><span>刷新</span><strong id="hotUpdated">—</strong></span></div>
         <article class="panel">
           <div class="toolbar">
-            <div class="segmented" id="hotFilter"><button class="active" data-filter="trending">热搜</button><button data-filter="movers">涨幅异动</button><button data-filter="core">主线池</button></div>
+            <div class="segmented" id="hotFilter"><button class="active" data-filter="trending">热搜</button><button data-filter="early">刚起势</button><button data-filter="movers">涨幅异动</button><button data-filter="core">主线池</button></div>
             <span class="tag warning">热门 ≠ 值得追</span>
           </div>
+          <p class="source-status" id="hotDataNote"></p>
           <div class="hot-list" id="fullHotList"></div>
         </article>
         <article class="panel section-block">
@@ -530,12 +569,12 @@
       </section>
 
       <section class="view" id="view-calendar">
-        <div class="section-title-row"><div><h2>事件与解锁日历</h2><p>所有时间按北京时间显示；内置研究日历需版本更新</p></div><button class="primary-btn small-btn" id="addEventBtn">＋ 添加事件</button></div>
+        <div class="section-title-row"><div><h2>事件与解锁日历</h2><p>所有时间按北京时间显示；宏观与项目事件会尝试自动刷新</p></div><button class="primary-btn small-btn" id="addEventBtn">＋ 添加事件</button></div>
         <div class="calendar-layout">
-          <article class="panel"><div class="event-list" id="eventList"></div></article>
+          <article class="panel"><div class="event-list" id="eventList"></div><div class="section-block"><div class="panel-head"><div><h2 class="panel-title">重要市场情报</h2><p class="panel-note">新闻标题保留原文；中文部分是规则化风险提示，不是机器编造的新闻内容。</p></div></div><div class="news-list" id="newsFeed"></div></div></article>
           <aside class="calendar-aside">
-            <div class="callout"><h3>本周最大变量</h3><p>9月4日美国非农数据可能同时影响美元、美债收益率、美股和加密市场，重要性高于单个项目利好。</p></div>
-            <div class="panel"><h3 class="panel-title">日历状态</h3><p class="panel-note" style="margin-top:9px">行情数据会自动更新；项目解锁和宏观日历是研究内容，当前版本更新至 2026-09-01。你添加的事件保存在本机。</p></div>
+            <div class="callout" id="calendarCallout"><h3>正在读取近期事件</h3><p>宏观、项目与交易所动态会按数据源状态更新。</p></div>
+            <div class="panel"><h3 class="panel-title">日历状态</h3><p class="panel-note" id="calendarStatus" style="margin-top:9px">正在检查宏观、新闻和项目事件源……</p></div>
           </aside>
         </div>
       </section>
@@ -619,68 +658,37 @@
     'use strict';
 
     const API = 'https://api.coingecko.com/api/v3';
+    const DEX_API = 'https://api.dexscreener.com';
+    const MACRO_ENDPOINTS = [
+      'https://nfs.faireconomy.media/ff_calendar_thisweek.json',
+      'https://nfs.faireconomy.media/ff_calendar_nextweek.json'
+    ];
+    const NEWS_ENDPOINTS = [
+      'https://www.binance.com/bapi/composite/v1/public/cms/article/list/query?type=1&pageNo=1&pageSize=20',
+      'https://api.gdeltproject.org/api/v2/doc/doc?query=(bitcoin%20OR%20ethereum%20OR%20cryptocurrency)&mode=artlist&format=json&maxrecords=20&timespan=1d'
+    ];
     const STORAGE = {
-      cache: 'chainpulse:data:v1',
-      watchlist: 'chainpulse:watchlist:v1',
-      alerts: 'chainpulse:alerts:v1',
-      events: 'chainpulse:events:v1',
-      settings: 'chainpulse:settings:v1'
+      cache: 'chainpulse:data:v2', history: 'chainpulse:history:v2', sourceState: 'chainpulse:sources:v2',
+      watchlist: 'chainpulse:watchlist:v1', alerts: 'chainpulse:alerts:v1', events: 'chainpulse:events:v1', settings: 'chainpulse:settings:v1'
     };
     const CORE_IDS = ['bitcoin','ethereum','solana','hyperliquid','aster-2','uniswap','zcash','helium','ethena','ondo-finance'];
-
-    const RESEARCH_NARRATIVES = [
-      { id:'perp', title:'链上永续合约 DEX', base:96, stage:'主线 · 强势', risk:'估值与监管', color:'var(--green)', match:['perpetual','decentralized exchange'], projects:'HYPE · ASTER · Lighter', desc:'高杠杆交易继续从中心化平台迁移到链上。当前最关键的是交易量、未平仓量和协议收入，而不是单看代币涨幅。' },
-      { id:'robinhood', title:'Robinhood Chain 生态', base:94, stage:'刚起势 · 扩散', risk:'生态集中度', color:'var(--green)', match:[], projects:'PONS · LONG · Fomo', desc:'代币化股票、Launchpad 与社交交易开始形成同一套资金循环。PONS 等项目已经出现明显财富效应，也意味着追高风险快速上升。' },
-      { id:'rwa', title:'代币化股票 / RWA 2.0', base:92, stage:'中长期 · 主线', risk:'合规与映射', color:'var(--blue)', match:['real world','rwa','tokenized stock'], projects:'ONDO · BUIDL · xStocks', desc:'叙事从“资产上链”升级为抵押、保证金和稳定币储备。重点看真实资产规模、法律权属和 DeFi 可组合性。' },
-      { id:'revenue', title:'协议收入回购与销毁', base:89, stage:'估值框架 · 升温', risk:'收入不可持续', color:'var(--purple)', match:[], projects:'HYPE · UNI · PUMP · PONS', desc:'市场开始按手续费、净收入和代币价值捕获重新估值。要扣除代币激励，不能把宣传中的“回购比例”直接等同利润。' },
-      { id:'prediction', title:'预测市场', base:84, stage:'放量 · 成熟中', risk:'体育盘占比较高', color:'var(--blue)', match:['prediction'], projects:'Kalshi · Polymarket · Opinion', desc:'交易规模持续扩大，体育赛事贡献大量成交。需要分别观察真实信息市场和短周期博彩交易，不能混为一谈。' },
-      { id:'agent', title:'稳定币支付 + AI Agent', base:82, stage:'早期 · 有产品', risk:'代币映射较弱', color:'var(--purple)', match:['stablecoin','artificial intelligence'], projects:'USDC · Base · x402', desc:'AI 自动购买 API、算力和数据正在成为真实支付场景。更直接的受益者可能是稳定币和支付基础设施，而非随机 AI Meme。' },
-      { id:'privacy', title:'隐私币与 ZK', base:79, stage:'事件驱动 · 回归', risk:'催化已兑现', color:'var(--amber)', match:['privacy','zero knowledge'], projects:'ZEC · XMR', desc:'ETF 与移动端证明效率改善带来新催化。隐私结算是真需求，但政策和交易所支持仍决定估值上限。' },
-      { id:'depin', title:'DePIN + Physical AI', base:76, stage:'局部轮动', risk:'排放与真实收入', color:'var(--amber)', match:['depin','physical'], projects:'HNT · RNDR · AKT', desc:'无线网络、算力和机器人空间数据重新获得关注。必须验证付费客户、设备利用率和扣除代币补贴后的收入。' },
-      { id:'collectibles', title:'实物收藏品上链', base:68, stage:'新兴 · 小众', risk:'托管与博彩属性', color:'var(--amber)', match:['collectible','non-fungible'], projects:'CARDS · Courtyard', desc:'实体卡牌托管后铸造成链上资产，成交增长快；随机开包占比很高，需警惕流动性和中心化托管风险。' }
+    const NARRATIVE_RULES = [
+      {id:'perp',title:'链上永续 / DEX',terms:['perpetual','decentralized exchange','dex','derivative'],risk:'高杠杆、手续费质量与估值',color:'var(--green)'},
+      {id:'rwa',title:'RWA / 代币化资产',terms:['real world','rwa','tokenized'],risk:'合规、资产映射与流动性',color:'var(--blue)'},
+      {id:'ai',title:'AI / Agent',terms:['artificial intelligence','ai'],risk:'注意力轮动和代币价值捕获',color:'var(--purple)'},
+      {id:'stablecoin',title:'稳定币与支付',terms:['stablecoin','payment'],risk:'监管与发行方集中度',color:'var(--blue)'},
+      {id:'depin',title:'DePIN',terms:['depin','physical infrastructure'],risk:'真实收入、设备利用率与排放',color:'var(--amber)'},
+      {id:'privacy',title:'隐私与 ZK',terms:['privacy','zero knowledge','zk'],risk:'监管与交易所支持',color:'var(--amber)'},
+      {id:'meme',title:'Meme / 社交注意力',terms:['meme'],risk:'流动性撤离和极高波动',color:'var(--red)'},
+      {id:'prediction',title:'预测市场',terms:['prediction'],risk:'政策与事件驱动回撤',color:'var(--blue)'},
+      {id:'layer',title:'公链与扩容',terms:['layer 1','layer 2','smart contract'],risk:'高估值与生态兑现',color:'var(--purple)'}
     ];
-
-    const BUILTIN_EVENTS = [
-      { id:'ena-unlock', datetime:'2026-09-02T08:00:00+08:00', title:'ENA 解锁与回购议题', description:'约 4,063 万枚解锁，同时关注基金会回购和 VC 解锁调整。', type:'解锁', impact:'mid' },
-      { id:'fed-beige', datetime:'2026-09-03T02:00:00+08:00', title:'美联储褐皮书与官员讲话', description:'观察就业、通胀与经济活动描述是否改变降息预期。', type:'宏观', impact:'high' },
-      { id:'binance-delist', datetime:'2026-09-03T11:00:00+08:00', title:'币安下架 ICX / SCRT / STORJ', description:'持仓用户需提前检查现货订单、理财和转账安排。', type:'交易所', impact:'mid' },
-      { id:'us-nfp', datetime:'2026-09-04T20:30:00+08:00', title:'美国 8 月非农与失业率', description:'本周最重要宏观数据，可能同时影响美元、美债、美股和加密市场。', type:'宏观', impact:'high' },
-      { id:'hype-unlock', datetime:'2026-09-06T08:00:00+08:00', title:'HYPE 解锁约 43.3 万枚', description:'占流通比例约 0.1%，比例不大但美元金额较高。', type:'解锁', impact:'mid' },
-      { id:'sol-v1', datetime:'2026-09-09T08:00:00+08:00', title:'Solana Transaction V1', description:'观察新交易格式的上线进度及生态兼容情况。', type:'协议', impact:'mid' }
-    ];
-
-    const FALLBACK = {
-      timestamp: '2026-09-01T03:00:00Z',
-      global: { data: { total_market_cap:{usd:2730000000000}, total_volume:{usd:118000000000}, market_cap_percentage:{btc:57.5,eth:10.9}, market_cap_change_percentage_24h_usd:-0.4 } },
-      fear: { data:[{value:'48', value_classification:'Neutral'}] },
-      trending: { coins:[
-        {item:{id:'bitcoin',name:'Bitcoin',symbol:'BTC',market_cap_rank:1,thumb:'',score:0,data:{price:78800,price_change_percentage_24h:{usd:-0.6},total_volume:'$42.0B',market_cap:'$1.57T'}}},
-        {item:{id:'pons',name:'Pons',symbol:'PONS',market_cap_rank:130,thumb:'',score:1,data:{price:0.31,price_change_percentage_24h:{usd:34},total_volume:'$111.8M',market_cap:'$310.7M'}}},
-        {item:{id:'helium',name:'Helium',symbol:'HNT',market_cap_rank:80,thumb:'',score:2,data:{price:6.4,price_change_percentage_24h:{usd:24},total_volume:'$196M',market_cap:'$1.2B'}}},
-        {item:{id:'seeker',name:'Seeker',symbol:'SKR',market_cap_rank:190,thumb:'',score:3,data:{price:0.08,price_change_percentage_24h:{usd:31},total_volume:'$96M',market_cap:'$410M'}}},
-        {item:{id:'hyperliquid',name:'Hyperliquid',symbol:'HYPE',market_cap_rank:12,thumb:'',score:4,data:{price:84,price_change_percentage_24h:{usd:3.1},total_volume:'$560M',market_cap:'$28.1B'}}}
-      ]},
-      categories: [
-        {id:'perpetuals',name:'Perpetuals',market_cap:49800000000,volume_24h:17000000000,market_cap_change_24h:2.8},
-        {id:'real-world-assets-rwa',name:'Real World Assets (RWA)',market_cap:68500000000,volume_24h:6100000000,market_cap_change_24h:1.6},
-        {id:'prediction-markets',name:'Prediction Markets',market_cap:7300000000,volume_24h:1700000000,market_cap_change_24h:4.2},
-        {id:'privacy-coins',name:'Privacy Coins',market_cap:30800000000,volume_24h:2800000000,market_cap_change_24h:5.4},
-        {id:'depin',name:'Decentralized Physical Infrastructure Network (DePIN)',market_cap:23900000000,volume_24h:3200000000,market_cap_change_24h:3.1}
-      ],
-      markets: [
-        {id:'bitcoin',symbol:'btc',name:'Bitcoin',image:'',current_price:78800,price_change_percentage_24h:-0.6,price_change_percentage_7d_in_currency:-2.1,market_cap:1570000000000,total_volume:42000000000},
-        {id:'ethereum',symbol:'eth',name:'Ethereum',image:'',current_price:2480,price_change_percentage_24h:0.8,price_change_percentage_7d_in_currency:7.4,market_cap:299000000000,total_volume:21000000000},
-        {id:'solana',symbol:'sol',name:'Solana',image:'',current_price:104,price_change_percentage_24h:1.9,price_change_percentage_7d_in_currency:9.7,market_cap:61000000000,total_volume:5100000000},
-        {id:'hyperliquid',symbol:'hype',name:'Hyperliquid',image:'',current_price:84,price_change_percentage_24h:3.1,price_change_percentage_7d_in_currency:18.4,market_cap:28100000000,total_volume:560000000},
-        {id:'aster-2',symbol:'aster',name:'Aster',image:'',current_price:0.70,price_change_percentage_24h:2.4,price_change_percentage_7d_in_currency:12.8,market_cap:1900000000,total_volume:480000000},
-        {id:'uniswap',symbol:'uni',name:'Uniswap',image:'',current_price:5.4,price_change_percentage_24h:4.9,price_change_percentage_7d_in_currency:21.2,market_cap:3400000000,total_volume:420000000},
-        {id:'zcash',symbol:'zec',name:'Zcash',image:'',current_price:154,price_change_percentage_24h:5.2,price_change_percentage_7d_in_currency:44.6,market_cap:2500000000,total_volume:380000000}
-      ]
-    };
 
     const state = {
-      global: null, fear: null, trending: [], categories: [], markets: [],
+      global: null, fear: null, trending: [], categories: [], markets: [], dexPairs: [], macroEvents: [], cryptoEvents: [], news: [],
       dataMode: 'loading', lastUpdated: null, currentView:'overview', hotFilter:'trending',
+      sourceState: readJSON(STORAGE.sourceState, {})||{},
+      history: normaliseHistory(readJSON(STORAGE.history, null)),
       watchlist: readJSON(STORAGE.watchlist, ['bitcoin','ethereum','solana','hyperliquid','aster-2','uniswap']),
       alerts: readJSON(STORAGE.alerts, {}),
       customEvents: readJSON(STORAGE.events, []),
@@ -702,80 +710,244 @@
     function deltaClass(n){ return !Number.isFinite(Number(n))?'flat':Number(n)>0?'up':Number(n)<0?'down':'flat'; }
     function cnTime(date=new Date()){ return new Intl.DateTimeFormat('zh-CN',{timeZone:'Asia/Shanghai',month:'2-digit',day:'2-digit',hour:'2-digit',minute:'2-digit',hour12:false}).format(date); }
     function toast(message){ const el=$('#toast'); el.textContent=message; el.classList.add('show'); clearTimeout(toast.timer); toast.timer=setTimeout(()=>el.classList.remove('show'),2200); }
-    function timeoutFetch(url, ms=9000){ const controller=new AbortController(); const timer=setTimeout(()=>controller.abort(),ms); return fetch(url,{signal:controller.signal,headers:{accept:'application/json'}}).finally(()=>clearTimeout(timer)); }
+    function timeoutFetch(url, ms=12000){ const controller=new AbortController(); const timer=setTimeout(()=>controller.abort(),ms); return fetch(url,{signal:controller.signal,headers:{accept:'application/json'}}).finally(()=>clearTimeout(timer)); }
+    function finite(value){ const n=Number(value); return Number.isFinite(n)?n:NaN; }
+    function cnDateTime(date){ return new Intl.DateTimeFormat('zh-CN',{timeZone:'Asia/Shanghai',month:'numeric',day:'numeric',hour:'2-digit',minute:'2-digit',hour12:false}).format(date); }
+    function safeUrl(value){ try { const url=new URL(value); return /^https?:$/.test(url.protocol)?url.href:''; } catch { return ''; } }
+    function normaliseHistory(input){
+      const valid=input&&typeof input==='object'?input:{};
+      return {coins:valid.coins&&typeof valid.coins==='object'?valid.coins:{},categories:valid.categories&&typeof valid.categories==='object'?valid.categories:{},lastSnapshot:finite(valid.lastSnapshot)||0};
+    }
+    function parseDate(value){
+      if(value===null||value===undefined||value==='') return null;
+      const compact=String(value).match(/^(\d{4})(\d{2})(\d{2})T(\d{2})(\d{2})(\d{2})Z?$/);
+      if(compact) return new Date(Date.UTC(Number(compact[1]),Number(compact[2])-1,Number(compact[3]),Number(compact[4]),Number(compact[5]),Number(compact[6])));
+      const raw=Number(value), date=new Date(Number.isFinite(raw)?(raw<1e12?raw*1000:raw):value);
+      return Number.isFinite(date.getTime())?date:null;
+    }
+    function sourceInfo(name){ return state.sourceState[name]||{status:'unavailable',at:null}; }
+    function sourceHasData(name){
+      if(name==='coingecko') return Boolean(state.global||state.trending.length||state.categories.length||state.markets.length);
+      if(name==='sentiment') return Boolean(state.fear);
+      if(name==='dex') return state.dexPairs.length>0;
+      if(name==='macro') return state.macroEvents.length>0;
+      if(name==='news') return state.news.length>0;
+      return false;
+    }
+    function setSource(name,status,at){ state.sourceState[name]={status:status,at:at===undefined?new Date().toISOString():at}; }
+    function markSourceFailure(name){
+      const old=sourceInfo(name);
+      state.sourceState[name]={status:sourceHasData(name)?'cache':'unavailable',at:old.at||null};
+    }
+    function sourceLabel(name){ return ({coingecko:'CoinGecko 行情',sentiment:'市场情绪',dex:'DEX 注意力',macro:'宏观日历',news:'新闻事件'}[name]||name); }
+    function sourceStatusLabel(status){ return ({live:'实时',partial:'部分实时',cache:'缓存',unavailable:'不可用',loading:'连接中'}[status]||'未知'); }
+    function sourceSummary(names){ return names.map(name=>'<strong>'+escapeHtml(sourceLabel(name))+'</strong> '+escapeHtml(sourceStatusLabel(sourceInfo(name).status))).join(' · '); }
+    function updateDataMode(){
+      const market=sourceInfo('coingecko').status, sentiment=sourceInfo('sentiment').status;
+      const live=[market,sentiment].filter(x=>x==='live'||x==='partial').length;
+      if(market==='live'&&sentiment==='live') state.dataMode='live';
+      else if(live) state.dataMode='partial';
+      else if(sourceHasData('coingecko')||sourceHasData('sentiment')||sourceHasData('dex')||sourceHasData('macro')||sourceHasData('news')) state.dataMode='cache';
+      else state.dataMode='unavailable';
+    }
+    function cachePayload(){
+      return {timestamp:state.lastUpdated?state.lastUpdated.toISOString():null,savedAt:new Date().toISOString(),global:state.global,fear:state.fear,trending:state.trending,categories:state.categories,markets:state.markets,dexPairs:state.dexPairs,macroEvents:state.macroEvents,cryptoEvents:state.cryptoEvents,news:state.news,sourceState:state.sourceState};
+    }
+    function saveCache(){ writeJSON(STORAGE.cache,cachePayload()); writeJSON(STORAGE.sourceState,state.sourceState); }
+    function mergeMarkets(groups){
+      const map=new Map();
+      groups.flat().filter(item=>item&&item.id).forEach(item=>map.set(item.id,{...(map.get(item.id)||{}),...item}));
+      return [...map.values()];
+    }
+    function uniqueBy(items,key){
+      const seen=new Set();
+      return items.filter(item=>{ const value=key(item); if(!value||seen.has(value)) return false; seen.add(value); return true; });
+    }
 
     function loadFallback(){
-      state.global=FALLBACK.global;
-      state.fear=FALLBACK.fear;
-      state.trending=FALLBACK.trending.coins;
-      state.categories=FALLBACK.categories;
-      state.markets=FALLBACK.markets;
-      state.lastUpdated=new Date(FALLBACK.timestamp);
-      state.dataMode='fallback';
+      state.global=null; state.fear=null; state.trending=[]; state.categories=[]; state.markets=[]; state.dexPairs=[]; state.macroEvents=[]; state.cryptoEvents=[]; state.news=[];
+      state.lastUpdated=null;
+      ['coingecko','sentiment','dex','macro','news'].forEach(name=>setSource(name,'unavailable',null));
+      state.dataMode='unavailable';
     }
 
     function loadCache(){
       const cache=readJSON(STORAGE.cache,null);
-      if(!cache || !cache.timestamp) return false;
-      state.global=cache.global||null;
-      state.fear=cache.fear||null;
-      state.trending=cache.trending||[];
-      state.categories=cache.categories||[];
-      state.markets=cache.markets||[];
-      state.lastUpdated=new Date(cache.timestamp);
+      const savedAt=parseDate(cache&&cache.savedAt)||parseDate(cache&&cache.timestamp), timestamp=parseDate(cache&&cache.timestamp);
+      if(!cache || !savedAt) return false;
+      state.global=cache.global||null; state.fear=cache.fear||null; state.trending=Array.isArray(cache.trending)?cache.trending:[]; state.categories=Array.isArray(cache.categories)?cache.categories:[];
+      state.markets=Array.isArray(cache.markets)?cache.markets:[]; state.dexPairs=Array.isArray(cache.dexPairs)?cache.dexPairs:[]; state.macroEvents=Array.isArray(cache.macroEvents)?cache.macroEvents:[];
+      state.cryptoEvents=Array.isArray(cache.cryptoEvents)?cache.cryptoEvents:[]; state.news=Array.isArray(cache.news)?cache.news:[]; state.lastUpdated=timestamp;
+      state.sourceState=cache.sourceState&&typeof cache.sourceState==='object'?cache.sourceState:state.sourceState;
+      ['coingecko','sentiment','dex','macro','news'].forEach(name=>{
+        const old=sourceInfo(name); state.sourceState[name]={status:sourceHasData(name)?'cache':'unavailable',at:old.at||savedAt.toISOString()};
+      });
       state.dataMode='cache';
       return true;
     }
 
-    async function fetchJSON(url){
-      const res=await timeoutFetch(url);
-      if(!res.ok) throw new Error(`${res.status}`);
+    async function fetchJSON(url, ms){
+      const res=await timeoutFetch(url,ms);
+      if(!res.ok) throw new Error(String(res.status));
       return res.json();
+    }
+    function macroTitle(title){
+      const raw=String(title||''), lower=raw.toLowerCase();
+      if(/non.?farm|payroll|employment change/.test(lower)) return '美国非农就业数据';
+      if(/consumer price|\bcpi\b/.test(lower)) return '美国 CPI / 通胀数据';
+      if(/fomc|federal reserve|fed .*rate|interest rate/.test(lower)) return '美联储 / FOMC 相关事件';
+      if(/pce/.test(lower)) return '美国 PCE 通胀数据';
+      if(/unemployment/.test(lower)) return '美国失业率数据';
+      if(/jolts/.test(lower)) return '美国 JOLTS 职位空缺';
+      if(/ism/.test(lower)) return '美国 ISM 景气数据';
+      if(/ppi/.test(lower)) return '美国 PPI 数据';
+      return '美国宏观：'+raw;
+    }
+    function normaliseMacroEvents(rows){
+      const keywords=/cpi|consumer price|non.?farm|employment change|payroll|fomc|federal reserve|interest rate|fed|unemployment|jolts|ism|ppi|gdp|retail sales|pce/i;
+      return uniqueBy((Array.isArray(rows)?rows:[]).filter(row=>String(row&&row.country||'').toUpperCase()==='USD'&&keywords.test(String(row&&row.title||''))).map((row,index)=>{
+        const date=parseDate(row.date), impact=String(row.impact||'').toLowerCase();
+        if(!date) return null;
+        const parts=[]; if(row.forecast) parts.push('预测 '+row.forecast); if(row.previous) parts.push('前值 '+row.previous);
+        return {id:'macro-'+date.getTime()+'-'+index,datetime:date.toISOString(),title:macroTitle(row.title),description:'来源宏观日历：'+String(row.title||'')+(parts.length?'；'+parts.join('，'):''),type:'宏观',impact:impact==='high'?'high':impact==='medium'?'mid':'low',source:'Forex Factory 日历'};
+      }).filter(Boolean),item=>item.datetime+'|'+item.title).sort((a,b)=>new Date(a.datetime)-new Date(b.datetime));
+    }
+    async function fetchMacroEvents(){
+      const results=await Promise.allSettled(MACRO_ENDPOINTS.map(url=>fetchJSON(url,14000)));
+      const rows=results.filter(x=>x.status==='fulfilled').flatMap(x=>Array.isArray(x.value)?x.value:[]);
+      if(!results.some(x=>x.status==='fulfilled')) throw new Error('macro unavailable');
+      return normaliseMacroEvents(rows);
+    }
+    function classifyNews(title){
+      const text=String(title||'').toLowerCase();
+      if(/delist|delisting|remove.*trading|will remove|下架/.test(text)) return {type:'交易所下币',impact:'high',advice:'核对公告原文、受影响交易对和执行时间。'};
+      if(/list(ing|ed)?|will list|上币/.test(text)) return {type:'交易所上币',impact:'mid',advice:'核对交易所公告、交易对和流动性，不把上币标题等同于基本面。'};
+      if(/unlock|vesting|token release|解锁/.test(text)) return {type:'代币解锁',impact:'high',advice:'核对解锁规模、占流通比例和接收方。'};
+      if(/airdrop|空投/.test(text)) return {type:'空投',impact:'mid',advice:'只使用项目官方链接，防范假空投和授权钓鱼。'};
+      if(/mainnet|testnet|upgrade|launch|hard fork|主网|升级/.test(text)) return {type:'项目事件',impact:'mid',advice:'核对上线范围、时间和实际可用性。'};
+      if(/hack|exploit|attack|breach|漏洞|被盗/.test(text)) return {type:'风险事件',impact:'high',advice:'优先核对资产敞口、官方处置和链上影响。'};
+      if(/etf|sec|regulation|lawsuit|监管/.test(text)) return {type:'监管 / ETF',impact:'mid',advice:'关注原始文件、审批状态与生效时间。'};
+      return {type:'市场资讯',impact:'low',advice:'标题仅作线索，请打开原文核实。'};
+    }
+    function extractBinanceArticles(payload){
+      const found=[], visited=new WeakSet();
+      function walk(value,depth){
+        if(!value||depth>6) return;
+        if(Array.isArray(value)){ value.forEach(item=>walk(item,depth+1)); return; }
+        if(typeof value!=='object'||visited.has(value)) return;
+        visited.add(value);
+        const title=value.title||value.articleTitle||value.headline;
+        if(title&&(value.releaseDate||value.publishDate||value.code||value.id||value.url)) found.push(value);
+        ['articles','articleList','catalogs','items','rows','data','result'].forEach(key=>walk(value[key],depth+1));
+      }
+      walk(payload,0);
+      return found;
+    }
+    function normaliseNewsArticle(row,source){
+      const title=String(row&&row.title||row&&row.articleTitle||'').trim();
+      if(!title) return null;
+      const date=parseDate(row.releaseDate||row.publishDate||row.publishedAt||row.seendate||row.date);
+      const fallbackUrl=row.code?'https://www.binance.com/en/support/announcement/'+encodeURIComponent(row.code):'';
+      const url=safeUrl(row.url||row.articleUrl||fallbackUrl);
+      const kind=classifyNews(title);
+      return {id:'news-'+source+'-'+String(row.code||url||title).slice(0,140),title:title,publishedAt:date?date.toISOString():null,url:url,source:source,type:kind.type,impact:kind.impact,conclusion:kind.advice};
+    }
+    async function fetchNewsArticles(){
+      const results=await Promise.allSettled(NEWS_ENDPOINTS.map(url=>fetchJSON(url,14000)));
+      const articles=[];
+      if(results[0]&&results[0].status==='fulfilled') extractBinanceArticles(results[0].value).forEach(row=>{ const item=normaliseNewsArticle(row,'币安公告'); if(item) articles.push(item); });
+      if(results[1]&&results[1].status==='fulfilled') (results[1].value&&results[1].value.articles||[]).forEach(row=>{ const item=normaliseNewsArticle(row,'GDELT 聚合'); if(item) articles.push(item); });
+      if(!results.some(x=>x.status==='fulfilled')) throw new Error('news unavailable');
+      return uniqueBy(articles,item=>item.url||item.title).sort((a,b)=>(new Date(b.publishedAt||0))-(new Date(a.publishedAt||0))).slice(0,20);
+    }
+    function newsEvents(news){
+      return news.filter(item=>item.type!=='市场资讯'&&item.publishedAt).map((item,index)=>({id:'event-'+item.id+'-'+index,datetime:item.publishedAt,title:item.type+'：'+item.title,description:item.conclusion,type:item.type,impact:item.impact,source:item.source,sourceUrl:item.url,news:true}));
+    }
+    async function fetchDexPairs(){
+      const boosts=await fetchJSON(DEX_API+'/token-boosts/top/v1',12000);
+      const candidates=(Array.isArray(boosts)?boosts:[]).filter(item=>item&&item.chainId&&item.tokenAddress).slice(0,16);
+      const groups=new Map();
+      candidates.forEach(item=>{ const key=String(item.chainId); if(!groups.has(key)) groups.set(key,[]); groups.get(key).push(item); });
+      const requests=[...groups.entries()].map(([chain,items])=>{
+        const addresses=items.slice(0,8).map(item=>encodeURIComponent(item.tokenAddress)).join(',');
+        return fetchJSON(DEX_API+'/tokens/v1/'+encodeURIComponent(chain)+'/'+addresses,12000);
+      });
+      const results=await Promise.allSettled(requests), boostsByToken=new Map(candidates.map(item=>[String(item.chainId)+':'+String(item.tokenAddress).toLowerCase(),item]));
+      const pairs=results.filter(x=>x.status==='fulfilled').flatMap(x=>Array.isArray(x.value)?x.value:[]);
+      return uniqueBy(pairs.map(pair=>{
+        const chain=String(pair.chainId||''), address=String(pair.baseToken&&pair.baseToken.address||'').toLowerCase(), boost=boostsByToken.get(chain+':'+address);
+        if(!boost) return null;
+        const liquidity=finite(pair.liquidity&&pair.liquidity.usd);
+        if(!Number.isFinite(liquidity)||liquidity<15000) return null;
+        return {id:'dex:'+chain+':'+address,name:pair.baseToken&&pair.baseToken.name||'DEX Token',symbol:pair.baseToken&&pair.baseToken.symbol||'DEX',rank:'DEX',image:pair.info&&pair.info.imageUrl||boost.icon||'',current_price:finite(pair.priceUsd),price_change_percentage_1h_in_currency:finite(pair.priceChange&&pair.priceChange.h1),price_change_percentage_24h:finite(pair.priceChange&&pair.priceChange.h24),price_change_percentage_7d_in_currency:NaN,total_volume:finite(pair.volume&&pair.volume.h24),market_cap:finite(pair.marketCap||pair.fdv),liquidity:liquidity,dexBoost:true,boostAmount:finite(boost.totalAmount||boost.amount),source:'DexScreener',url:safeUrl(pair.url)};
+      }).filter(Boolean),item=>item.id).sort((a,b)=>finite(b.boostAmount)-finite(a.boostAmount)).slice(0,10);
+    }
+    function recordSnapshots(){
+      const now=Date.now();
+      if(now-(state.history.lastSnapshot||0)<180000) return;
+      const until=now-8*24*3600000;
+      const append=(bucket,id,point)=>{
+        if(!id) return;
+        const list=Array.isArray(bucket[id])?bucket[id]:[];
+        list.push(point); bucket[id]=list.filter(item=>finite(item.t)>=until).slice(-36);
+      };
+      [...state.markets,...state.dexPairs].forEach(item=>append(state.history.coins,item.id,{t:now,p:finite(item.current_price),v:finite(item.total_volume),m:finite(item.market_cap)}));
+      state.categories.forEach(item=>append(state.history.categories,item.id,{t:now,v:finite(item.volume_24h),m:finite(item.market_cap),c:finite(item.market_cap_change_24h)}));
+      state.history.lastSnapshot=now;
+      writeJSON(STORAGE.history,state.history);
     }
 
     async function refreshData(showToast=false){
       const btn=$('#refreshBtn'); btn.classList.add('spinning'); btn.disabled=true;
-      const ids=[...new Set([...CORE_IDS,...state.watchlist])].slice(0,40).join(',');
-      const endpoints={
-        global:`${API}/global`,
-        trending:`${API}/search/trending`,
-        categories:`${API}/coins/categories?order=market_cap_desc`,
-        markets:`${API}/coins/markets?vs_currency=usd&ids=${encodeURIComponent(ids)}&order=market_cap_desc&sparkline=true&price_change_percentage=1h,24h,7d`,
-        fear:'https://api.alternative.me/fng/?limit=1&format=json'
-      };
-      const keys=Object.keys(endpoints);
-      const results=await Promise.allSettled(keys.map(k=>fetchJSON(endpoints[k])));
-      let successes=0;
-      results.forEach((result,i)=>{
-        if(result.status!=='fulfilled') return;
-        successes++;
-        const key=keys[i], value=result.value;
-        if(key==='global') state.global=value;
-        if(key==='fear') state.fear=value;
-        if(key==='trending') state.trending=Array.isArray(value.coins)?value.coins:[];
-        if(key==='categories') state.categories=Array.isArray(value)?value:[];
-        if(key==='markets') state.markets=Array.isArray(value)?value:[];
-      });
-      if(successes){
-        state.lastUpdated=new Date();
-        state.dataMode=successes===keys.length?'live':'partial';
-        writeJSON(STORAGE.cache,{timestamp:state.lastUpdated.toISOString(),global:state.global,fear:state.fear,trending:state.trending,categories:state.categories,markets:state.markets});
-      } else if(!state.global){ loadFallback(); }
-      renderAll();
-      btn.classList.remove('spinning'); btn.disabled=false;
-      if(showToast) toast(successes?'数据已刷新':'实时接口暂不可用，已显示最近缓存');
+      let marketSuccess=0, anyLive=false;
+      try {
+        const base=await Promise.allSettled([
+          fetchJSON(API+'/global'),fetchJSON(API+'/search/trending'),fetchJSON(API+'/coins/categories?order=market_cap_desc'),fetchJSON('https://api.alternative.me/fng/?limit=1&format=json')
+        ]);
+        if(base[0].status==='fulfilled'){ state.global=base[0].value; marketSuccess++; }
+        if(base[1].status==='fulfilled'){ state.trending=Array.isArray(base[1].value.coins)?base[1].value.coins:[]; marketSuccess++; }
+        if(base[2].status==='fulfilled'){ state.categories=Array.isArray(base[2].value)?base[2].value:[]; marketSuccess++; }
+        if(base[3].status==='fulfilled'){ state.fear=base[3].value; setSource('sentiment','live'); anyLive=true; } else markSourceFailure('sentiment');
+        const trendIds=state.trending.map(item=>(item.item||item).id).filter(Boolean);
+        const ids=[...new Set([...CORE_IDS,...state.watchlist,...trendIds])].slice(0,55).join(',');
+        const priceSuffix='&order=market_cap_desc&sparkline=true&price_change_percentage=1h,24h,7d';
+        const prices=await Promise.allSettled([
+          fetchJSON(API+'/coins/markets?vs_currency=usd&ids='+encodeURIComponent(ids)+priceSuffix),
+          fetchJSON(API+'/coins/markets?vs_currency=usd&order=volume_desc&per_page=100&page=1&sparkline=true&price_change_percentage=1h,24h,7d')
+        ]);
+        const groups=[];
+        if(prices[0].status==='fulfilled'){ groups.push(Array.isArray(prices[0].value)?prices[0].value:[]); marketSuccess++; }
+        if(prices[1].status==='fulfilled'){ groups.unshift(Array.isArray(prices[1].value)?prices[1].value:[]); marketSuccess++; }
+        if(groups.length) state.markets=mergeMarkets(groups);
+        if(marketSuccess){ setSource('coingecko',marketSuccess===5?'live':'partial'); state.lastUpdated=new Date(); anyLive=true; } else markSourceFailure('coingecko');
+        const extras=await Promise.allSettled([fetchDexPairs(),fetchMacroEvents(),fetchNewsArticles()]);
+        if(extras[0].status==='fulfilled'){ state.dexPairs=extras[0].value; setSource('dex','live'); anyLive=true; } else markSourceFailure('dex');
+        if(extras[1].status==='fulfilled'){ state.macroEvents=extras[1].value; setSource('macro','live'); anyLive=true; } else markSourceFailure('macro');
+        if(extras[2].status==='fulfilled'){ state.news=extras[2].value; state.cryptoEvents=newsEvents(state.news); setSource('news','live'); anyLive=true; } else markSourceFailure('news');
+        if(marketSuccess) recordSnapshots();
+        updateDataMode(); saveCache(); renderAll();
+        if(showToast) toast(anyLive?'数据已刷新':'实时源暂不可用，未展示示例数据');
+      } catch {
+        updateDataMode(); renderAll();
+        if(showToast) toast(sourceHasData('coingecko')||sourceHasData('news')?'刷新失败，正在显示最近缓存':'刷新失败，暂无可验证数据');
+      } finally {
+        btn.classList.remove('spinning'); btn.disabled=false;
+      }
     }
 
     function updateStatus(){
       const el=$('#dataStatus'), dot=$('.status-dot',el), text=$('span',el);
       dot.className='status-dot';
-      const modes={live:'实时数据',partial:'部分实时',cache:'最近缓存',fallback:'离线示例',loading:'正在连接数据'};
+      const modes={live:'实时数据',partial:'部分实时',cache:'最近缓存',unavailable:'数据不可用',loading:'正在连接数据'};
       text.textContent=modes[state.dataMode]||'数据状态未知';
-      if(state.dataMode==='live') dot.classList.add('live');
-      if(state.dataMode==='fallback') dot.classList.add('offline');
-      $('#lastUpdated').textContent=state.lastUpdated?`${cnTime(state.lastUpdated)} · ${modes[state.dataMode]}`:'等待刷新';
-      $('#hotUpdated').textContent=state.lastUpdated?cnTime(state.lastUpdated):'—';
-      $('#refreshFrequency').textContent=`每 ${state.settings.refreshMinutes||10} 分钟`;
+      if(state.dataMode==='live'||state.dataMode==='partial') dot.classList.add('live');
+      if(state.dataMode==='unavailable') dot.classList.add('offline');
+      $('#lastUpdated').textContent=state.lastUpdated?cnTime(state.lastUpdated)+' · '+modes[state.dataMode]:'暂无可验证行情';
+      $('#hotUpdated').textContent=state.lastUpdated?cnTime(state.lastUpdated):'不可用';
+      $('#researchUpdated').textContent=state.lastUpdated?cnTime(state.lastUpdated):'等待数据';
+      $('#narrativeUpdated').textContent=state.lastUpdated?cnTime(state.lastUpdated):'不可用';
+      $('#radarFreshness').textContent=state.lastUpdated?(state.dataMode==='cache'?'缓存数据':'已计算'):'数据不可用';
+      $('#refreshFrequency').textContent='每 '+(state.settings.refreshMinutes||10)+' 分钟';
     }
 
     function renderMetrics(){
@@ -785,7 +957,7 @@
       $('#totalVolume').textContent=formatMoney(volume); $('#totalVolume').classList.remove('skeleton');
       $('#btcDominance').textContent=Number.isFinite(dom)?`${dom.toFixed(1)}%`:'—'; $('#btcDominance').classList.remove('skeleton');
       $('#marketCapChange').textContent=formatPct(change); $('#marketCapChange').className=`delta ${deltaClass(change)}`;
-      $('#dominanceHint').textContent=dom>=58?'BTC高度主导，山寨扩散偏弱':dom>=54?'BTC主导，局部山寨轮动':'山寨扩散程度较高';
+      $('#dominanceHint').textContent=!Number.isFinite(dom)?'等待市场总览数据':dom>=58?'BTC高度主导，山寨扩散偏弱':dom>=54?'BTC主导，局部山寨轮动':'山寨扩散程度较高';
       const fg=Number(state.fear?.data?.[0]?.value), fgEn=state.fear?.data?.[0]?.value_classification;
       const fgMap={'Extreme Fear':'极度恐惧','Fear':'恐惧','Neutral':'中性','Greed':'贪婪','Extreme Greed':'极度贪婪'};
       $('#fearGreed').textContent=Number.isFinite(fg)?String(fg):'—'; $('#fearGreed').classList.remove('skeleton');
@@ -793,17 +965,51 @@
     }
 
     function categoryFor(n){
-      const search=n.match.map(x=>x.toLowerCase());
+      const search=(n.terms||[]).map(x=>x.toLowerCase());
       if(!search.length) return null;
       return state.categories.find(c=>search.some(x=>String(c.name||'').toLowerCase().includes(x)||String(c.id||'').toLowerCase().includes(x)))||null;
     }
 
+    function priorPoint(bucket,id){
+      const now=state.lastUpdated?state.lastUpdated.getTime():Date.now();
+      const list=Array.isArray(bucket[id])?bucket[id]:[];
+      const prior=list.filter(point=>finite(point.t)<now-60000).sort((a,b)=>finite(a.t)-finite(b.t)).pop()||null;
+      const first=list.filter(point=>finite(point.t)<now+1000).sort((a,b)=>finite(a.t)-finite(b.t))[0]||null;
+      return {prior:prior,first:first,samples:list.length};
+    }
+    function changeSince(current,previous){
+      const now=finite(current), before=finite(previous);
+      return Number.isFinite(now)&&Number.isFinite(before)&&before>0?(now-before)/before*100:NaN;
+    }
+    function persistenceText(info){
+      if(!info.samples) return '首个快照，持续性待验证';
+      if(!info.prior) return '已记录 1 次，等待下一次快照确认';
+      const hours=Math.max(0,((state.lastUpdated?state.lastUpdated.getTime():Date.now())-finite(info.first&&info.first.t))/3600000);
+      return hours>=24?'已跟踪约 '+Math.round(hours/24)+' 天':'已跟踪约 '+Math.max(1,Math.round(hours))+' 小时';
+    }
+    function stageFromMetrics(metrics){
+      const p1=finite(metrics.p1h), p24=finite(metrics.p24), volume=finite(metrics.volumeChange), attention=finite(metrics.attention)||0, samples=metrics.samples||0;
+      if((Number.isFinite(p1)&&p1<=-1.6)||(Number.isFinite(p24)&&p24<=-8)||(Number.isFinite(volume)&&volume<=-40&&p24<=0)) return '退潮';
+      if((Number.isFinite(p24)&&p24>=20)||(Number.isFinite(p1)&&p1>=7)||(attention>=82&&p24>=12)) return '过热';
+      if((Number.isFinite(p1)&&p1>=2.5)||(Number.isFinite(p24)&&p24>=10&&Number.isFinite(volume)&&volume>=20)) return '加速';
+      if((Number.isFinite(p1)&&p1>=.7&&p24>=2)||(Number.isFinite(p24)&&p24>=5&&attention>=45)) return '升温';
+      if((attention>=40&&samples<=1&&p24>-6&&p24<12)||(samples<=1&&p1>0&&p24>=0)) return '刚起势';
+      return '观察中';
+    }
+    function stageClass(stage){ return ({'刚起势':'emerging','升温':'warming','加速':'accelerating','过热':'overheated','退潮':'fading','观察中':'watching'}[stage]||'watching'); }
     function scoredNarratives(){
-      return RESEARCH_NARRATIVES.map(n=>{
-        const cat=categoryFor(n), move=Number(cat?.market_cap_change_24h);
-        const adjustment=Number.isFinite(move)?clamp(move*.7,-6,6):0;
-        return {...n,cat,score:Math.round(clamp(n.base+adjustment,1,99))};
-      }).sort((a,b)=>b.score-a.score);
+      const build=(rule,cat)=>{
+        const info=priorPoint(state.history.categories,cat.id), move=finite(cat.market_cap_change_24h), volumeChange=changeSince(cat.volume_24h,info.prior&&info.prior.v);
+        const score=Math.round(clamp(50+(Number.isFinite(move)?move*2.2:0)+(Number.isFinite(volumeChange)?clamp(volumeChange*.22,-14,24):0)+Math.min(12,info.samples*2),1,99));
+        const stage=stageFromMetrics({p24:move,volumeChange:volumeChange,attention:score,samples:info.samples});
+        const persistence=persistenceText(info);
+        const risk=stage==='过热'||Math.abs(move)>=12?'高波动与拥挤风险':stage==='刚起势'?'持续性尚待验证':rule.risk;
+        const volumeText=Number.isFinite(volumeChange)?'成交额较上次快照 '+formatPct(volumeChange):'成交额变化待下一次快照验证';
+        return {id:rule.id,title:rule.title,cat:cat,stage:stage,risk:risk,color:rule.color,score:score,projects:persistence,desc:'板块 24 小时 '+formatPct(move)+'；'+volumeText+'。'+persistence};
+      };
+      const matched=NARRATIVE_RULES.map(rule=>({rule:rule,cat:categoryFor(rule)})).filter(item=>item.cat).map(item=>build(item.rule,item.cat));
+      const fallback=matched.length?[]:state.categories.slice().sort((a,b)=>Math.abs(finite(b.market_cap_change_24h))-Math.abs(finite(a.market_cap_change_24h))).slice(0,6).map(cat=>build({id:cat.id,title:'分类：'+String(cat.name||cat.id),risk:'分类数据不等于项目基本面',color:'var(--amber)'},cat));
+      return [...matched,...fallback].sort((a,b)=>b.score-a.score);
     }
 
     function narrativeHTML(n, index){
@@ -818,72 +1024,109 @@
 
     function renderNarratives(){
       const list=scoredNarratives();
-      $('#overviewNarratives').innerHTML=list.slice(0,3).map(n=>narrativeHTML(n,list.indexOf(n))).join('');
-      $('#allNarratives').innerHTML=list.map((n,i)=>narrativeHTML(n,i)).join('');
+      const empty='<div class="empty"><strong>叙事数据暂不可用</strong>获取到市场分类和快照后才会生成热度、阶段与持续性判断。</div>';
+      $('#overviewNarratives').innerHTML=list.length?list.slice(0,3).map(n=>narrativeHTML(n,list.indexOf(n))).join(''):empty;
+      $('#allNarratives').innerHTML=list.length?list.map((n,i)=>narrativeHTML(n,i)).join(''):empty;
     }
 
     function getTrendingData(item){
       const data=item.data||{};
-      const p24=Number(data.price_change_percentage_24h?.usd ?? item.price_change_percentage_24h);
-      const price=Number(data.price ?? item.current_price);
-      const score=clamp(Math.round(65 + Math.min(Math.abs(p24||0),40)*.7 - Number(item.score||0)*2),15,99);
-      return {id:item.id,name:item.name,symbol:item.symbol,rank:item.market_cap_rank,image:item.thumb||item.small||item.image,price,p24,volume:data.total_volume||'—',marketCap:data.market_cap||'—',heat:score};
+      return {id:item.id,name:item.name,symbol:item.symbol,rank:item.market_cap_rank,image:item.thumb||item.small||item.image,current_price:finite(data.price??item.current_price),price_change_percentage_24h:finite(data.price_change_percentage_24h?.usd??item.price_change_percentage_24h),total_volume:NaN,market_cap:NaN};
     }
 
+    function buildCoinSignals(){
+      const trendRanks=new Map(state.trending.map((entry,index)=>{ const item=entry.item||entry; return [item.id,Number.isFinite(finite(item.score))?finite(item.score):index]; }));
+      const all=uniqueBy([...state.markets,...state.dexPairs],item=>item.id);
+      return all.map(item=>{
+        const info=priorPoint(state.history.coins,item.id), p1h=finite(item.price_change_percentage_1h_in_currency), p24=finite(item.price_change_percentage_24h), p7=finite(item.price_change_percentage_7d_in_currency);
+        const volumeChange=changeSince(item.total_volume,info.prior&&info.prior.v), trendRank=trendRanks.has(item.id)?trendRanks.get(item.id):null;
+        const attention=(trendRank!==null?Math.max(8,34-trendRank*2):0)+(item.dexBoost?18:0);
+        const heat=Math.round(clamp(30+attention+(Number.isFinite(p24)?Math.max(-10,p24)*1.15:0)+(Number.isFinite(p1h)?Math.max(-5,p1h)*2.4:0)+(Number.isFinite(volumeChange)?clamp(volumeChange*.16,-12,20):0)+Math.min(10,info.samples*1.8),1,99));
+        const stage=stageFromMetrics({p1h:p1h,p24:p24,volumeChange:volumeChange,attention:heat,samples:info.samples});
+        let risk='正常', riskClass='normal';
+        if(item.dexBoost&&(finite(item.liquidity)<100000||!Number.isFinite(finite(item.market_cap)))||Math.abs(p24)>=30||Math.abs(p1h)>=9){ risk='极高'; riskClass='high'; }
+        else if(Math.abs(p24)>=12||Math.abs(p1h)>=4||item.dexBoost){ risk='偏高'; riskClass='mid'; }
+        const facts=[];
+        if(trendRank!==null) facts.push('热搜 #'+(trendRank+1));
+        if(item.dexBoost) facts.push('DEX 注意力信号');
+        if(Number.isFinite(p1h)) facts.push('1小时 '+formatPct(p1h));
+        if(Number.isFinite(p24)) facts.push('24小时 '+formatPct(p24));
+        if(Number.isFinite(volumeChange)) facts.push('成交额较上次 '+formatPct(volumeChange));
+        return {id:item.id,name:item.name||item.id,symbol:item.symbol||'—',rank:item.rank||item.market_cap_rank||'—',image:item.image,price:finite(item.current_price),p1h:p1h,p24:p24,p7:p7,volume:formatMoney(item.total_volume),marketCap:formatMoney(item.market_cap),volumeChange:volumeChange,heat:heat,stage:stage,persistence:persistenceText(info),conclusion:(facts.length?facts.join('，')+'；':'')+persistenceText(info)+'。',risk:risk,riskClass:riskClass,trendingRank:trendRank,dexBoost:Boolean(item.dexBoost),source:item.source||'CoinGecko',url:item.url||''};
+      });
+    }
     function getHotItems(filter=state.hotFilter){
-      const trending=state.trending.map(x=>getTrendingData(x.item||x));
-      const markets=state.markets.map(m=>({id:m.id,name:m.name,symbol:m.symbol,rank:m.market_cap_rank,image:m.image,price:Number(m.current_price),p24:Number(m.price_change_percentage_24h),p7:Number(m.price_change_percentage_7d_in_currency),volume:formatMoney(m.total_volume),marketCap:formatMoney(m.market_cap),heat:clamp(Math.round(55+Math.abs(Number(m.price_change_percentage_24h)||0)*1.2+Math.abs(Number(m.price_change_percentage_7d_in_currency)||0)*.25),20,99)}));
-      if(filter==='movers') return markets.sort((a,b)=>Math.abs(b.p24||0)-Math.abs(a.p24||0));
-      if(filter==='core') return markets;
-      return trending;
+      const all=buildCoinSignals();
+      if(filter==='early') return all.filter(item=>item.stage==='刚起势'||item.stage==='升温').sort((a,b)=>b.heat-a.heat);
+      if(filter==='movers') return all.slice().sort((a,b)=>Math.abs(b.p24||0)-Math.abs(a.p24||0));
+      if(filter==='core') return all.filter(item=>CORE_IDS.includes(item.id)).sort((a,b)=>b.heat-a.heat);
+      return all.filter(item=>item.trendingRank!==null||item.dexBoost).sort((a,b)=>b.heat-a.heat);
     }
 
-    function riskFor(item){ const x=Math.max(Math.abs(item.p24||0),Math.abs(item.p7||0)/3); return x>=25?['极高','high']:x>=10?['偏高','mid']:['正常','normal']; }
+    function riskFor(item){ if(item.risk) return [item.risk,item.riskClass||'normal']; const x=Math.max(Math.abs(item.p24||0),Math.abs(item.p7||0)/3); return x>=25?['极高','high']:x>=10?['偏高','mid']:['正常','normal']; }
     function coinAvatar(item){ return item.image?`<img class="coin-avatar" src="${escapeHtml(item.image)}" alt="" loading="lazy" referrerpolicy="no-referrer">`:`<span class="coin-avatar coin-placeholder">${escapeHtml((item.symbol||'?').slice(0,2).toUpperCase())}</span>`; }
     function coinRowHTML(item, compact=false){
       const [risk,riskClass]=riskFor(item), watched=state.watchlist.includes(item.id);
-      return `<div class="coin-row" data-coin-id="${escapeHtml(item.id)}">
-        <div class="coin-id">${coinAvatar(item)}<div class="coin-name"><strong>${escapeHtml(item.name||item.id)}</strong><span>${escapeHtml(item.symbol||'—')} · #${item.rank||'—'}</span></div></div>
-        <div class="coin-cell">${formatMoney(item.price)}<small>当前价格</small></div>
-        <div class="coin-cell delta ${deltaClass(item.p24)}">${formatPct(item.p24)}<small>24小时</small></div>
-        <div class="coin-cell">${escapeHtml(item.volume||'—')}<small>成交额</small></div>
-        <div class="coin-cell"><span class="risk-badge ${riskClass}">${risk}风险</span><small>热度 ${item.heat||'—'}</small></div>
-        <div class="row-actions"><button class="mini-icon watch-toggle ${watched?'active':''}" data-id="${escapeHtml(item.id)}" title="${watched?'移出':'加入'}自选">☆</button></div>
-      </div>`;
+      const stage='<span class="stage-badge stage-'+stageClass(item.stage)+'">'+escapeHtml(item.stage||'观察中')+'</span>';
+      const volumeChange=Number.isFinite(finite(item.volumeChange))?' · '+formatPct(item.volumeChange):'';
+      return '<div class="coin-row" data-coin-id="'+escapeHtml(item.id)+'">'+
+        '<div class="coin-id">'+coinAvatar(item)+'<div class="coin-name"><strong>'+escapeHtml(item.name||item.id)+'</strong><span>'+escapeHtml(item.symbol||'—')+' · #'+escapeHtml(item.rank||'—')+' · '+escapeHtml(item.source||'')+'</span></div></div>'+
+        '<div class="coin-cell">'+formatMoney(item.price)+'<small>当前价格</small></div>'+
+        '<div class="coin-cell delta '+deltaClass(item.p24)+'">'+formatPct(item.p24)+'<small>24小时 / '+formatPct(item.p1h)+' 1小时</small></div>'+
+        '<div class="coin-cell">'+escapeHtml(item.volume||'—')+'<small>成交额'+escapeHtml(volumeChange)+'</small></div>'+
+        '<div class="coin-cell"><span class="risk-badge '+riskClass+'">'+risk+'风险</span><small>热度 '+(item.heat||'—')+'</small></div>'+
+        '<div class="row-actions"><button class="mini-icon watch-toggle '+(watched?'active':'')+'" data-id="'+escapeHtml(item.id)+'" title="'+(watched?'移出':'加入')+'自选">☆</button></div>'+
+        '<p class="coin-thesis">'+stage+' '+escapeHtml(item.conclusion||item.persistence||'持续性待验证')+'</p>'+
+      '</div>';
     }
 
     function coinHeader(){ return `<div class="coin-row header"><span>项目</span><span>价格</span><span>24小时</span><span>成交额</span><span>风险</span><span></span></div>`; }
     function renderHot(){
       const all=getHotItems(state.hotFilter).slice(0,12);
-      $('#fullHotList').innerHTML=coinHeader()+(all.length?all.map(x=>coinRowHTML(x)).join(''):`<div class="empty"><strong>暂时没有实时数据</strong>点击右上角刷新，或稍后再试。</div>`);
+      $('#fullHotList').innerHTML=coinHeader()+(all.length?all.map(x=>coinRowHTML(x)).join(''):'<div class="empty"><strong>暂时没有可验证的异动数据</strong>数据源不可用时不会显示示例币种。</div>');
       const top=getHotItems('trending').slice(0,5);
-      $('#overviewHotList').innerHTML=top.length?top.map(x=>coinRowHTML(x,true)).join(''):`<div class="empty">暂无热门搜索数据</div>`;
+      $('#overviewHotList').innerHTML=top.length?top.map(x=>coinRowHTML(x,true)).join(''):'<div class="empty">暂无可验证的热门币数据</div>';
+      $('#hotDataNote').innerHTML=sourceSummary(['coingecko','dex'])+'。DEX 信号表示注意力/推广，不等同于买入建议。';
     }
 
     function marketModel(){
-      const d=state.global?.data||{}, change=Number(d.market_cap_change_percentage_24h_usd)||0, dom=Number(d.market_cap_percentage?.btc)||57;
-      const fg=Number(state.fear?.data?.[0]?.value)||50;
+      const d=state.global?.data||{}, change=finite(d.market_cap_change_percentage_24h_usd), dom=finite(d.market_cap_percentage?.btc);
+      const fg=finite(state.fear?.data?.[0]?.value);
       const valid=state.markets.filter(m=>Number.isFinite(Number(m.price_change_percentage_24h)));
       const positive=valid.filter(m=>Number(m.price_change_percentage_24h)>0).length;
-      const breadth=valid.length?positive/valid.length*100:45;
-      const momentum=clamp(50+change*7,5,95), altBreadth=clamp(breadth-(dom-55)*4,5,95), crowding=clamp(fg,5,95);
-      const score=Math.round(clamp(momentum*.42+altBreadth*.33+(100-Math.abs(fg-55))*.25,8,92));
+      const breadth=valid.length?positive/valid.length*100:NaN;
+      if(!Number.isFinite(change)&&!Number.isFinite(dom)&&!Number.isFinite(fg)&&!valid.length) return {score:0,title:'等待市场数据',text:'行情源不可用时不生成市场结论。',momentum:0,altBreadth:0,crowding:0,change:NaN,dom:NaN,breadth:NaN,fg:NaN};
+      const momentum=Number.isFinite(change)?clamp(50+change*7,5,95):0;
+      const altBreadth=Number.isFinite(breadth)&&Number.isFinite(dom)?clamp(breadth-(dom-55)*4,5,95):0;
+      const crowding=Number.isFinite(fg)?clamp(fg,5,95):0;
+      const parts=[momentum,altBreadth,crowding].filter(x=>x>0);
+      const score=Math.round(clamp(parts.reduce((sum,x)=>sum+x,0)/Math.max(1,parts.length),0,92));
       let title='局部轮动', text='BTC 市占率仍高，资金更可能集中在少数叙事和龙头，而不是所有山寨币一起上涨。';
-      if(change<-2||score<35){ title='防守与去杠杆'; text='全市场动量偏弱，优先控制仓位和杠杆，等待成交与市场广度修复。'; }
-      else if(score>=70&&dom<55){ title='风险偏好扩散'; text='市场广度与总量同步改善，山寨扩散条件较好，但仍需防范短期过热。'; }
-      else if(change>1.5){ title='局部进攻'; text='总市值动量改善，但BTC占比仍高，资金更偏向强叙事和高流动性项目。'; }
+      if(Number.isFinite(change)&&(change<-2||score<35)){ title='防守与去杠杆'; text='全市场动量偏弱，优先控制仓位和杠杆，等待成交与市场广度修复。'; }
+      else if(Number.isFinite(change)&&Number.isFinite(dom)&&score>=70&&dom<55){ title='风险偏好扩散'; text='市场广度与总量同步改善，山寨扩散条件较好，但仍需防范短期过热。'; }
+      else if(Number.isFinite(change)&&change>1.5){ title='局部进攻'; text='总市值动量改善，但BTC占比仍高，资金更偏向强叙事和高流动性项目。'; }
       return {score,title,text,momentum,altBreadth,crowding,change,dom,breadth,fg};
     }
 
     function levelText(x){ return x>=68?'偏强':x>=45?'中性':'偏弱'; }
     function renderRegime(){
       const m=marketModel();
+      if(m.title==='等待市场数据'){
+        $('#marketScore').textContent='—'; $('#marketGauge').style.setProperty('--score',0);
+        $('#marketRegime').textContent=m.title; $('#marketRegimeText').textContent=m.text;
+        $('#momentumBar').style.setProperty('--w','0%'); $('#momentumText').textContent='—';
+        $('#breadthBar').style.setProperty('--w','0%'); $('#breadthText').textContent='—';
+        $('#crowdingBar').style.setProperty('--w','0%'); $('#crowdingText').textContent='—';
+        $('#heroTitle').innerHTML='等待可验证行情，<span>不使用示例数据</span>';
+        return;
+      }
       $('#marketScore').textContent=m.score; $('#marketGauge').style.setProperty('--score',m.score);
       $('#marketRegime').textContent=m.title; $('#marketRegimeText').textContent=m.text;
       $('#momentumBar').style.setProperty('--w',`${m.momentum}%`); $('#momentumText').textContent=levelText(m.momentum);
       $('#breadthBar').style.setProperty('--w',`${m.altBreadth}%`); $('#breadthText').textContent=levelText(m.altBreadth);
       $('#crowdingBar').style.setProperty('--w',`${m.crowding}%`); $('#crowdingText').textContent=m.crowding>=75?'拥挤':m.crowding<=30?'恐惧':'中等';
-      if(m.title==='防守与去杠杆') $('#heroTitle').innerHTML='市场进入防守，<span>先控制杠杆</span>';
+      if(m.title==='等待市场数据') $('#heroTitle').innerHTML='等待可验证行情，<span>不使用示例数据</span>';
+      else if(m.title==='防守与去杠杆') $('#heroTitle').innerHTML='市场进入防守，<span>先控制杠杆</span>';
       else if(m.title==='风险偏好扩散') $('#heroTitle').innerHTML='资金开始扩散，<span>但别把普涨当永久</span>';
       else $('#heroTitle').innerHTML='现在不是全面普涨，<span>先找资金主线</span>';
     }
@@ -892,12 +1135,14 @@
       const m=marketModel(), list=scoredNarratives(), hot=getHotItems('trending');
       const hottest=list[0], hotNames=hot.slice(0,3).map(x=>x.symbol?.toUpperCase()).filter(Boolean).join('、')||'暂无';
       const mover=[...hot].sort((a,b)=>Math.abs(b.p24||0)-Math.abs(a.p24||0))[0];
-      const items=[
-        `市场总市值24小时 ${formatPct(m.change)}，BTC市占率约 ${m.dom.toFixed(1)}%。当前模型判断为“${m.title}”。`,
-        `结构性热度最高的是“${hottest.title}”，研究热度 ${hottest.score}/100；热搜前列为 ${hotNames}。`,
-        mover?`${mover.symbol?.toUpperCase()} 的24小时波动约 ${formatPct(mover.p24)}，属于${riskFor(mover)[0]}风险异动，追涨前先检查成交量与筹码结构。`:'当前没有足够的异动数据，暂不生成项目判断。'
-      ];
-      $('#dailyBrief').innerHTML=items.map((x,i)=>`<li><span class="brief-num">${i+1}</span><span>${escapeHtml(x)}</span></li>`).join('');
+      const items=[];
+      if(Number.isFinite(m.change)&&Number.isFinite(m.dom)) items.push('市场总市值24小时 '+formatPct(m.change)+'，BTC 市占率约 '+m.dom.toFixed(1)+'%。当前模型判断为“'+m.title+'”。');
+      else items.push('当前未获得可验证的市场总览，因此不生成方向性市场结论。');
+      if(hottest) items.push('结构性热度最高的是“'+hottest.title+'”，热度 '+hottest.score+'/100；热门币包括 '+hotNames+'。');
+      else items.push('叙事分类数据暂不可用，等待市场分类接口恢复。');
+      if(mover) items.push(String(mover.symbol||'').toUpperCase()+' 24小时 '+formatPct(mover.p24)+'，阶段为“'+mover.stage+'”，'+mover.persistence+'；追涨前先核对成交额和筹码结构。');
+      else items.push('暂未发现可验证的热门币异动。');
+      $('#dailyBrief').innerHTML=items.map((x,i)=>'<li><span class="brief-num">'+(i+1)+'</span><span>'+escapeHtml(x)+'</span></li>').join('');
     }
 
     function eventCountdown(date){
@@ -905,14 +1150,30 @@
       const h=Math.floor(diff/36e5), d=Math.floor(h/24); return d>0?`${d}天后`:`${Math.max(1,h)}小时后`;
     }
     function renderEvents(){
-      const events=[...BUILTIN_EVENTS,...state.customEvents].sort((a,b)=>new Date(a.datetime)-new Date(b.datetime));
+      const now=Date.now();
+      const events=[...state.macroEvents,...state.cryptoEvents,...state.customEvents].filter(event=>{ const date=parseDate(event.datetime); return date&&date.getTime()>=now-6*3600000; }).sort((a,b)=>new Date(a.datetime)-new Date(b.datetime)).slice(0,18);
       $('#eventList').innerHTML=events.map(e=>{
         const dt=new Date(e.datetime), past=dt<Date.now(), date=new Intl.DateTimeFormat('zh-CN',{timeZone:'Asia/Shanghai',month:'numeric',day:'numeric'}).format(dt), time=new Intl.DateTimeFormat('zh-CN',{timeZone:'Asia/Shanghai',hour:'2-digit',minute:'2-digit',hour12:false}).format(dt);
         return `<article class="event-card ${past?'past':''}"><div class="event-date"><strong>${escapeHtml(date)}</strong><span>${escapeHtml(time)}</span></div><div class="event-copy"><h3>${escapeHtml(e.title)} <span class="tag">${escapeHtml(e.type)}</span></h3><p>${escapeHtml(e.description||'用户添加事件')}</p></div><div class="impact ${escapeHtml(e.impact)}"><strong>${e.impact==='high'?'高影响':e.impact==='mid'?'中影响':'低影响'}</strong><small>${eventCountdown(dt)}</small>${e.custom?`<button class="text-link delete-event" data-id="${escapeHtml(e.id)}">删除</button>`:''}</div></article>`;
       }).join('')||`<div class="empty">暂无事件</div>`;
     }
+    function renderNewsAndCalendar(){
+      const news=state.news.slice(0,8);
+      $('#newsFeed').innerHTML=news.length?news.map(item=>{
+        const date=parseDate(item.publishedAt), time=date?cnDateTime(date)+' 北京时间':'发布时间不可用';
+        const title=escapeHtml(item.title), link=item.url?'<a href="'+escapeHtml(item.url)+'" target="_blank" rel="noopener">'+title+'</a>':title;
+        return '<article class="news-card"><span class="tag '+(item.impact==='high'?'risk':item.impact==='mid'?'warning':'live')+'">'+escapeHtml(item.type)+'</span><div><h3>'+link+'</h3><p>'+escapeHtml(item.conclusion)+'</p><div class="news-meta"><span>'+escapeHtml(item.source)+'</span><span>'+escapeHtml(time)+'</span></div></div></article>';
+      }).join(''):'<div class="empty"><strong>新闻源暂不可用</strong>没有缓存时不会展示静态新闻。</div>';
+      const now=Date.now(), upcoming=[...state.macroEvents,...state.cryptoEvents,...state.customEvents].filter(event=>new Date(event.datetime).getTime()>=now-5*60000).sort((a,b)=>new Date(a.datetime)-new Date(b.datetime))[0];
+      if(upcoming){
+        $('#calendarCallout').innerHTML='<h3>下一项重要事件：'+escapeHtml(upcoming.title)+'</h3><p>'+escapeHtml(cnDateTime(new Date(upcoming.datetime)))+'（北京时间） · '+escapeHtml(upcoming.description||'请打开来源核实详情')+'</p>';
+      } else {
+        $('#calendarCallout').innerHTML='<h3>近期事件暂不可用</h3><p>宏观日历、新闻和项目事件源不可用时，只显示缓存或你手动添加的事件。</p>';
+      }
+      $('#calendarStatus').innerHTML=sourceSummary(['macro','news'])+'。所有日历时间均按北京时间显示；新闻事件使用来源发布时间，不伪装成未来排期。';
+    }
 
-    function marketById(id){ return state.markets.find(m=>m.id===id); }
+    function marketById(id){ return [...state.markets,...state.dexPairs].find(m=>m.id===id); }
     function sparklineSVG(points=[], positive=true){
       if(!Array.isArray(points)||points.length<2) return `<svg viewBox="0 0 100 40"><path d="M0 25 C20 18,35 30,50 19 S80 13,100 18" fill="none" stroke="${positive?'#6ee7a2':'#ff6b77'}" stroke-width="2" opacity=".45"/></svg>`;
       const sampled=points.filter((_,i)=>i%Math.max(1,Math.floor(points.length/40))===0).slice(-48), min=Math.min(...sampled), max=Math.max(...sampled), range=max-min||1;
@@ -942,8 +1203,33 @@
       });
     }
 
+    function radarEmpty(kicker,title,copy,view){
+      return '<div class="radar-kicker">'+escapeHtml(kicker)+'</div><h3 class="radar-value">'+escapeHtml(title)+'</h3><p class="radar-copy">'+escapeHtml(copy)+'</p><div class="radar-meta"><span class="source-status">'+sourceSummary(view==='calendar'?['macro','news']:['coingecko','dex'])+'</span></div>';
+    }
+    function radarSignalRow(item){
+      return '<div class="radar-item"><div><strong>'+escapeHtml(item.name||item.symbol||item.id)+'</strong><p>'+escapeHtml(item.conclusion||item.persistence||'持续性待验证')+'</p></div><div><span class="stage-badge stage-'+stageClass(item.stage)+'">'+escapeHtml(item.stage||'观察中')+'</span><p class="delta '+deltaClass(item.p24)+'">'+formatPct(item.p24)+'</p></div></div>';
+    }
+    function renderHomeRadar(){
+      const narratives=scoredNarratives(), strongest=narratives[0], hot=getHotItems('trending').slice(0,2), early=getHotItems('early').slice(0,2);
+      const overheated=buildCoinSignals().filter(item=>item.stage==='过热').sort((a,b)=>b.heat-a.heat).slice(0,2);
+      const now=Date.now(), events=[...state.macroEvents,...state.cryptoEvents,...state.customEvents].filter(item=>new Date(item.datetime).getTime()>=now-5*60000).sort((a,b)=>new Date(a.datetime)-new Date(b.datetime)).slice(0,2);
+      $('#todayNarrative').innerHTML=strongest?
+        '<div class="radar-kicker">今天最强叙事</div><h3 class="radar-value">'+escapeHtml(strongest.title)+'</h3><p class="radar-copy">'+escapeHtml(strongest.desc)+'</p><div class="radar-meta"><span class="stage-badge stage-'+stageClass(strongest.stage)+'">'+escapeHtml(strongest.stage)+'</span><span class="tag '+(strongest.score>=76?'live':'warning')+'">热度 '+strongest.score+'/100</span><button class="text-link" data-go="narratives">查看趋势</button></div>':
+        radarEmpty('今天最强叙事','暂无可验证叙事','等待市场分类与行情数据。','narratives');
+      const hotOrEarly=early.length?early:hot;
+      $('#emergingRadar').innerHTML=hotOrEarly.length?
+        '<div class="radar-kicker">最新热点币 / 刚起势机会</div><h3 class="radar-value">'+(early.length?'先看刚起势与升温':'当前热门币')+'</h3><div class="radar-list">'+hotOrEarly.map(radarSignalRow).join('')+'</div><div class="radar-meta"><button class="text-link" data-go="hot">查看热门币</button></div>':
+        radarEmpty('最新热点币 / 刚起势机会','暂无可验证信号','热搜和 DEX 注意力源恢复后会自动计算。','hot');
+      $('#overheatRadar').innerHTML=overheated.length?
+        '<div class="radar-kicker">过热风险</div><h3 class="radar-value">注意拥挤与波动</h3><div class="radar-list">'+overheated.map(radarSignalRow).join('')+'</div><div class="radar-meta"><span class="risk-badge high">不等同于做空信号</span><button class="text-link" data-go="hot">查看异动</button></div>':
+        radarEmpty('过热风险','未检测到过热币','不代表低风险；仍请查看成交额和流动性。','hot');
+      $('#todayEventsRadar').innerHTML=events.length?
+        '<div class="radar-kicker">今日 / 近期重要事件</div><h3 class="radar-value">'+escapeHtml(events[0].title)+'</h3><p class="radar-copy">'+escapeHtml(cnDateTime(new Date(events[0].datetime)))+'（北京时间） · '+escapeHtml(events[0].description||'请打开来源核实')+'</p><div class="radar-meta"><span class="tag '+(events[0].impact==='high'?'risk':events[0].impact==='mid'?'warning':'live')+'">'+(events[0].impact==='high'?'高影响':events[0].impact==='mid'?'中影响':'低影响')+'</span><button class="text-link" data-go="calendar">查看日历</button></div>':
+        radarEmpty('今日 / 近期重要事件','暂无可验证事件','宏观和新闻源不可用时不会显示固定日历。','calendar');
+      $('#heroSub').textContent=strongest?'当前最强叙事为“'+strongest.title+'”，'+strongest.desc:'自动追踪市场总量、热搜、板块轮动、DEX 注意力和公开事件；数据不可用时只显示缓存或不可用。';
+    }
     function renderAll(){
-      updateStatus(); renderMetrics(); renderRegime(); renderNarratives(); renderHot(); renderBrief(); renderEvents(); renderWatchlist();
+      updateStatus(); renderMetrics(); renderRegime(); renderNarratives(); renderHot(); renderBrief(); renderEvents(); renderNewsAndCalendar(); renderHomeRadar(); renderWatchlist();
     }
 
     function switchView(view){
@@ -988,7 +1274,7 @@
         const alert=e.target.closest('.set-alert'); if(alert){ openAlert(alert.dataset.id); return; }
         const result=e.target.closest('[data-search-id]'); if(result){ const id=result.dataset.searchId; if(!state.watchlist.includes(id)) toggleWatch(id); $('#coinSearch').value=''; $('#searchResults').classList.add('hidden'); return; }
         const close=e.target.closest('[data-close-dialog]'); if(close){ document.getElementById(close.dataset.closeDialog).close(); return; }
-        const del=e.target.closest('.delete-event'); if(del){ state.customEvents=state.customEvents.filter(x=>x.id!==del.dataset.id); writeJSON(STORAGE.events,state.customEvents); renderEvents(); toast('事件已删除'); }
+        const del=e.target.closest('.delete-event'); if(del){ state.customEvents=state.customEvents.filter(x=>x.id!==del.dataset.id); writeJSON(STORAGE.events,state.customEvents); renderEvents(); renderNewsAndCalendar(); renderHomeRadar(); toast('事件已删除'); }
         if(!e.target.closest('.searchbox')) $('#searchResults').classList.add('hidden');
       });
       $('#refreshBtn').addEventListener('click',()=>refreshData(true));
@@ -998,7 +1284,7 @@
       $('#eventForm').addEventListener('submit',e=>{
         e.preventDefault(); const fd=new FormData(e.currentTarget), raw=fd.get('datetime');
         const event={id:`custom-${Date.now()}`,datetime:`${raw}:00+08:00`,title:fd.get('title'),description:fd.get('description'),impact:fd.get('impact'),type:fd.get('type'),custom:true};
-        state.customEvents.push(event); writeJSON(STORAGE.events,state.customEvents); renderEvents(); $('#eventDialog').close(); e.currentTarget.reset(); toast('事件已添加');
+        state.customEvents.push(event); writeJSON(STORAGE.events,state.customEvents); renderEvents(); renderNewsAndCalendar(); renderHomeRadar(); $('#eventDialog').close(); e.currentTarget.reset(); toast('事件已添加');
       });
       $('#alertForm').addEventListener('submit',e=>{
         e.preventDefault(); const fd=new FormData(e.currentTarget), id=fd.get('coinId'), above=fd.get('above'), below=fd.get('below');
@@ -1011,7 +1297,10 @@
         const p=await Notification.requestPermission(); toast(p==='granted'?'浏览器提醒已开启':'没有获得通知权限');
       });
       window.addEventListener('online',()=>refreshData(false));
-      window.addEventListener('offline',()=>{ state.dataMode=state.global?'cache':'fallback'; updateStatus(); });
+      window.addEventListener('offline',()=>{
+        ['coingecko','sentiment','dex','macro','news'].forEach(name=>{ if(sourceHasData(name)) markSourceFailure(name); else setSource(name,'unavailable',sourceInfo(name).at); });
+        updateDataMode(); renderAll();
+      });
       window.addEventListener('beforeinstallprompt',e=>{ e.preventDefault(); state.deferredInstall=e; $('#installBtn').classList.remove('hidden'); });
       $('#installBtn').addEventListener('click',async()=>{
         if(state.deferredInstall){ state.deferredInstall.prompt(); await state.deferredInstall.userChoice; state.deferredInstall=null; $('#installBtn').classList.add('hidden'); }
