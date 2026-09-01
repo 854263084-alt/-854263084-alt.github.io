@@ -1164,9 +1164,13 @@
         const title=escapeHtml(item.title), link=item.url?'<a href="'+escapeHtml(item.url)+'" target="_blank" rel="noopener">'+title+'</a>':title;
         return '<article class="news-card"><span class="tag '+(item.impact==='high'?'risk':item.impact==='mid'?'warning':'live')+'">'+escapeHtml(item.type)+'</span><div><h3>'+link+'</h3><p>'+escapeHtml(item.conclusion)+'</p><div class="news-meta"><span>'+escapeHtml(item.source)+'</span><span>'+escapeHtml(time)+'</span></div></div></article>';
       }).join(''):'<div class="empty"><strong>新闻源暂不可用</strong>没有缓存时不会展示静态新闻。</div>';
-      const now=Date.now(), upcoming=[...state.macroEvents,...state.cryptoEvents,...state.customEvents].filter(event=>new Date(event.datetime).getTime()>=now-5*60000).sort((a,b)=>new Date(a.datetime)-new Date(b.datetime))[0];
-      if(upcoming){
-        $('#calendarCallout').innerHTML='<h3>下一项重要事件：'+escapeHtml(upcoming.title)+'</h3><p>'+escapeHtml(cnDateTime(new Date(upcoming.datetime)))+'（北京时间） · '+escapeHtml(upcoming.description||'请打开来源核实详情')+'</p>';
+      const now=Date.now(), allEvents=[...state.macroEvents,...state.cryptoEvents,...state.customEvents].filter(event=>parseDate(event.datetime));
+      const upcoming=allEvents.filter(event=>new Date(event.datetime).getTime()>=now-5*60000).sort((a,b)=>new Date(a.datetime)-new Date(b.datetime))[0];
+      const recent=allEvents.filter(event=>{ const time=new Date(event.datetime).getTime(); return time<now-5*60000&&time>=now-24*3600000; }).sort((a,b)=>new Date(b.datetime)-new Date(a.datetime))[0];
+      const focus=upcoming||recent;
+      if(focus){
+        const heading=upcoming?'下一项重要事件：':'今日已发生的重要事件：';
+        $('#calendarCallout').innerHTML='<h3>'+heading+escapeHtml(focus.title)+'</h3><p>'+escapeHtml(cnDateTime(new Date(focus.datetime)))+'（北京时间） · '+escapeHtml(focus.description||'请打开来源核实详情')+'</p>';
       } else {
         $('#calendarCallout').innerHTML='<h3>近期事件暂不可用</h3><p>宏观日历、新闻和项目事件源不可用时，只显示缓存或你手动添加的事件。</p>';
       }
@@ -1212,7 +1216,10 @@
     function renderHomeRadar(){
       const narratives=scoredNarratives(), strongest=narratives[0], hot=getHotItems('trending').slice(0,2), early=getHotItems('early').slice(0,2);
       const overheated=buildCoinSignals().filter(item=>item.stage==='过热').sort((a,b)=>b.heat-a.heat).slice(0,2);
-      const now=Date.now(), events=[...state.macroEvents,...state.cryptoEvents,...state.customEvents].filter(item=>new Date(item.datetime).getTime()>=now-5*60000).sort((a,b)=>new Date(a.datetime)-new Date(b.datetime)).slice(0,2);
+      const now=Date.now(), allEvents=[...state.macroEvents,...state.cryptoEvents,...state.customEvents].filter(item=>parseDate(item.datetime));
+      const futureEvents=allEvents.filter(item=>new Date(item.datetime).getTime()>=now-5*60000).sort((a,b)=>new Date(a.datetime)-new Date(b.datetime)).slice(0,2);
+      const recentEvents=allEvents.filter(item=>{ const time=new Date(item.datetime).getTime(); return time<now-5*60000&&time>=now-24*3600000; }).sort((a,b)=>new Date(b.datetime)-new Date(a.datetime)).slice(0,2);
+      const events=futureEvents.length?futureEvents:recentEvents, eventKicker=futureEvents.length?'今日 / 近期重要事件':'今日已发生的重要事件';
       $('#todayNarrative').innerHTML=strongest?
         '<div class="radar-kicker">今天最强叙事</div><h3 class="radar-value">'+escapeHtml(strongest.title)+'</h3><p class="radar-copy">'+escapeHtml(strongest.desc)+'</p><div class="radar-meta"><span class="stage-badge stage-'+stageClass(strongest.stage)+'">'+escapeHtml(strongest.stage)+'</span><span class="tag '+(strongest.score>=76?'live':'warning')+'">热度 '+strongest.score+'/100</span><button class="text-link" data-go="narratives">查看趋势</button></div>':
         radarEmpty('今天最强叙事','暂无可验证叙事','等待市场分类与行情数据。','narratives');
@@ -1224,7 +1231,7 @@
         '<div class="radar-kicker">过热风险</div><h3 class="radar-value">注意拥挤与波动</h3><div class="radar-list">'+overheated.map(radarSignalRow).join('')+'</div><div class="radar-meta"><span class="risk-badge high">不等同于做空信号</span><button class="text-link" data-go="hot">查看异动</button></div>':
         radarEmpty('过热风险','未检测到过热币','不代表低风险；仍请查看成交额和流动性。','hot');
       $('#todayEventsRadar').innerHTML=events.length?
-        '<div class="radar-kicker">今日 / 近期重要事件</div><h3 class="radar-value">'+escapeHtml(events[0].title)+'</h3><p class="radar-copy">'+escapeHtml(cnDateTime(new Date(events[0].datetime)))+'（北京时间） · '+escapeHtml(events[0].description||'请打开来源核实')+'</p><div class="radar-meta"><span class="tag '+(events[0].impact==='high'?'risk':events[0].impact==='mid'?'warning':'live')+'">'+(events[0].impact==='high'?'高影响':events[0].impact==='mid'?'中影响':'低影响')+'</span><button class="text-link" data-go="calendar">查看日历</button></div>':
+        '<div class="radar-kicker">'+eventKicker+'</div><h3 class="radar-value">'+escapeHtml(events[0].title)+'</h3><p class="radar-copy">'+escapeHtml(cnDateTime(new Date(events[0].datetime)))+'（北京时间） · '+escapeHtml(events[0].description||'请打开来源核实')+'</p><div class="radar-meta"><span class="tag '+(events[0].impact==='high'?'risk':events[0].impact==='mid'?'warning':'live')+'">'+(events[0].impact==='high'?'高影响':events[0].impact==='mid'?'中影响':'低影响')+'</span><button class="text-link" data-go="calendar">查看日历</button></div>':
         radarEmpty('今日 / 近期重要事件','暂无可验证事件','宏观和新闻源不可用时不会显示固定日历。','calendar');
       $('#heroSub').textContent=strongest?'当前最强叙事为“'+strongest.title+'”，'+strongest.desc:'自动追踪市场总量、热搜、板块轮动、DEX 注意力和公开事件；数据不可用时只显示缓存或不可用。';
     }
