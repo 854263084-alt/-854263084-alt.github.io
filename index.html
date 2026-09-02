@@ -288,6 +288,7 @@
     .search-result span { color:var(--muted); font-size:10px; margin-left:auto; }
 
     .calendar-layout { display:grid; grid-template-columns:minmax(0,1.25fr) minmax(280px,.75fr); gap:15px; }
+    .event-toolbar { display:flex; align-items:center; justify-content:space-between; gap:10px; margin-bottom:13px; }
     .event-list { display:grid; gap:9px; }
     .event-card { display:grid; grid-template-columns:70px 1fr auto; align-items:center; gap:14px; border:1px solid var(--line); border-radius:15px; padding:13px; background:rgba(255,255,255,.02); }
     .event-date { text-align:center; border-right:1px solid var(--line); padding-right:13px; }
@@ -295,6 +296,15 @@
     .event-date span { color:var(--muted); font-size:10px; }
     .event-copy h3 { margin:0 0 5px; font-size:13px; }
     .event-copy p { margin:0; color:var(--muted); font-size:10px; line-height:1.55; }
+    .event-meta { display:flex; flex-wrap:wrap; gap:6px; margin-top:7px; color:var(--muted-2); font-size:9px; line-height:1.45; }
+    .event-meta a { color:var(--green); }
+    .event-topic { color:var(--muted); }
+    .event-status { display:inline-flex; align-items:center; padding:3px 6px; border:1px solid var(--line); border-radius:99px; font-size:9px; white-space:nowrap; }
+    .event-status.upcoming { color:var(--green-2); border-color:rgba(110,231,162,.18); background:rgba(110,231,162,.06); }
+    .event-status.active { color:var(--blue); border-color:rgba(116,184,255,.18); background:rgba(116,184,255,.06); }
+    .event-status.ended { color:var(--muted); }
+    .event-status.pending { color:var(--amber); border-color:rgba(255,203,102,.18); background:rgba(255,203,102,.06); }
+    .event-result { color:var(--text); }
     .impact { display:grid; justify-items:end; gap:5px; }
     .impact strong { font-size:10px; }
     .impact small { color:var(--muted-2); font-size:9px; }
@@ -403,6 +413,9 @@
       .event-card { grid-template-columns:58px 1fr; gap:11px; }
       .event-date { padding-right:10px; }
       .impact { grid-column:2; justify-items:start; display:flex; align-items:center; }
+      .event-toolbar { align-items:stretch; flex-direction:column; }
+      .event-toolbar .segmented { width:100%; overflow:auto; }
+      .event-toolbar .segmented button { flex:1; white-space:nowrap; }
       .form-row { grid-template-columns:1fr; }
       .check-grid { grid-template-columns:1fr; }
       .mobile-nav {
@@ -577,7 +590,12 @@
       <section class="view" id="view-calendar">
         <div class="section-title-row"><div><h2>事件与解锁日历</h2><p>所有时间按北京时间显示；宏观与项目事件会尝试自动刷新</p></div><button class="primary-btn small-btn" id="addEventBtn">＋ 添加事件</button></div>
         <div class="calendar-layout">
-          <article class="panel"><div class="event-list" id="eventList"></div><div class="section-block"><div class="panel-head"><div><h2 class="panel-title">重要市场情报</h2><p class="panel-note">新闻标题保留原文；中文部分是规则化风险提示，不是机器编造的新闻内容。</p></div></div><div class="news-list" id="newsFeed"></div></div></article>
+          <article class="panel">
+            <div class="event-toolbar"><div class="segmented" id="eventFilter"><button class="active" data-event-filter="all">全部</button><button data-event-filter="coin">币种事件</button><button data-event-filter="macro">宏观事件</button></div><span class="tag" id="eventListStatus">正在读取</span></div>
+            <div class="event-list" id="eventList"></div>
+            <div class="section-block"><div class="panel-head"><div><h2 class="panel-title">未来 7 天币种事件</h2><p class="panel-note">仅列出来源明确、时间可确认的币种或项目排期；公告发布时间不会伪装成未来排期。</p></div></div><div class="event-list" id="upcomingCoinEventList"></div></div>
+            <div class="section-block"><div class="panel-head"><div><h2 class="panel-title">重要市场情报</h2><p class="panel-note">新闻标题保留原文；中文部分是规则化风险提示，不是机器编造的新闻内容。</p></div></div><div class="news-list" id="newsFeed"></div></div>
+          </article>
           <aside class="calendar-aside">
             <div class="callout" id="calendarCallout"><h3>正在读取近期事件</h3><p>宏观、项目与交易所动态会按数据源状态更新。</p></div>
             <div class="panel"><h3 class="panel-title">日历状态</h3><p class="panel-note" id="calendarStatus" style="margin-top:9px">正在检查宏观、新闻和项目事件源……</p></div>
@@ -633,6 +651,7 @@
       <div class="dialog-head"><h2>添加自定义事件</h2><button type="button" class="icon-btn" data-close-dialog="eventDialog">×</button></div>
       <div class="form-grid">
         <label class="form-label">事件名称<input class="form-control" name="title" required placeholder="例如：某项目解锁"></label>
+        <label class="form-label">币种 / 项目（可选）<input class="form-control" name="coin" placeholder="例如：ETH、Aster"></label>
         <label class="form-label">说明<input class="form-control" name="description" placeholder="影响原因或观察重点"></label>
         <div class="form-row">
           <label class="form-label">北京时间<input class="form-control" name="datetime" type="datetime-local" required></label>
@@ -668,6 +687,7 @@
         <label class="check-option"><input name="volume" type="checkbox"><span><strong>成交量异常</strong>较上次快照明显放大时提示</span></label>
         <label class="check-option"><input name="trending" type="checkbox"><span><strong>新进入热搜</strong>新进入公开热搜时提示</span></label>
         <label class="check-option"><input name="news" type="checkbox"><span><strong>重大新闻</strong>新出现的高影响公告/事件</span></label>
+        <label class="check-option"><input name="projectEvent" type="checkbox"><span><strong>重大币种事件</strong>自选或热点币的已验证重要排期</span></label>
         <label class="check-option"><input name="macro" type="checkbox"><span><strong>宏观事件</strong>CPI、非农、FOMC 临近时提示</span></label>
       </div>
       <p class="panel-note" style="margin-top:12px">同一币种会去重并设置冷却时间。网页关闭后，当前版本不会假装后台 Push；已预留 Web Push 接口，未来接入推送服务后才可真正后台通知。</p>
@@ -715,7 +735,7 @@
 
     const state = {
       global: null, fear: null, trending: [], categories: [], markets: [], dexPairs: [], macroEvents: [], cryptoEvents: [], news: [],
-      dataMode: 'loading', lastUpdated: null, currentView:'overview', hotFilter:'trending',
+      dataMode: 'loading', lastUpdated: null, currentView:'overview', hotFilter:'trending', eventFilter:'all',
       sourceState: readJSON(STORAGE.sourceState, {})||{},
       history: normaliseHistory(readJSON(STORAGE.history, null)),
       watchlist: readJSON(STORAGE.watchlist, ['bitcoin','ethereum','solana','hyperliquid','aster-2','uniswap']),
@@ -737,7 +757,7 @@
     function readJSON(key, fallback) { try { const v=localStorage.getItem(key); return v ? JSON.parse(v) : fallback; } catch { return fallback; } }
     function writeJSON(key, value) { try { localStorage.setItem(key, JSON.stringify(value)); } catch {} }
     function normaliseNotificationSettings(input){
-      const defaults={newHot:true,emerging:true,accelerating:true,volume:true,trending:true,news:true,macro:true};
+      const defaults={newHot:true,emerging:true,accelerating:true,volume:true,trending:true,news:true,projectEvent:true,macro:true};
       return {...defaults,...(input&&typeof input==='object'?input:{})};
     }
     function normaliseNotificationLedger(input){
@@ -819,7 +839,7 @@
       if(!cache || !savedAt) return false;
       state.global=cache.global||null; state.fear=cache.fear||null; state.trending=Array.isArray(cache.trending)?cache.trending:[]; state.categories=Array.isArray(cache.categories)?cache.categories:[];
       state.markets=Array.isArray(cache.markets)?cache.markets:[]; state.dexPairs=Array.isArray(cache.dexPairs)?cache.dexPairs:[]; state.macroEvents=Array.isArray(cache.macroEvents)?cache.macroEvents:[];
-      state.cryptoEvents=Array.isArray(cache.cryptoEvents)?cache.cryptoEvents:[]; state.news=Array.isArray(cache.news)?cache.news:[]; state.lastUpdated=timestamp;
+      state.news=Array.isArray(cache.news)?cache.news:[]; state.cryptoEvents=state.news.length?newsEvents(state.news):(Array.isArray(cache.cryptoEvents)?cache.cryptoEvents:[]); state.lastUpdated=timestamp;
       state.sourceState=cache.sourceState&&typeof cache.sourceState==='object'?cache.sourceState:state.sourceState;
       ['coingecko','sentiment','dex','macro','news'].forEach(name=>{
         const old=sourceInfo(name); state.sourceState[name]={status:sourceHasData(name)?'cache':'unavailable',at:old.at||savedAt.toISOString()};
@@ -862,7 +882,7 @@
       if(shouldUse){
         state.global=snapshot.global||null; state.fear=snapshot.fear||null; state.trending=Array.isArray(snapshot.trending)?snapshot.trending:[]; state.categories=Array.isArray(snapshot.categories)?snapshot.categories:[];
         state.markets=Array.isArray(snapshot.markets)?snapshot.markets:[]; state.dexPairs=Array.isArray(snapshot.dexPairs)?snapshot.dexPairs:[]; state.macroEvents=Array.isArray(snapshot.macroEvents)?snapshot.macroEvents:[];
-        state.cryptoEvents=Array.isArray(snapshot.cryptoEvents)?snapshot.cryptoEvents:[]; state.news=Array.isArray(snapshot.news)?snapshot.news:[]; state.lastUpdated=updated;
+        state.news=Array.isArray(snapshot.news)?snapshot.news:[]; state.cryptoEvents=state.news.length?newsEvents(state.news):(Array.isArray(snapshot.cryptoEvents)?snapshot.cryptoEvents:[]); state.lastUpdated=updated;
         const incoming=payload.sourceState&&typeof payload.sourceState==='object'?payload.sourceState:{};
         ['coingecko','sentiment','dex','macro','news'].forEach(name=>{
           const old=incoming[name]||{};
@@ -906,7 +926,7 @@
         const date=parseDate(row.date), impact=String(row.impact||'').toLowerCase();
         if(!date) return null;
         const parts=[]; if(row.forecast) parts.push('预测 '+row.forecast); if(row.previous) parts.push('前值 '+row.previous);
-        return {id:'macro-'+date.getTime()+'-'+index,datetime:date.toISOString(),title:macroTitle(row.title),description:'来源宏观日历：'+String(row.title||'')+(parts.length?'；'+parts.join('，'):''),type:'宏观',impact:impact==='high'?'high':impact==='medium'?'mid':'low',source:'Forex Factory 日历'};
+        return {id:'macro-'+date.getTime()+'-'+index,datetime:date.toISOString(),title:macroTitle(row.title),description:'来源宏观日历：'+String(row.title||'')+(parts.length?'；'+parts.join('，'):''),type:'宏观',topic:'宏观数据 / 政策',impact:impact==='high'?'high':impact==='medium'?'mid':'low',source:'Forex Factory 日历',scope:'macro',dateKind:'scheduled',official:false,verification:'日历来源'};
       }).filter(Boolean),item=>item.datetime+'|'+item.title).sort((a,b)=>new Date(a.datetime)-new Date(b.datetime));
     }
     async function fetchMacroEvents(){
@@ -917,14 +937,49 @@
     }
     function classifyNews(title){
       const text=String(title||'').toLowerCase();
-      if(/delist|delisting|remove.*trading|will remove|下架/.test(text)) return {type:'交易所下币',impact:'high',advice:'核对公告原文、受影响交易对和执行时间。'};
-      if(/list(ing|ed)?|will list|上币/.test(text)) return {type:'交易所上币',impact:'mid',advice:'核对交易所公告、交易对和流动性，不把上币标题等同于基本面。'};
-      if(/unlock|vesting|token release|解锁/.test(text)) return {type:'代币解锁',impact:'high',advice:'核对解锁规模、占流通比例和接收方。'};
-      if(/airdrop|空投/.test(text)) return {type:'空投',impact:'mid',advice:'只使用项目官方链接，防范假空投和授权钓鱼。'};
-      if(/mainnet|testnet|upgrade|launch|hard fork|主网|升级/.test(text)) return {type:'项目事件',impact:'mid',advice:'核对上线范围、时间和实际可用性。'};
-      if(/hack|exploit|attack|breach|漏洞|被盗/.test(text)) return {type:'风险事件',impact:'high',advice:'优先核对资产敞口、官方处置和链上影响。'};
-      if(/etf|sec|regulation|lawsuit|监管/.test(text)) return {type:'监管 / ETF',impact:'mid',advice:'关注原始文件、审批状态与生效时间。'};
-      return {type:'市场资讯',impact:'low',advice:'标题仅作线索，请打开原文核实。'};
+      if(/delist|delisting|remove.*trading|will remove|下架/.test(text)) return {type:'交易所下币',topic:'交易所流动性',impact:'high',summary:'涉及交易对下架、停止交易或服务调整。',advice:'核对公告原文、受影响交易对和执行时间。'};
+      if(/unlock|vesting|token release|解锁/.test(text)) return {type:'代币解锁',topic:'代币供给变化',impact:'high',summary:'涉及解锁、归属或代币释放安排。',advice:'核对解锁规模、占流通比例和接收方。'};
+      if(/airdrop|空投/.test(text)) return {type:'空投',topic:'社区激励',impact:'mid',summary:'涉及空投资格、领取或分发安排。',advice:'只使用项目官方链接，防范假空投和授权钓鱼。'};
+      if(/governance|proposal|snapshot|\bvote\b|dao|治理|提案|投票/.test(text)) return {type:'治理 / 投票',topic:'治理 / 社区决策',impact:'mid',summary:'涉及治理讨论、提案、投票或 DAO 决策。',advice:'核对提案全文、投票截止时间和最终执行条件。'};
+      if(/community call|community meeting|town hall|\bama\b|twitter spaces|\bspaces\b|社区会议/.test(text)) return {type:'社区会议 / AMA',topic:'社区沟通',impact:'low',summary:'涉及社区会议、AMA 或公开交流。',advice:'关注是否给出明确时间、参与入口和后续结论。'};
+      if(/buyback|repurchase|回购/.test(text)) return {type:'回购',topic:'价值捕获 / 资金使用',impact:'mid',summary:'涉及代币或协议资产的回购安排。',advice:'核对资金来源、规模、执行频率和披露方式。'};
+      if(/\bburn\b|销毁/.test(text)) return {type:'销毁',topic:'代币供给变化',impact:'mid',summary:'涉及代币销毁、回收或供给调整。',advice:'核对销毁地址、实际数量和是否已上链执行。'};
+      if(/migration|token swap|redenomination|迁移|置换/.test(text)) return {type:'代币迁移',topic:'合约 / 代币迁移',impact:'high',summary:'涉及代币、合约或计价单位迁移。',advice:'核对官方迁移入口、截止时间和旧币处理方式。'};
+      if(/mainnet|testnet|hard fork|\bupgrade\b|主网|测试网|硬分叉|升级/.test(text)) return {type:'主网 / 测试网 / 升级',topic:'网络与协议升级',impact:'mid',summary:'涉及主网、测试网、协议升级或硬分叉。',advice:'核对实际启用范围、版本要求和链上执行状态。'};
+      if(/product launch|feature release|\blaunch\b|\brelease\b|产品发布|新功能/.test(text)) return {type:'产品发布',topic:'产品与生态',impact:'mid',summary:'涉及产品、功能或服务发布。',advice:'核对是否已开放使用，以及数据是否支持实际采用。'};
+      if(/partnership|collaboration|integrat|合作|集成/.test(text)) return {type:'重大合作',topic:'生态合作',impact:'mid',summary:'涉及合作、集成或生态扩展。',advice:'核对合作范围、是否已落地及双方原始公告。'};
+      if(/list(ing|ed)?|will list|上币/.test(text)) return {type:'交易所上币',topic:'交易所流动性',impact:'mid',summary:'涉及新币种、交易对或交易服务上线。',advice:'核对交易所公告、交易对和流动性，不把上币标题等同于基本面。'};
+      if(/hack|exploit|attack|breach|漏洞|被盗/.test(text)) return {type:'风险事件',topic:'安全与资金风险',impact:'high',summary:'涉及安全漏洞、攻击或资产风险。',advice:'优先核对资产敞口、官方处置和链上影响。'};
+      if(/etf|sec|regulation|lawsuit|监管/.test(text)) return {type:'监管 / ETF',topic:'监管与市场结构',impact:'mid',summary:'涉及监管、ETF 或法律进展。',advice:'关注原始文件、审批状态与生效时间。'};
+      return {type:'市场资讯',topic:'市场资讯',impact:'low',summary:'属于市场资讯，尚不足以形成可验证事件。',advice:'标题仅作线索，请打开原文核实。'};
+    }
+
+    function escapeRegExp(value){ return String(value||'').replace(/[.*+?^${}()|[\]\\]/g,'\\$&'); }
+    function eventCoinCatalog(){
+      const map=new Map(), names=[];
+      [...state.markets,...state.dexPairs,...state.trending.map(getTrendingData)].forEach(item=>{
+        const symbol=String(item&&item.symbol||'').toUpperCase(), name=String(item&&item.name||'').trim();
+        if(!/^[A-Z0-9]{2,12}$/.test(symbol)||/^(USD|USDT|USDC|BUSD|DAI|ETH|BTC)$/.test(symbol)) return;
+        const ref={id:item.id||('symbol:'+symbol),symbol:symbol,name:name||symbol}; map.set(symbol,ref);
+        if(name.length>=4) names.push({name:name.toLowerCase(),ref:ref});
+      });
+      return {map,names};
+    }
+    function extractEventCoins(title){
+      const text=String(title||''), upper=text.toUpperCase(), catalog=eventCoinCatalog(), selected=new Map();
+      catalog.map.forEach((ref,symbol)=>{ if(new RegExp('(^|[^A-Z0-9])'+escapeRegExp(symbol)+'(?=$|[^A-Z0-9])','i').test(upper)) selected.set(ref.id,ref); });
+      catalog.names.forEach(entry=>{ if(text.toLowerCase().includes(entry.name)) selected.set(entry.ref.id,entry.ref); });
+      [...upper.matchAll(/\b([A-Z0-9]{2,16})(?:USDT|USDC|USD|BTC|ETH)\b/g)].forEach(match=>{ const symbol=match[1], ref=catalog.map.get(symbol)||{id:'symbol:'+symbol,symbol:symbol,name:'公告代码 '+symbol}; if(!/^(USD|USDT|USDC|BUSD|DAI|ETH|BTC)$/.test(symbol)&&!selected.has(ref.id)) selected.set(ref.id,ref); });
+      return [...selected.values()].slice(0,3);
+    }
+    function eventResultFromTitle(title,official){
+      if(!official) return '';
+      const text=String(title||'').toLowerCase();
+      if(/approved|passed|adopted|获批|通过/.test(text)) return '官方公告标题显示该事项已通过或获批；执行细节请以原文为准。';
+      if(/postponed|delayed|延期|推迟/.test(text)) return '官方公告标题显示该事项已延期；请以公告中的新时间为准。';
+      if(/cancelled|canceled|withdrawn|取消|撤回/.test(text)) return '官方公告标题显示该事项已取消或撤回；请打开来源核对范围。';
+      if(/completed|complete|已完成|完成/.test(text)) return '官方公告标题显示该事项已完成；请打开来源核对最终执行结果。';
+      return '';
     }
     function extractBinanceArticles(payload){
       const found=[], visited=new WeakSet();
@@ -947,7 +1002,7 @@
       const fallbackUrl=row.code?'https://www.binance.com/en/support/announcement/'+encodeURIComponent(row.code):'';
       const url=safeUrl(row.url||row.articleUrl||fallbackUrl);
       const kind=classifyNews(title);
-      return {id:'news-'+source+'-'+String(row.code||url||title).slice(0,140),title:title,publishedAt:date?date.toISOString():null,url:url,source:source,type:kind.type,impact:kind.impact,conclusion:kind.advice};
+      return {id:'news-'+source+'-'+String(row.code||url||title).slice(0,140),title:title,publishedAt:date?date.toISOString():null,url:url,source:source,type:kind.type,topic:kind.topic,impact:kind.impact,summary:kind.summary,conclusion:kind.advice,official:source==='币安公告'};
     }
     async function fetchNewsArticles(){
       const results=await Promise.allSettled(NEWS_ENDPOINTS.map(url=>fetchJSON(url,14000)));
@@ -958,7 +1013,10 @@
       return uniqueBy(articles,item=>item.url||item.title).sort((a,b)=>(new Date(b.publishedAt||0))-(new Date(a.publishedAt||0))).slice(0,20);
     }
     function newsEvents(news){
-      return news.filter(item=>item.type!=='市场资讯'&&item.publishedAt).map((item,index)=>({id:'event-'+item.id+'-'+index,datetime:item.publishedAt,title:item.type+'：'+item.title,description:item.conclusion,type:item.type,impact:item.impact,source:item.source,sourceUrl:item.url,news:true}));
+      return news.filter(item=>classifyNews(item.title).type!=='市场资讯'&&item.publishedAt).map((item,index)=>{
+        const kind=classifyNews(item.title), official=Boolean(item.official||item.source==='币安公告'), coins=extractEventCoins(item.title), summary=kind.summary||'该公告涉及项目或交易所事件。';
+        return {id:'event-'+item.id+'-'+index,datetime:item.publishedAt,title:kind.type+'：'+item.title,description:(official?'交易所官方公告。':'聚合来源线索，需以官方渠道确认。')+summary+' '+(kind.advice||item.conclusion||'请打开来源核实。'),type:kind.type,topic:kind.topic||'项目 / 币种事件',impact:kind.impact,source:item.source,sourceUrl:item.url,scope:'coin',dateKind:'published',coins:coins,official:official,verification:official?'已验证来源':'待确认',result:eventResultFromTitle(item.title,official),news:true};
+      });
     }
     async function fetchDexPairs(){
       const boosts=await fetchJSON(DEX_API+'/token-boosts/top/v1',12000);
@@ -1020,7 +1078,8 @@
         const extras=await Promise.allSettled([fetchDexPairs(),fetchMacroEvents(),fetchNewsArticles()]);
         if(extras[0].status==='fulfilled'){ state.dexPairs=extras[0].value; setSource('dex','live'); anyLive=true; } else markSourceFailure('dex');
         if(extras[1].status==='fulfilled'){ state.macroEvents=extras[1].value; setSource('macro','live'); anyLive=true; } else markSourceFailure('macro');
-        if(extras[2].status==='fulfilled'){ state.news=extras[2].value; state.cryptoEvents=newsEvents(state.news); setSource('news','live'); anyLive=true; } else markSourceFailure('news');
+        if(extras[2].status==='fulfilled'){ state.news=extras[2].value; setSource('news','live'); anyLive=true; } else markSourceFailure('news');
+        state.cryptoEvents=newsEvents(state.news);
         if(marketSuccess) recordSnapshots();
         updateDataMode(); saveCache(); renderAll(); checkSignalAlerts();
         if(showToast) toast(anyLive?'数据已刷新':'实时源暂不可用，未展示示例数据');
@@ -1169,19 +1228,21 @@
         return {id:item.id,name:item.name||item.id,symbol:item.symbol||'—',rank:item.rank||item.market_cap_rank||'—',image:item.image,price:finite(item.current_price),p1h:p1h,p24:p24,p7:p7,volume:formatMoney(item.total_volume),marketCap:formatMoney(item.market_cap),volumeChange:volumeChange,heat:attentionSignals,heatLabel:heatLabel,priority:priority,stage:stage,persistence:persistenceText(info),firstSeen:firstSeenText(info),discoveryReasons:reasons,conclusion:conclusionMap[stage],risk:risk,riskClass:riskClass,trendingRank:trendRank,dexBoost:Boolean(item.dexBoost),source:item.source||'CoinGecko',url:item.url||''};
       });
     }
+    function coinDisplayPriority(item){ return state.watchlist.includes(item.id)?2:item.trendingRank!==null||item.dexBoost?1:0; }
+    function sortCoinSignals(items,secondary){ return items.slice().sort((a,b)=>coinDisplayPriority(b)-coinDisplayPriority(a)||(secondary?secondary(a,b):b.priority-a.priority)); }
     function getHotItems(filter=state.hotFilter){
       const all=buildCoinSignals();
-      if(filter==='early') return all.filter(item=>item.stage==='刚起势'||item.stage==='升温').sort((a,b)=>b.priority-a.priority);
-      if(filter==='movers') return all.slice().sort((a,b)=>Math.abs(b.p24||0)-Math.abs(a.p24||0));
-      if(filter==='core') return all.filter(item=>CORE_IDS.includes(item.id)).sort((a,b)=>b.priority-a.priority);
-      return all.filter(item=>item.trendingRank!==null||item.dexBoost).sort((a,b)=>b.priority-a.priority);
+      if(filter==='early') return sortCoinSignals(all.filter(item=>item.stage==='刚起势'||item.stage==='升温'));
+      if(filter==='movers') return sortCoinSignals(all,(a,b)=>Math.abs(b.p24||0)-Math.abs(a.p24||0));
+      if(filter==='core') return sortCoinSignals(all.filter(item=>CORE_IDS.includes(item.id)));
+      return sortCoinSignals(all.filter(item=>item.trendingRank!==null||item.dexBoost));
     }
 
     function riskFor(item){ if(item.risk) return [item.risk,item.riskClass||'normal']; const x=Math.max(Math.abs(item.p24||0),Math.abs(item.p7||0)/3); return x>=25?['极高','high']:x>=10?['偏高','mid']:['正常','normal']; }
     function coinAvatar(item){ return item.image?`<img class="coin-avatar" src="${escapeHtml(item.image)}" alt="" loading="lazy" referrerpolicy="no-referrer">`:`<span class="coin-avatar coin-placeholder">${escapeHtml((item.symbol||'?').slice(0,2).toUpperCase())}</span>`; }
     function coinRowHTML(item, compact=false){
       const [risk,riskClass]=riskFor(item), watched=state.watchlist.includes(item.id);
-      const stage='<span class="stage-badge stage-'+stageClass(item.stage)+'">'+escapeHtml(item.stage||'观察中')+'</span>';
+      const stage='<span class="stage-badge stage-'+stageClass(item.stage)+'">'+escapeHtml(item.stage||'观察中')+'</span>'+(watched?' <span class="tag live">自选</span>':'');
       const volumeChange=Number.isFinite(finite(item.volumeChange))?' · '+formatPct(item.volumeChange):'';
       return '<div class="coin-row" data-coin-id="'+escapeHtml(item.id)+'">'+
         '<div class="coin-id">'+coinAvatar(item)+'<div class="coin-name"><strong>'+escapeHtml(item.name||item.id)+'</strong><span>'+escapeHtml(item.symbol||'—')+' · #'+escapeHtml(item.rank||'—')+' · '+escapeHtml(item.source||'')+'</span></div></div>'+
@@ -1259,17 +1320,72 @@
       $('#dailyBrief').innerHTML=items.map((x,i)=>'<li><span class="brief-num">'+(i+1)+'</span><span>'+escapeHtml(x)+'</span></li>').join('');
     }
 
-    function eventCountdown(date){
-      const diff=date-Date.now(); if(diff<0) return '已发生';
+    function eventScope(event){ return event&&(event.scope==='macro'||event.type==='宏观')?'macro':'coin'; }
+    function eventDateKind(event){ return event&&(event.dateKind==='published'||event.news)?'published':'scheduled'; }
+    function eventCoins(event){
+      if(Array.isArray(event&&event.coins)) return event.coins.filter(item=>item&&typeof item==='object');
+      if(event&&event.coin) return [{id:'custom:'+String(event.coin).toLowerCase(),symbol:String(event.coin),name:String(event.coin)}];
+      return [];
+    }
+    function eventCoinLabel(event){
+      const coins=eventCoins(event);
+      return coins.length?coins.map(item=>String(item.symbol||item.name||item.id||'待确认').toUpperCase()).join('、'):'待确认';
+    }
+    function eventStatus(event,now=Date.now()){
+      const date=parseDate(event&&event.datetime), end=parseDate(event&&event.endsAt);
+      if(event&&event.result) return {label:'已结束',className:'ended'};
+      if(eventDateKind(event)==='published'||event&&event.status==='待确认') return {label:'待确认',className:'pending'};
+      if(!date) return {label:'待确认',className:'pending'};
+      if(date.getTime()>now) return {label:'即将开始',className:'upcoming'};
+      if(end&&end.getTime()>now) return {label:'进行中',className:'active'};
+      return {label:'已结束',className:'ended'};
+    }
+    function eventCountdown(date,event){
+      if(eventDateKind(event)==='published') return '公告已发布';
+      const diff=date-Date.now(); if(diff<0) return '已结束';
       const h=Math.floor(diff/36e5), d=Math.floor(h/24); return d>0?`${d}天后`:`${Math.max(1,h)}小时后`;
     }
-    function renderEvents(){
+    function hotEventCoinIds(){ return new Set(buildCoinSignals().filter(item=>item.trendingRank!==null||item.dexBoost||item.stage!=='观察中').sort((a,b)=>b.priority-a.priority).slice(0,16).map(item=>item.id)); }
+    function eventPriority(event){
+      const ids=eventCoins(event).map(item=>item.id), hot=hotEventCoinIds();
+      const preference=ids.some(id=>state.watchlist.includes(id))?300:ids.some(id=>hot.has(id))?200:0;
+      const impact=event.impact==='high'?30:event.impact==='mid'?15:0;
+      const status=eventStatus(event).className, timing=status==='upcoming'?6:status==='active'?4:status==='pending'?2:0;
+      return preference+impact+timing;
+    }
+    function isDisplayableEvent(event,now=Date.now()){
+      const date=parseDate(event&&event.datetime); if(!date) return false;
+      if(eventDateKind(event)==='published') return date.getTime()>=now-72*3600000&&date.getTime()<=now+5*60000;
+      return date.getTime()>=now-24*3600000&&date.getTime()<=now+14*24*3600000;
+    }
+    function orderedEvents(filter=state.eventFilter,limit=18){
       const now=Date.now();
-      const events=[...state.macroEvents,...state.cryptoEvents,...state.customEvents].filter(event=>{ const date=parseDate(event.datetime); return date&&date.getTime()>=now-6*3600000; }).sort((a,b)=>new Date(a.datetime)-new Date(b.datetime)).slice(0,18);
-      $('#eventList').innerHTML=events.map(e=>{
-        const dt=new Date(e.datetime), past=dt<Date.now(), date=new Intl.DateTimeFormat('zh-CN',{timeZone:'Asia/Shanghai',month:'numeric',day:'numeric'}).format(dt), time=new Intl.DateTimeFormat('zh-CN',{timeZone:'Asia/Shanghai',hour:'2-digit',minute:'2-digit',hour12:false}).format(dt);
-        return `<article class="event-card ${past?'past':''}"><div class="event-date"><strong>${escapeHtml(date)}</strong><span>${escapeHtml(time)}</span></div><div class="event-copy"><h3>${escapeHtml(e.title)} <span class="tag">${escapeHtml(e.type)}</span></h3><p>${escapeHtml(e.description||'用户添加事件')}</p></div><div class="impact ${escapeHtml(e.impact)}"><strong>${e.impact==='high'?'高影响':e.impact==='mid'?'中影响':'低影响'}</strong><small>${eventCountdown(dt)}</small>${e.custom?`<button class="text-link delete-event" data-id="${escapeHtml(e.id)}">删除</button>`:''}</div></article>`;
-      }).join('')||`<div class="empty">暂无事件</div>`;
+      return [...state.macroEvents,...state.cryptoEvents,...state.customEvents].filter(event=>isDisplayableEvent(event,now)&& (filter==='all'||eventScope(event)===filter)).sort((a,b)=>eventPriority(b)-eventPriority(a)||new Date(a.datetime)-new Date(b.datetime)).slice(0,limit);
+    }
+    function eventSourceHTML(event){
+      const url=safeUrl(event&&event.sourceUrl), official=Boolean(event&&event.official);
+      if(url) return '<a href="'+escapeHtml(url)+'" target="_blank" rel="noopener">'+(official?'官方来源':'来源链接（待确认）')+' ↗</a>';
+      if(event&&event.custom) return '<span>用户添加事件</span>';
+      return '<span>'+escapeHtml((event&&event.source)||'来源待确认')+(official?'':' · 待确认')+'</span>';
+    }
+    function eventCardHTML(event){
+      const dt=parseDate(event.datetime), status=eventStatus(event), date=dt?new Intl.DateTimeFormat('zh-CN',{timeZone:'Asia/Shanghai',month:'numeric',day:'numeric'}).format(dt):'待确认', time=dt?new Intl.DateTimeFormat('zh-CN',{timeZone:'Asia/Shanghai',hour:'2-digit',minute:'2-digit',hour12:false}).format(dt):'—';
+      const dateTitle=eventDateKind(event)==='published'?'公告发布':'北京时间';
+      const impact=event.impact==='high'?'高影响':event.impact==='mid'?'中影响':'低影响';
+      const result=event.result?'<p class="event-result">结果：'+escapeHtml(event.result)+'</p>':'';
+      const past=status.className==='ended'&&eventDateKind(event)==='scheduled';
+      const subject=eventScope(event)==='macro'?'市场：美元宏观':'币种：'+eventCoinLabel(event);
+      return `<article class="event-card ${past?'past':''}"><div class="event-date"><strong>${escapeHtml(date)}</strong><span>${escapeHtml(time)} · ${escapeHtml(dateTitle)}</span></div><div class="event-copy"><h3>${escapeHtml(event.title)} <span class="tag">${escapeHtml(event.type||'事件')}</span></h3><p>${escapeHtml(event.description||'来源尚未提供可验证的事件说明。')}</p>${result}<div class="event-meta"><span>${escapeHtml(subject)}</span><span class="event-topic">主题：${escapeHtml(event.topic||'待确认')}</span><span class="event-status ${escapeHtml(status.className)}">${escapeHtml(status.label)}</span>${eventSourceHTML(event)}</div></div><div class="impact ${escapeHtml(event.impact||'low')}"><strong>${impact}</strong><small>${dt?eventCountdown(dt,event):'时间待确认'}</small>${event.custom?`<button class="text-link delete-event" data-id="${escapeHtml(event.id)}">删除</button>`:''}</div></article>`;
+    }
+    function renderEvents(){
+      const events=orderedEvents(state.eventFilter,18), allUpcoming=[...state.macroEvents,...state.cryptoEvents,...state.customEvents].filter(event=>{
+        const date=parseDate(event&&event.datetime); return eventScope(event)==='coin'&&eventDateKind(event)==='scheduled'&&date&&date.getTime()>=Date.now()&&date.getTime()<=Date.now()+7*24*3600000;
+      }).sort((a,b)=>eventPriority(b)-eventPriority(a)||new Date(a.datetime)-new Date(b.datetime)).slice(0,8);
+      $('#eventList').innerHTML=events.map(eventCardHTML).join('')||`<div class="empty"><strong>暂无可验证事件</strong>接口未提供数据时，只显示缓存、待确认线索或你手动添加的事件。</div>`;
+      $('#upcomingCoinEventList').innerHTML=allUpcoming.map(eventCardHTML).join('')||`<div class="empty"><strong>暂无已验证的未来 7 天币种排期</strong>公告发布时间不会被当成未来日程；可手动添加已确认项目事件。</div>`;
+      const sources=state.eventFilter==='macro'?['macro']:state.eventFilter==='coin'?['news']:['macro','news'];
+      const at=[...sources.map(name=>parseDate(sourceInfo(name).at)),state.backgroundUpdated].filter(Boolean).sort((a,b)=>b-a)[0];
+      $('#eventListStatus').textContent='数据 '+sources.map(name=>sourceStatusLabel(sourceInfo(name).status)).join(' / ')+(at?' · 更新 '+cnDateTime(at):' · 暂无更新时间');
     }
     function renderNewsAndCalendar(){
       const news=state.news.slice(0,8);
@@ -1278,17 +1394,19 @@
         const title=escapeHtml(item.title), link=item.url?'<a href="'+escapeHtml(item.url)+'" target="_blank" rel="noopener">'+title+'</a>':title;
         return '<article class="news-card"><span class="tag '+(item.impact==='high'?'risk':item.impact==='mid'?'warning':'live')+'">'+escapeHtml(item.type)+'</span><div><h3>'+link+'</h3><p>'+escapeHtml(item.conclusion)+'</p><div class="news-meta"><span>'+escapeHtml(item.source)+'</span><span>'+escapeHtml(time)+'</span></div></div></article>';
       }).join(''):'<div class="empty"><strong>新闻源暂不可用</strong>没有缓存时不会展示静态新闻。</div>';
-      const now=Date.now(), allEvents=[...state.macroEvents,...state.cryptoEvents,...state.customEvents].filter(event=>parseDate(event.datetime));
-      const upcoming=allEvents.filter(event=>new Date(event.datetime).getTime()>=now-5*60000).sort((a,b)=>new Date(a.datetime)-new Date(b.datetime))[0];
-      const recent=allEvents.filter(event=>{ const time=new Date(event.datetime).getTime(); return time<now-5*60000&&time>=now-24*3600000; }).sort((a,b)=>new Date(b.datetime)-new Date(a.datetime))[0];
+      const now=Date.now(), allEvents=orderedEvents('all',30);
+      const upcoming=allEvents.filter(event=>eventDateKind(event)==='scheduled'&&new Date(event.datetime).getTime()>=now-5*60000).sort((a,b)=>eventPriority(b)-eventPriority(a)||new Date(a.datetime)-new Date(b.datetime))[0];
+      const recent=allEvents.filter(event=>event.result||eventDateKind(event)==='scheduled'&&new Date(event.datetime).getTime()<now-5*60000&&new Date(event.datetime).getTime()>=now-24*3600000).sort((a,b)=>eventPriority(b)-eventPriority(a)||new Date(b.datetime)-new Date(a.datetime))[0];
       const focus=upcoming||recent;
       if(focus){
         const heading=upcoming?'下一项重要事件：':'今日已发生的重要事件：';
-        $('#calendarCallout').innerHTML='<h3>'+heading+escapeHtml(focus.title)+'</h3><p>'+escapeHtml(cnDateTime(new Date(focus.datetime)))+'（北京时间） · '+escapeHtml(focus.description||'请打开来源核实详情')+'</p>';
+        const prefix=eventDateKind(focus)==='published'?'公告发布：':'';
+        $('#calendarCallout').innerHTML='<h3>'+heading+escapeHtml(focus.title)+'</h3><p>'+prefix+escapeHtml(cnDateTime(new Date(focus.datetime)))+'（北京时间） · '+escapeHtml(focus.description||'请打开来源核实详情')+'</p>';
       } else {
         $('#calendarCallout').innerHTML='<h3>近期事件暂不可用</h3><p>宏观日历、新闻和项目事件源不可用时，只显示缓存或你手动添加的事件。</p>';
       }
-      $('#calendarStatus').innerHTML=sourceSummary(['macro','news'])+'。所有日历时间均按北京时间显示；新闻事件使用来源发布时间，不伪装成未来排期。';
+      const eventUpdated=[parseDate(sourceInfo('macro').at),parseDate(sourceInfo('news').at),state.backgroundUpdated].filter(Boolean).sort((a,b)=>b-a)[0];
+      $('#calendarStatus').innerHTML=sourceSummary(['macro','news'])+'。更新时间：'+(eventUpdated?escapeHtml(cnDateTime(eventUpdated))+'（北京时间）':'暂无')+'；新闻事件使用来源发布时间，不伪装成未来排期。';
     }
 
     function marketById(id){ return [...state.markets,...state.dexPairs].find(m=>m.id===id); }
@@ -1354,7 +1472,7 @@
       if(!ledger.ready){
         signals.forEach(item=>{ ledger.coins[item.id]={stage:item.stage,trending:item.trendingRank!==null,at:now}; });
         state.news.forEach(item=>{ ledger.news[item.id]=now; });
-        [...state.macroEvents,...state.cryptoEvents].forEach(item=>{ if(item&&item.id) ledger.events[item.id]=now; });
+        [...state.macroEvents,...state.cryptoEvents,...state.customEvents].forEach(item=>{ if(item&&item.id) ledger.events[item.id]=now; });
         ledger.ready=true; pruneNotificationLedger(); saveNotificationState();
         return;
       }
@@ -1377,12 +1495,12 @@
         if(settings.news&&emitted<2&&showSignalNotification('链潮 · 重大新闻',`${item.type}：${item.title}`,`news:${item.id}`,12*3600000)) emitted++;
         ledger.news[item.id]=now;
       });
-      [...state.macroEvents,...state.cryptoEvents].filter(item=>item&&item.id&&item.impact==='high').forEach(item=>{
+      [...state.macroEvents,...state.cryptoEvents,...state.customEvents].filter(item=>item&&item.id&&item.impact==='high').forEach(item=>{
         const date=parseDate(item.datetime), diff=date?date.getTime()-now:NaN;
-        if(!Number.isFinite(diff)||diff<0||diff>2*3600000) return;
-        const isMacro=item.type==='宏观';
-        const enabled=isMacro?settings.macro:settings.news;
-        if(enabled&&emitted<2&&showSignalNotification(isMacro?'链潮 · 重要宏观事件':'链潮 · 重要事件',`${item.title} 将在 ${cnDateTime(date)}（北京时间）发生。`,`event:${item.id}`,12*3600000)) emitted++;
+        if(eventDateKind(item)!=='scheduled'||!Number.isFinite(diff)||diff<0||diff>2*3600000) return;
+        const isMacro=eventScope(item)==='macro';
+        const enabled=isMacro?settings.macro:settings.projectEvent;
+        if(enabled&&emitted<2&&showSignalNotification(isMacro?'链潮 · 重要宏观事件':'链潮 · 重大币种事件',`${item.title} 将在 ${cnDateTime(date)}（北京时间）发生。`,`event:${item.id}`,12*3600000)) emitted++;
         ledger.events[item.id]=now;
       });
       pruneNotificationLedger(); saveNotificationState();
@@ -1401,10 +1519,11 @@
       const opportunities=[...starting,...warming].slice(0,2);
       const fallbackHot=getHotItems('trending').slice(0,2);
       const risks=signals.filter(item=>item.stage==='过热'||item.stage==='退潮').sort((a,b)=>b.priority-a.priority).slice(0,2);
-      const now=Date.now(), allEvents=[...state.macroEvents,...state.cryptoEvents,...state.customEvents].filter(item=>parseDate(item.datetime));
-      const futureEvents=allEvents.filter(item=>new Date(item.datetime).getTime()>=now-5*60000).sort((a,b)=>new Date(a.datetime)-new Date(b.datetime)).slice(0,2);
-      const recentEvents=allEvents.filter(item=>{ const time=new Date(item.datetime).getTime(); return time<now-5*60000&&time>=now-24*3600000; }).sort((a,b)=>new Date(b.datetime)-new Date(a.datetime)).slice(0,2);
-      const events=futureEvents.length?futureEvents:recentEvents, eventKicker=futureEvents.length?'今日 / 近期重要事件':'今日已发生的重要事件';
+      const now=Date.now(), allEvents=orderedEvents('all',40);
+      const futureEvents=allEvents.filter(item=>eventDateKind(item)==='scheduled'&&new Date(item.datetime).getTime()>=now-5*60000).sort((a,b)=>eventPriority(b)-eventPriority(a)||new Date(a.datetime)-new Date(b.datetime)).slice(0,2);
+      const recentEvents=allEvents.filter(item=>event.result||eventDateKind(item)==='scheduled'&&new Date(item.datetime).getTime()<now-5*60000&&new Date(item.datetime).getTime()>=now-24*3600000).sort((a,b)=>eventPriority(b)-eventPriority(a)||new Date(b.datetime)-new Date(a.datetime)).slice(0,2);
+      const newsEvents=allEvents.filter(item=>eventDateKind(item)==='published').sort((a,b)=>eventPriority(b)-eventPriority(a)||new Date(b.datetime)-new Date(a.datetime)).slice(0,2);
+      const events=futureEvents.length?futureEvents:recentEvents.length?recentEvents:newsEvents, eventKicker=futureEvents.length?'今日 / 近期重要事件':recentEvents.length?'今日已发生的重要事件':'最新重要公告（待确认）';
       $('#todayNarrative').innerHTML=strongest?
         '<div class="radar-kicker">今天最强叙事</div><h3 class="radar-value">'+escapeHtml(strongest.title)+'</h3><p class="radar-copy">'+escapeHtml(strongest.desc)+'</p><div class="radar-meta"><span class="stage-badge stage-'+stageClass(strongest.stage)+'">'+escapeHtml(strongest.stage)+'</span><span class="tag '+(strongest.signalCount>=2?'live':'warning')+'">'+escapeHtml(strongest.signalLabel)+'</span><button class="text-link" data-go="narratives">查看趋势</button></div>':
         radarEmpty('今天最强叙事','暂无可验证叙事','等待市场分类与行情数据。','narratives');
@@ -1416,7 +1535,7 @@
         '<div class="radar-kicker">过热 / 退潮风险</div><h3 class="radar-value">注意拥挤与动量转弱</h3><div class="radar-list">'+risks.map(radarSignalRow).join('')+'</div><div class="radar-meta"><span class="risk-badge high">不等同于做空信号</span><button class="text-link" data-go="hot">查看异动</button></div>':
         radarEmpty('过热 / 退潮风险','未检测到明显风险阶段','不代表低风险；仍请查看成交额和流动性。','hot');
       $('#todayEventsRadar').innerHTML=events.length?
-        '<div class="radar-kicker">'+eventKicker+'</div><h3 class="radar-value">'+escapeHtml(events[0].title)+'</h3><p class="radar-copy">'+escapeHtml(cnDateTime(new Date(events[0].datetime)))+'（北京时间） · '+escapeHtml(events[0].description||'请打开来源核实')+'</p><div class="radar-meta"><span class="tag '+(events[0].impact==='high'?'risk':events[0].impact==='mid'?'warning':'live')+'">'+(events[0].impact==='high'?'高影响':events[0].impact==='mid'?'中影响':'低影响')+'</span><button class="text-link" data-go="calendar">查看日历</button></div>':
+        '<div class="radar-kicker">'+eventKicker+'</div><h3 class="radar-value">'+escapeHtml(events[0].title)+'</h3><p class="radar-copy">'+(eventDateKind(events[0])==='published'?'公告发布：':'')+escapeHtml(cnDateTime(new Date(events[0].datetime)))+'（北京时间） · '+escapeHtml(events[0].description||'请打开来源核实')+'</p><div class="radar-meta"><span class="tag '+(events[0].impact==='high'?'risk':events[0].impact==='mid'?'warning':'live')+'">'+(events[0].impact==='high'?'高影响':events[0].impact==='mid'?'中影响':'低影响')+'</span><span class="event-status '+escapeHtml(eventStatus(events[0]).className)+'">'+escapeHtml(eventStatus(events[0]).label)+'</span><button class="text-link" data-go="calendar">查看日历</button></div>':
         radarEmpty('今日 / 近期重要事件','暂无可验证事件','宏观和新闻源不可用时不会显示固定日历。','calendar');
       $('#heroSub').textContent=strongest?'当前最强叙事为“'+strongest.title+'”，'+strongest.desc:'自动追踪市场总量、热搜、板块轮动、DEX 注意力和公开事件；数据不可用时只显示缓存或不可用。';
     }
@@ -1471,12 +1590,14 @@
       });
       $('#refreshBtn').addEventListener('click',()=>refreshData(true));
       $('#hotFilter').addEventListener('click',e=>{ const b=e.target.closest('button[data-filter]'); if(!b)return; state.hotFilter=b.dataset.filter; $$('#hotFilter button').forEach(x=>x.classList.toggle('active',x===b)); renderHot(); });
+      $('#eventFilter').addEventListener('click',e=>{ const b=e.target.closest('button[data-event-filter]'); if(!b)return; state.eventFilter=b.dataset.eventFilter; $$('#eventFilter button').forEach(x=>x.classList.toggle('active',x===b)); renderEvents(); });
       $('#coinSearch').addEventListener('input',e=>{ clearTimeout(searchTimer); searchTimer=setTimeout(()=>searchCoins(e.target.value),450); });
       $('#addEventBtn').addEventListener('click',()=>$('#eventDialog').showModal());
       $('#eventForm').addEventListener('submit',e=>{
         e.preventDefault(); const fd=new FormData(e.currentTarget), raw=fd.get('datetime');
-        const event={id:`custom-${Date.now()}`,datetime:`${raw}:00+08:00`,title:fd.get('title'),description:fd.get('description'),impact:fd.get('impact'),type:fd.get('type'),custom:true};
-        state.customEvents.push(event); writeJSON(STORAGE.events,state.customEvents); renderEvents(); renderNewsAndCalendar(); renderHomeRadar(); $('#eventDialog').close(); e.currentTarget.reset(); toast('事件已添加');
+        const type=fd.get('type'), coin=String(fd.get('coin')||'').trim();
+        const event={id:`custom-${Date.now()}`,datetime:`${raw}:00+08:00`,title:fd.get('title'),description:fd.get('description'),impact:fd.get('impact'),type:type,topic:type==='宏观'?'宏观数据 / 政策':'用户确认事件',coin:coin,scope:type==='宏观'?'macro':'coin',dateKind:'scheduled',official:false,custom:true};
+        state.customEvents.push(event); writeJSON(STORAGE.events,state.customEvents); renderEvents(); renderNewsAndCalendar(); renderHomeRadar(); checkSignalAlerts(); $('#eventDialog').close(); e.currentTarget.reset(); toast('事件已添加');
       });
       $('#alertForm').addEventListener('submit',e=>{
         e.preventDefault(); const fd=new FormData(e.currentTarget), id=fd.get('coinId'), above=fd.get('above'), below=fd.get('below');

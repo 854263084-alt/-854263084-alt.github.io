@@ -154,8 +154,13 @@ function normaliseMacroEvents(rows) {
         title: macroTitle(row.title),
         description: `来源宏观日历：${String(row.title || '')}${parts.length ? `；${parts.join('，')}` : ''}`,
         type: '宏观',
+        topic: '宏观数据 / 政策',
         impact: impact === 'high' ? 'high' : impact === 'medium' ? 'mid' : 'low',
-        source: 'Forex Factory 日历'
+        source: 'Forex Factory 日历',
+        scope: 'macro',
+        dateKind: 'scheduled',
+        official: false,
+        verification: '日历来源'
       };
     })
     .filter(Boolean);
@@ -164,14 +169,70 @@ function normaliseMacroEvents(rows) {
 
 function classifyNews(title) {
   const text = String(title || '').toLowerCase();
-  if (/delist|delisting|remove.*trading|will remove|下架/.test(text)) return { type: '交易所下币', impact: 'high', advice: '核对公告原文、受影响交易对和执行时间。' };
-  if (/list(ing|ed)?|will list|上币/.test(text)) return { type: '交易所上币', impact: 'mid', advice: '核对交易所公告、交易对和流动性，不把上币标题等同于基本面。' };
-  if (/unlock|vesting|token release|解锁/.test(text)) return { type: '代币解锁', impact: 'high', advice: '核对解锁规模、占流通比例和接收方。' };
-  if (/airdrop|空投/.test(text)) return { type: '空投', impact: 'mid', advice: '只使用项目官方链接，防范假空投和授权钓鱼。' };
-  if (/mainnet|testnet|upgrade|launch|hard fork|主网|升级/.test(text)) return { type: '项目事件', impact: 'mid', advice: '核对上线范围、时间和实际可用性。' };
-  if (/hack|exploit|attack|breach|漏洞|被盗/.test(text)) return { type: '风险事件', impact: 'high', advice: '优先核对资产敞口、官方处置和链上影响。' };
-  if (/etf|sec|regulation|lawsuit|监管/.test(text)) return { type: '监管 / ETF', impact: 'mid', advice: '关注原始文件、审批状态与生效时间。' };
-  return { type: '市场资讯', impact: 'low', advice: '标题仅作线索，请打开原文核实。' };
+  if (/delist|delisting|remove.*trading|will remove|下架/.test(text)) return { type: '交易所下币', topic: '交易所流动性', impact: 'high', summary: '涉及交易对下架、停止交易或服务调整。', advice: '核对公告原文、受影响交易对和执行时间。' };
+  if (/unlock|vesting|token release|解锁/.test(text)) return { type: '代币解锁', topic: '代币供给变化', impact: 'high', summary: '涉及解锁、归属或代币释放安排。', advice: '核对解锁规模、占流通比例和接收方。' };
+  if (/airdrop|空投/.test(text)) return { type: '空投', topic: '社区激励', impact: 'mid', summary: '涉及空投资格、领取或分发安排。', advice: '只使用项目官方链接，防范假空投和授权钓鱼。' };
+  if (/governance|proposal|snapshot|\bvote\b|dao|治理|提案|投票/.test(text)) return { type: '治理 / 投票', topic: '治理 / 社区决策', impact: 'mid', summary: '涉及治理讨论、提案、投票或 DAO 决策。', advice: '核对提案全文、投票截止时间和最终执行条件。' };
+  if (/community call|community meeting|town hall|\bama\b|twitter spaces|\bspaces\b|社区会议/.test(text)) return { type: '社区会议 / AMA', topic: '社区沟通', impact: 'low', summary: '涉及社区会议、AMA 或公开交流。', advice: '关注是否给出明确时间、参与入口和后续结论。' };
+  if (/buyback|repurchase|回购/.test(text)) return { type: '回购', topic: '价值捕获 / 资金使用', impact: 'mid', summary: '涉及代币或协议资产的回购安排。', advice: '核对资金来源、规模、执行频率和披露方式。' };
+  if (/\bburn\b|销毁/.test(text)) return { type: '销毁', topic: '代币供给变化', impact: 'mid', summary: '涉及代币销毁、回收或供给调整。', advice: '核对销毁地址、实际数量和是否已上链执行。' };
+  if (/migration|token swap|redenomination|迁移|置换/.test(text)) return { type: '代币迁移', topic: '合约 / 代币迁移', impact: 'high', summary: '涉及代币、合约或计价单位迁移。', advice: '核对官方迁移入口、截止时间和旧币处理方式。' };
+  if (/mainnet|testnet|hard fork|\bupgrade\b|主网|测试网|硬分叉|升级/.test(text)) return { type: '主网 / 测试网 / 升级', topic: '网络与协议升级', impact: 'mid', summary: '涉及主网、测试网、协议升级或硬分叉。', advice: '核对实际启用范围、版本要求和链上执行状态。' };
+  if (/product launch|feature release|\blaunch\b|\brelease\b|产品发布|新功能/.test(text)) return { type: '产品发布', topic: '产品与生态', impact: 'mid', summary: '涉及产品、功能或服务发布。', advice: '核对是否已开放使用，以及数据是否支持实际采用。' };
+  if (/partnership|collaboration|integrat|合作|集成/.test(text)) return { type: '重大合作', topic: '生态合作', impact: 'mid', summary: '涉及合作、集成或生态扩展。', advice: '核对合作范围、是否已落地及双方原始公告。' };
+  if (/list(ing|ed)?|will list|上币/.test(text)) return { type: '交易所上币', topic: '交易所流动性', impact: 'mid', summary: '涉及新币种、交易对或交易服务上线。', advice: '核对交易所公告、交易对和流动性，不把上币标题等同于基本面。' };
+  if (/hack|exploit|attack|breach|漏洞|被盗/.test(text)) return { type: '风险事件', topic: '安全与资金风险', impact: 'high', summary: '涉及安全漏洞、攻击或资产风险。', advice: '优先核对资产敞口、官方处置和链上影响。' };
+  if (/etf|sec|regulation|lawsuit|监管/.test(text)) return { type: '监管 / ETF', topic: '监管与市场结构', impact: 'mid', summary: '涉及监管、ETF 或法律进展。', advice: '关注原始文件、审批状态与生效时间。' };
+  return { type: '市场资讯', topic: '市场资讯', impact: 'low', summary: '属于市场资讯，尚不足以形成可验证事件。', advice: '标题仅作线索，请打开原文核实。' };
+}
+
+function escapeRegExp(value) {
+  return String(value || '').replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
+}
+
+function buildCoinCatalog(snapshot) {
+  const map = new Map();
+  const names = [];
+  const trending = (snapshot.trending || []).map(entry => entry?.item || entry || {});
+  [...(snapshot.markets || []), ...(snapshot.dexPairs || []), ...trending].forEach(item => {
+    const symbol = String(item?.symbol || '').toUpperCase();
+    const name = String(item?.name || '').trim();
+    if (!/^[A-Z0-9]{2,12}$/.test(symbol) || /^(USD|USDT|USDC|BUSD|DAI|ETH|BTC)$/.test(symbol)) return;
+    const ref = { id: item.id || `symbol:${symbol}`, symbol, name: name || symbol };
+    map.set(symbol, ref);
+    if (name.length >= 4) names.push({ name: name.toLowerCase(), ref });
+  });
+  return { map, names };
+}
+
+function extractEventCoins(title, catalog) {
+  const text = String(title || '');
+  const upper = text.toUpperCase();
+  const selected = new Map();
+  catalog.map.forEach((ref, symbol) => {
+    if (new RegExp(`(^|[^A-Z0-9])${escapeRegExp(symbol)}(?=$|[^A-Z0-9])`, 'i').test(upper)) selected.set(ref.id, ref);
+  });
+  catalog.names.forEach(entry => {
+    if (text.toLowerCase().includes(entry.name)) selected.set(entry.ref.id, entry.ref);
+  });
+  [...upper.matchAll(/\b([A-Z0-9]{2,16})(?:USDT|USDC|USD|BTC|ETH)\b/g)].forEach(match => {
+    const symbol = match[1];
+    const ref = catalog.map.get(symbol) || { id: `symbol:${symbol}`, symbol, name: `公告代码 ${symbol}` };
+    if (!/^(USD|USDT|USDC|BUSD|DAI|ETH|BTC)$/.test(symbol) && !selected.has(ref.id)) {
+      selected.set(ref.id, ref);
+    }
+  });
+  return [...selected.values()].slice(0, 3);
+}
+
+function eventResultFromTitle(title, official) {
+  if (!official) return '';
+  const text = String(title || '').toLowerCase();
+  if (/approved|passed|adopted|获批|通过/.test(text)) return '官方公告标题显示该事项已通过或获批；执行细节请以原文为准。';
+  if (/postponed|delayed|延期|推迟/.test(text)) return '官方公告标题显示该事项已延期；请以公告中的新时间为准。';
+  if (/cancelled|canceled|withdrawn|取消|撤回/.test(text)) return '官方公告标题显示该事项已取消或撤回；请打开来源核对范围。';
+  if (/completed|complete|已完成|完成/.test(text)) return '官方公告标题显示该事项已完成；请打开来源核对最终执行结果。';
+  return '';
 }
 
 function extractBinanceArticles(payload) {
@@ -206,25 +267,41 @@ function normaliseNewsArticle(row, source) {
     url: safeUrl(row.url || row.articleUrl || fallbackUrl),
     source,
     type: kind.type,
+    topic: kind.topic,
     impact: kind.impact,
-    conclusion: kind.advice
+    summary: kind.summary,
+    conclusion: kind.advice,
+    official: source === '币安公告'
   };
 }
 
-function newsEvents(news) {
+function newsEvents(news, catalog) {
   return news
-    .filter(item => item.type !== '市场资讯' && item.publishedAt)
-    .map((item, index) => ({
-      id: `event-${item.id}-${index}`,
-      datetime: item.publishedAt,
-      title: `${item.type}：${item.title}`,
-      description: item.conclusion,
-      type: item.type,
-      impact: item.impact,
-      source: item.source,
-      sourceUrl: item.url,
-      news: true
-    }));
+    .filter(item => classifyNews(item.title).type !== '市场资讯' && item.publishedAt)
+    .map((item, index) => {
+      const kind = classifyNews(item.title);
+      const official = Boolean(item.official || item.source === '币安公告');
+      const coins = extractEventCoins(item.title, catalog);
+      const summary = kind.summary || '该公告涉及项目或交易所事件。';
+      return {
+        id: `event-${item.id}-${index}`,
+        datetime: item.publishedAt,
+        title: `${kind.type}：${item.title}`,
+        description: `${official ? '交易所官方公告。' : '聚合来源线索，需以官方渠道确认。'}${summary} ${kind.advice || item.conclusion || '请打开来源核实。'}`,
+        type: kind.type,
+        topic: kind.topic || '项目 / 币种事件',
+        impact: kind.impact,
+        source: item.source,
+        sourceUrl: item.url,
+        scope: 'coin',
+        dateKind: 'published',
+        coins,
+        official,
+        verification: official ? '已验证来源' : '待确认',
+        result: eventResultFromTitle(item.title, official),
+        news: true
+      };
+    });
 }
 
 async function fetchDexPairs() {
@@ -403,9 +480,10 @@ async function main() {
   if (extras[1].status === 'fulfilled') { store.snapshot.macroEvents = extras[1].value; setSource(store, 'macro', 'live', now.toISOString()); } else markFailure(store, 'macro');
   if (extras[2].status === 'fulfilled') {
     store.snapshot.news = extras[2].value;
-    store.snapshot.cryptoEvents = newsEvents(store.snapshot.news);
     setSource(store, 'news', 'live', now.toISOString());
   } else markFailure(store, 'news');
+  // 新闻接口暂时不可用时，仍用最近成功的公告快照重新生成事件字段；状态会明确保留为缓存。
+  store.snapshot.cryptoEvents = newsEvents(Array.isArray(store.snapshot.news) ? store.snapshot.news : [], buildCoinCatalog(store.snapshot));
 
   if (marketSuccess || extras.some(result => result.status === 'fulfilled')) {
     appendHistory(store, now);
