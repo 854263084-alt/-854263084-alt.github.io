@@ -1,26 +1,26 @@
 {
   "schema": 1,
-  "updatedAt": "2026-09-02T16:38:24.017Z",
+  "updatedAt": "2026-09-02T21:06:35.799Z",
   "sourceState": {
     "coingecko": {
-      "status": "live",
-      "at": "2026-09-02T16:38:24.017Z"
+      "status": "partial",
+      "at": "2026-09-02T21:06:35.799Z"
     },
     "sentiment": {
       "status": "live",
-      "at": "2026-09-02T16:38:24.017Z"
+      "at": "2026-09-02T21:06:35.799Z"
     },
     "dex": {
       "status": "live",
-      "at": "2026-09-02T16:38:24.017Z"
+      "at": "2026-09-02T21:06:35.799Z"
     },
     "macro": {
       "status": "live",
-      "at": "2026-09-02T16:38:24.017Z"
+      "at": "2026-09-02T21:06:35.799Z"
     },
     "news": {
       "status": "live",
-      "at": "2026-09-02T16:38:24.017Z"
+      "at": "2026-09-02T21:06:35.799Z"
     }
   },
   "snapshot": {
@@ -185,7 +185,7 @@
           "value": "63",
           "value_classification": "Greed",
           "timestamp": "1788307200",
-          "time_until_update": "26496"
+          "time_until_update": "10404"
         }
       ],
       "metadata": {
@@ -195,112 +195,48 @@
     "trending": [
       {
         "item": {
-          "id": "cash-cat",
-          "name": "Cash Cat",
-          "symbol": "CASHCAT",
-          "market_cap_rank": 146,
-          "thumb": "https://coin-images.coingecko.com/coins/images/102174280/standard/cashcat-logo.jpg?1782922765",
-          "score": 0,
-          "data": {
-            "price": 0.25512551852170395,
-            "price_change_percentage_24h": {
-              "usd": 23.2253715553981
-            }
-          }
-        }
-      },
-      {
-        "item": {
           "id": "pons",
           "name": "Pons",
           "symbol": "PONS",
-          "market_cap_rank": 141,
+          "market_cap_rank": 138,
           "thumb": "https://coin-images.coingecko.com/coins/images/102174571/standard/jhitvkisdq8fhxvimdkpcw7y3dx5.?1784093932",
+          "score": 0,
+          "data": {
+            "price": 0.41350705549612327,
+            "price_change_percentage_24h": {
+              "usd": -4.153526637415481
+            }
+          }
+        }
+      },
+      {
+        "item": {
+          "id": "akedo",
+          "name": "Akedo",
+          "symbol": "AKE",
+          "market_cap_rank": 111,
+          "thumb": "https://coin-images.coingecko.com/coins/images/68410/standard/akedo.png?1755678461",
           "score": 1,
           "data": {
-            "price": 0.3852960041859925,
+            "price": 0.020642309521652243,
             "price_change_percentage_24h": {
-              "usd": -7.860387015343441
+              "usd": 136.59178931253803
             }
           }
         }
       },
       {
         "item": {
-          "id": "syrup",
-          "name": "Maple Finance",
-          "symbol": "SYRUP",
-          "market_cap_rank": 149,
-          "thumb": "https://coin-images.coingecko.com/coins/images/51232/standard/_syrup_token_logo.png?1747292046",
+          "id": "cash-cat",
+          "name": "Cash Cat",
+          "symbol": "CASHCAT",
+          "market_cap_rank": 143,
+          "thumb": "https://coin-images.coingecko.com/coins/images/102174280/standard/cashcat-logo.jpg?1782922765",
           "score": 2,
           "data": {
-            "price": 0.2122085201467045,
+            "price": 0.27456706020215366,
             "price_change_percentage_24h": {
-              "usd": 8.496864462132283
-            }
-          }
-        }
-      },
-      {
-        "item": {
-          "id": "hyperliquid",
-          "name": "Hyperliquid",
-          "symbol": "HYPE",
-          "market_cap_rank": 10,
-          "thumb": "https://coin-images.coingecko.com/coins/images/50882/standard/hyperliquid.jpg?1729431300",
-          "score": 3,
-          "data": {
-            "price": 81.91911426797787,
-            "price_change_percentage_24h": {
-              "usd": -0.6792392934173245
-            }
-          }
-        }
-      },
-      {
-        "item": {
-          "id": "pump-fun",
-          "name": "Pump.fun",
-          "symbol": "PUMP",
-          "market_cap_rank": 52,
-          "thumb": "https://coin-images.coingecko.com/coins/images/67164/standard/pump.jpg?1751949376",
-          "score": 4,
-          "data": {
-            "price": 0.004204479522869077,
-            "price_change_percentage_24h": {
-              "usd": -5.22258765863724
-            }
-          }
-        }
-      },
-      {
-        "item": {
-          "id": "pudgy-penguins",
-          "name": "Pudgy Penguins",
-          "symbol": "PENGU",
-          "market_cap_rank": 102,
-          "thumb": "https://coin-images.coingecko.com/coins/images/52622/standard/PUDGY_PENGUINS_PENGU_PFP.png?1733809110",
-          "score": 5,
-          "data": {
-            "price": 0.008281888234716771,
-            "price_change_percentage_24h": {
-              "usd": -4.507320417935497
-            }
-          }
-        }
-      },
-      {
-        "item": {
-          "id": "useless-3",
-          "name": "Useless Coin",
-          "symbol": "USELESS",
-          "market_cap_rank": 230,
-          "thumb": "https://coin-images.coingecko.com/coins/images/55684/standard/coingeckoupdate.png?1755203747",
-          "score": 6,
-          "data": {
-            "price": 0.12495233038647262,
-            "price_change_percentage_24h": {
-              "usd": 21.084895417327036
+              "usd": 25.275602403561066
             }
           }
         }
@@ -312,59 +248,27 @@
           "symbol": "ARB",
           "market_cap_rank": 82,
           "thumb": "https://coin-images.coingecko.com/coins/images/16547/standard/arb.jpg?1721358242",
-          "score": 7,
+          "score": 3,
           "data": {
-            "price": 0.1168856751309445,
+            "price": 0.12263185622786471,
             "price_change_percentage_24h": {
-              "usd": 7.668570173049884
+              "usd": 14.65815035090963
             }
           }
         }
       },
       {
         "item": {
-          "id": "spx6900",
-          "name": "SPX6900",
-          "symbol": "SPX",
-          "market_cap_rank": 103,
-          "thumb": "https://coin-images.coingecko.com/coins/images/31401/standard/centeredcoin_%281%29.png?1737048493",
-          "score": 8,
+          "id": "hyperliquid",
+          "name": "Hyperliquid",
+          "symbol": "HYPE",
+          "market_cap_rank": 10,
+          "thumb": "https://coin-images.coingecko.com/coins/images/50882/standard/hyperliquid.jpg?1729431300",
+          "score": 4,
           "data": {
-            "price": 0.5517697607792741,
+            "price": 81.56735022437987,
             "price_change_percentage_24h": {
-              "usd": -1.6118675455339824
-            }
-          }
-        }
-      },
-      {
-        "item": {
-          "id": "akedo",
-          "name": "Akedo",
-          "symbol": "AKE",
-          "market_cap_rank": 142,
-          "thumb": "https://coin-images.coingecko.com/coins/images/68410/standard/akedo.png?1755678461",
-          "score": 9,
-          "data": {
-            "price": 0.01183290907071291,
-            "price_change_percentage_24h": {
-              "usd": 34.85634636672913
-            }
-          }
-        }
-      },
-      {
-        "item": {
-          "id": "bitcoin",
-          "name": "Bitcoin",
-          "symbol": "BTC",
-          "market_cap_rank": 1,
-          "thumb": "https://coin-images.coingecko.com/coins/images/1/standard/bitcoin.png?1696501400",
-          "score": 10,
-          "data": {
-            "price": 77476.87589508694,
-            "price_change_percentage_24h": {
-              "usd": -0.1482911378508516
+              "usd": -1.172904307606659
             }
           }
         }
@@ -376,11 +280,43 @@
           "symbol": "UNI",
           "market_cap_rank": 28,
           "thumb": "https://coin-images.coingecko.com/coins/images/12504/standard/uniswap-logo.png?1720676669",
-          "score": 11,
+          "score": 5,
           "data": {
-            "price": 5.870428872807786,
+            "price": 5.855366095260184,
             "price_change_percentage_24h": {
-              "usd": 3.166202712319392
+              "usd": 2.452914830167997
+            }
+          }
+        }
+      },
+      {
+        "item": {
+          "id": "up-2",
+          "name": "up",
+          "symbol": "UP",
+          "market_cap_rank": 998,
+          "thumb": "https://coin-images.coingecko.com/coins/images/102174542/standard/tgeb6e7cyzun3qkeab3th5cj23qv.?1783957652",
+          "score": 6,
+          "data": {
+            "price": 0.730632464787227,
+            "price_change_percentage_24h": {
+              "usd": -21.437312265742936
+            }
+          }
+        }
+      },
+      {
+        "item": {
+          "id": "pump-fun",
+          "name": "Pump.fun",
+          "symbol": "PUMP",
+          "market_cap_rank": 52,
+          "thumb": "https://coin-images.coingecko.com/coins/images/67164/standard/pump.jpg?1751949376",
+          "score": 7,
+          "data": {
+            "price": 0.004096354176439355,
+            "price_change_percentage_24h": {
+              "usd": -5.892026813964817
             }
           }
         }
@@ -392,11 +328,91 @@
           "symbol": "LIT",
           "market_cap_rank": 74,
           "thumb": "https://coin-images.coingecko.com/coins/images/71121/standard/lighter.png?1765888098",
+          "score": 8,
+          "data": {
+            "price": 3.7310170990378393,
+            "price_change_percentage_24h": {
+              "usd": 0.20092367814954284
+            }
+          }
+        }
+      },
+      {
+        "item": {
+          "id": "monero",
+          "name": "Monero",
+          "symbol": "XMR",
+          "market_cap_rank": 15,
+          "thumb": "https://coin-images.coingecko.com/coins/images/69/standard/monero_logo.png?1696501460",
+          "score": 9,
+          "data": {
+            "price": 508.33521675205947,
+            "price_change_percentage_24h": {
+              "usd": 1.6262081563199082
+            }
+          }
+        }
+      },
+      {
+        "item": {
+          "id": "aerodrome-finance",
+          "name": "Aerodrome Finance",
+          "symbol": "AERO",
+          "market_cap_rank": 113,
+          "thumb": "https://coin-images.coingecko.com/coins/images/31745/standard/token.png?1696530564",
+          "score": 10,
+          "data": {
+            "price": 0.46104272699737225,
+            "price_change_percentage_24h": {
+              "usd": -2.370950899667318
+            }
+          }
+        }
+      },
+      {
+        "item": {
+          "id": "monad",
+          "name": "Monad",
+          "symbol": "MON",
+          "market_cap_rank": 135,
+          "thumb": "https://coin-images.coingecko.com/coins/images/38927/standard/mon.png?1766029057",
+          "score": 11,
+          "data": {
+            "price": 0.025574160063684025,
+            "price_change_percentage_24h": {
+              "usd": -1.7572251087500472
+            }
+          }
+        }
+      },
+      {
+        "item": {
+          "id": "bittensor",
+          "name": "Bittensor",
+          "symbol": "TAO",
+          "market_cap_rank": 44,
+          "thumb": "https://coin-images.coingecko.com/coins/images/28452/standard/ARUsPeNQ_400x400.jpeg?1696527447",
           "score": 12,
           "data": {
-            "price": 3.718900941379129,
+            "price": 217.7968934009566,
             "price_change_percentage_24h": {
-              "usd": 1.314676032706125
+              "usd": -1.6496652909136478
+            }
+          }
+        }
+      },
+      {
+        "item": {
+          "id": "useless-3",
+          "name": "Useless Coin",
+          "symbol": "USELESS",
+          "market_cap_rank": 229,
+          "thumb": "https://coin-images.coingecko.com/coins/images/55684/standard/coingeckoupdate.png?1755203747",
+          "score": 13,
+          "data": {
+            "price": 0.12400825753622412,
+            "price_change_percentage_24h": {
+              "usd": 10.05085598045632
             }
           }
         }
@@ -408,27 +424,11 @@
           "symbol": "AVAX",
           "market_cap_rank": 31,
           "thumb": "https://coin-images.coingecko.com/coins/images/12559/standard/Avalanche_Circle_RedWhite_Trans.png?1696512369",
-          "score": 13,
-          "data": {
-            "price": 7.162213522644278,
-            "price_change_percentage_24h": {
-              "usd": -1.2431502472085132
-            }
-          }
-        }
-      },
-      {
-        "item": {
-          "id": "ethena",
-          "name": "Ethena",
-          "symbol": "ENA",
-          "market_cap_rank": 55,
-          "thumb": "https://coin-images.coingecko.com/coins/images/36530/standard/ethena.png?1711701436",
           "score": 14,
           "data": {
-            "price": 0.15107217604321294,
+            "price": 7.182545633573306,
             "price_change_percentage_24h": {
-              "usd": -6.43011337134593
+              "usd": -0.631266437351638
             }
           }
         }
@@ -2899,58 +2899,40 @@
     ],
     "dexPairs": [
       {
-        "id": "dex:robinhood:0x0e0d2c89a5a019fe1cf762e5e33187631dacc21b",
-        "name": "Chump Coin",
-        "symbol": "CHUMP",
-        "rank": "DEX",
-        "image": "https://cdn.dexscreener.com/cms/images/_bNkrynaHAamIH5s?width=800&height=800&quality=95&format=auto",
-        "current_price": 0.0272,
-        "price_change_percentage_1h_in_currency": 0.16,
-        "price_change_percentage_24h": -11.68,
-        "price_change_percentage_7d_in_currency": null,
-        "total_volume": 3536774.98,
-        "market_cap": 27200335,
-        "liquidity": 948103.34,
-        "dexBoost": true,
-        "boostAmount": 600,
-        "source": "DexScreener",
-        "url": "https://dexscreener.com/robinhood/0x714442e9a611f8561a7df108d6d925132937cfb8"
-      },
-      {
         "id": "dex:solana:h76u9jttbmtef5jgmqxm2ww6xqmxpvtdvyer4rvkpump",
         "name": "Pumpooor",
         "symbol": "Pumpooor",
         "rank": "DEX",
         "image": "https://cdn.dexscreener.com/cms/images/EGdylCtMaOBXvRFW?width=800&height=800&quality=95&format=auto",
-        "current_price": 0.0004809,
-        "price_change_percentage_1h_in_currency": -35.89,
-        "price_change_percentage_24h": 442,
+        "current_price": 0.0006359,
+        "price_change_percentage_1h_in_currency": -1.89,
+        "price_change_percentage_24h": 616,
         "price_change_percentage_7d_in_currency": null,
-        "total_volume": 4913629.27,
-        "market_cap": 476690,
-        "liquidity": 64750.2,
+        "total_volume": 5333060.35,
+        "market_cap": 630426,
+        "liquidity": 75759.45,
         "dexBoost": true,
         "boostAmount": 500,
         "source": "DexScreener",
         "url": "https://dexscreener.com/solana/3vlpiebr9s31udgbqutz3hetzt5yauk2225iy54npghl"
       },
       {
-        "id": "dex:solana:6dqocvgfwqybnvrf8srja5swvn7rrpfnzexaoejlpump",
-        "name": "Skelly",
-        "symbol": "SKELLY",
+        "id": "dex:robinhood:0x0e0d2c89a5a019fe1cf762e5e33187631dacc21b",
+        "name": "Chump Coin",
+        "symbol": "CHUMP",
         "rank": "DEX",
-        "image": "https://cdn.dexscreener.com/cms/images/uGFrYPOCrFZC9TMV?width=800&height=800&quality=95&format=auto",
-        "current_price": 0.0003052,
-        "price_change_percentage_1h_in_currency": 10410,
-        "price_change_percentage_24h": 125,
+        "image": "https://cdn.dexscreener.com/cms/images/_bNkrynaHAamIH5s?width=800&height=800&quality=95&format=auto",
+        "current_price": 0.03805,
+        "price_change_percentage_1h_in_currency": 7.19,
+        "price_change_percentage_24h": -7.43,
         "price_change_percentage_7d_in_currency": null,
-        "total_volume": 1253051.63,
-        "market_cap": 302914,
-        "liquidity": 253792.57,
+        "total_volume": 4848120.09,
+        "market_cap": 38054290,
+        "liquidity": 1097374.58,
         "dexBoost": true,
         "boostAmount": 500,
         "source": "DexScreener",
-        "url": "https://dexscreener.com/solana/ahe7xacfzbnkvy9kneu6a5t2jx88bdrsnk1og8byaeye"
+        "url": "https://dexscreener.com/robinhood/0x714442e9a611f8561a7df108d6d925132937cfb8"
       },
       {
         "id": "dex:robinhood:0x5f038759f6de38fd3a85c0440daff1240238bac8",
@@ -2958,17 +2940,35 @@
         "symbol": "SEMI",
         "rank": "DEX",
         "image": "https://cdn.dexscreener.com/cms/images/8rn2XYJD0Ncqf0Fb?width=800&height=800&quality=95&format=auto",
-        "current_price": 0.06251,
-        "price_change_percentage_1h_in_currency": 25.92,
-        "price_change_percentage_24h": 588,
+        "current_price": 0.0522,
+        "price_change_percentage_1h_in_currency": -3.94,
+        "price_change_percentage_24h": 422,
         "price_change_percentage_7d_in_currency": null,
-        "total_volume": 812739.49,
-        "market_cap": 2570483,
-        "liquidity": 803073.67,
+        "total_volume": 1219986.54,
+        "market_cap": 2146516,
+        "liquidity": 890960.99,
         "dexBoost": true,
         "boostAmount": 300,
         "source": "DexScreener",
         "url": "https://dexscreener.com/robinhood/0xe35635d91eccd183aa5925c7a26bdaedef1fa07e312742689cc39afd8f04e121"
+      },
+      {
+        "id": "dex:robinhood:0xd35bf82b1b324b46b566c49e0a9cda8ef04556b8",
+        "name": "Money Mushroom",
+        "symbol": "JINQIAN",
+        "rank": "DEX",
+        "image": "https://cdn.dexscreener.com/cms/images/ojBRGhr-XIBRHQ7T?width=800&height=800&quality=95&format=auto",
+        "current_price": 0.01169,
+        "price_change_percentage_1h_in_currency": 300,
+        "price_change_percentage_24h": 490922,
+        "price_change_percentage_7d_in_currency": null,
+        "total_volume": 25270839.35,
+        "market_cap": 11637454,
+        "liquidity": 410903.37,
+        "dexBoost": true,
+        "boostAmount": 200,
+        "source": "DexScreener",
+        "url": "https://dexscreener.com/robinhood/0x4271eea912c1b121e43e5699834f230bff319c1c"
       },
       {
         "id": "dex:solana:dgxnfqdqqlxcdrnzrbca9autx2cobj7nx4dpjmdvpump",
@@ -2976,17 +2976,53 @@
         "symbol": "FONELESS",
         "rank": "DEX",
         "image": "https://cdn.dexscreener.com/cms/images/dHCQa9KItQf89ZsE?width=800&height=800&quality=95&format=auto",
-        "current_price": 0.0002422,
-        "price_change_percentage_1h_in_currency": 47.92,
-        "price_change_percentage_24h": 271,
+        "current_price": 0.0002629,
+        "price_change_percentage_1h_in_currency": -22.3,
+        "price_change_percentage_24h": 303,
         "price_change_percentage_7d_in_currency": null,
-        "total_volume": 495268.25,
-        "market_cap": 239288,
-        "liquidity": 40543.23,
+        "total_volume": 1352389.11,
+        "market_cap": 259754,
+        "liquidity": 43979.95,
         "dexBoost": true,
         "boostAmount": 150,
         "source": "DexScreener",
         "url": "https://dexscreener.com/solana/d9ezbnn7urearoucdmklzyerj2uie539f5paykrnuhpt"
+      },
+      {
+        "id": "dex:solana:jaun3rkzr9kskdmbch83vxgmtvkbobulrawz5g3upump",
+        "name": "MONK",
+        "symbol": "MONK",
+        "rank": "DEX",
+        "image": "https://cdn.dexscreener.com/cms/images/JeztykE_Yhl_MxEP?width=800&height=800&quality=95&format=auto",
+        "current_price": 0.0003008,
+        "price_change_percentage_1h_in_currency": 4.53,
+        "price_change_percentage_24h": 222,
+        "price_change_percentage_7d_in_currency": null,
+        "total_volume": 1260341.44,
+        "market_cap": 297508,
+        "liquidity": 47363.86,
+        "dexBoost": true,
+        "boostAmount": 150,
+        "source": "DexScreener",
+        "url": "https://dexscreener.com/solana/2idkxg1ughxes4uezzv6776dcueib8y4argzvlvhxl8u"
+      },
+      {
+        "id": "dex:solana:hmjdgky11u77hpbss6d8sjnpypd5b6fwgsvdj58jpump",
+        "name": "Solcat",
+        "symbol": "SOLCAT",
+        "rank": "DEX",
+        "image": "https://cdn.dexscreener.com/cms/images/XDQjcA_KB_j8OumV?width=800&height=800&quality=95&format=auto",
+        "current_price": 0.0008212,
+        "price_change_percentage_1h_in_currency": -31.58,
+        "price_change_percentage_24h": 374,
+        "price_change_percentage_7d_in_currency": null,
+        "total_volume": 7851693.09,
+        "market_cap": 812610,
+        "liquidity": 105309.32,
+        "dexBoost": true,
+        "boostAmount": 110,
+        "source": "DexScreener",
+        "url": "https://dexscreener.com/solana/6imhrymyu5xogj5w7yveymb5o5yfyavxxveozwpbu5ix"
       },
       {
         "id": "dex:robinhood:0xe9ae0b4ee3afc555cca8c54a974c06f4f0a41e18",
@@ -2994,35 +3030,17 @@
         "symbol": "I",
         "rank": "DEX",
         "image": "https://cdn.dexscreener.com/cms/images/WK5gEOfFkhH7qnlK?width=800&height=800&quality=95&format=auto",
-        "current_price": 0.0002803,
-        "price_change_percentage_1h_in_currency": 32.64,
-        "price_change_percentage_24h": 1132,
+        "current_price": 0.000309,
+        "price_change_percentage_1h_in_currency": 7.24,
+        "price_change_percentage_24h": 700,
         "price_change_percentage_7d_in_currency": null,
-        "total_volume": 954305.41,
-        "market_cap": 280389,
-        "liquidity": 133879.33,
+        "total_volume": 1002844.04,
+        "market_cap": 309019,
+        "liquidity": 142351.81,
         "dexBoost": true,
         "boostAmount": 110,
         "source": "DexScreener",
         "url": "https://dexscreener.com/robinhood/0x5d038a9e12e39ad9504bd1044689cc054d2bd029461538670e9544f4d1f1eb6e"
-      },
-      {
-        "id": "dex:solana:hmjdgky11u77hpbss6d8sjnpypd5b6fwgsvdj58jpump",
-        "name": "Solcat",
-        "symbol": "SOLCAT",
-        "rank": "DEX",
-        "image": "https://cdn.dexscreener.com/cms/images/t_v_Fya8QwUna_nG?width=800&height=800&quality=95&format=auto",
-        "current_price": 0.002054,
-        "price_change_percentage_1h_in_currency": 111,
-        "price_change_percentage_24h": 1766,
-        "price_change_percentage_7d_in_currency": null,
-        "total_volume": 6413308.14,
-        "market_cap": 2033100,
-        "liquidity": 163184.05,
-        "dexBoost": true,
-        "boostAmount": 110,
-        "source": "DexScreener",
-        "url": "https://dexscreener.com/solana/6imhrymyu5xogj5w7yveymb5o5yfyavxxveozwpbu5ix"
       },
       {
         "id": "dex:robinhood:0xbd6638ba50ce2f139d4f30eeaa03bd2533bb8e0c",
@@ -3030,53 +3048,17 @@
         "symbol": "PRESS",
         "rank": "DEX",
         "image": "https://cdn.dexscreener.com/cms/images/y7nykeVlqA8WP1US?width=800&height=800&quality=95&format=auto",
-        "current_price": 0.0002215,
-        "price_change_percentage_1h_in_currency": 42.02,
-        "price_change_percentage_24h": 302,
+        "current_price": 0.00009636,
+        "price_change_percentage_1h_in_currency": -14.21,
+        "price_change_percentage_24h": 75,
         "price_change_percentage_7d_in_currency": null,
-        "total_volume": 5124371.78,
-        "market_cap": 221595,
-        "liquidity": 42704.25,
+        "total_volume": 5178234.08,
+        "market_cap": 96367,
+        "liquidity": 28111.6,
         "dexBoost": true,
         "boostAmount": 100,
         "source": "DexScreener",
         "url": "https://dexscreener.com/robinhood/0xab481dadf71c362d5d68e1581b6a3579b404a8dcc2eed5adce08b26b09db0310"
-      },
-      {
-        "id": "dex:solana:5ehz51kdjgqmq7sh287dihskz2gkjziwlupfpdrvpump",
-        "name": "Feather Bros",
-        "symbol": "FBROS",
-        "rank": "DEX",
-        "image": "https://cdn.dexscreener.com/cms/images/cDPpT5sy461BQgRh?width=800&height=800&quality=95&format=auto",
-        "current_price": 0.0005276,
-        "price_change_percentage_1h_in_currency": -6.19,
-        "price_change_percentage_24h": 672,
-        "price_change_percentage_7d_in_currency": null,
-        "total_volume": 1505788.36,
-        "market_cap": 518599,
-        "liquidity": 63159.99,
-        "dexBoost": true,
-        "boostAmount": 100,
-        "source": "DexScreener",
-        "url": "https://dexscreener.com/solana/bc41ped2cpqyzfvfuzstn9rkq3ggcsav4jjgyyflwdvr"
-      },
-      {
-        "id": "dex:solana:7gihstjv9zmvbeafu85sxrmuaoslyfjvrurbpqmvpump",
-        "name": "Moggy Cat",
-        "symbol": "MOGGY",
-        "rank": "DEX",
-        "image": "https://cdn.dexscreener.com/cms/images/3sd-wQokWZd31Nhf?width=800&height=800&quality=95&format=auto",
-        "current_price": 0.0003608,
-        "price_change_percentage_1h_in_currency": 30.81,
-        "price_change_percentage_24h": 621,
-        "price_change_percentage_7d_in_currency": null,
-        "total_volume": 1037263.16,
-        "market_cap": 351191,
-        "liquidity": 51197.46,
-        "dexBoost": true,
-        "boostAmount": 100,
-        "source": "DexScreener",
-        "url": "https://dexscreener.com/solana/gugladfrxmgssyxzgus8lwgjhfm2ytjcw8qreck7qmyq"
       }
     ],
     "macroEvents": [
@@ -3628,7 +3610,7 @@
     "coins": {
       "tether": {
         "firstSeenAt": "2026-09-01T14:29:51.460Z",
-        "lastSeenAt": "2026-09-02T16:38:24.017Z",
+        "lastSeenAt": "2026-09-02T21:06:35.799Z",
         "points": [
           [
             1788272991460,
@@ -3677,12 +3659,18 @@
             0.999632,
             53671536116,
             183307308888
+          ],
+          [
+            1788383195799,
+            0.999632,
+            53671536116,
+            183307308888
           ]
         ]
       },
       "bitcoin": {
         "firstSeenAt": "2026-09-01T14:29:51.460Z",
-        "lastSeenAt": "2026-09-02T16:38:24.017Z",
+        "lastSeenAt": "2026-09-02T21:06:35.799Z",
         "points": [
           [
             1788272991460,
@@ -3731,12 +3719,18 @@
             77392,
             30035148525,
             1554575330070
+          ],
+          [
+            1788383195799,
+            77392,
+            30035148525,
+            1554575330070
           ]
         ]
       },
       "usd-coin": {
         "firstSeenAt": "2026-09-01T14:29:51.460Z",
-        "lastSeenAt": "2026-09-02T16:38:24.017Z",
+        "lastSeenAt": "2026-09-02T21:06:35.799Z",
         "points": [
           [
             1788272991460,
@@ -3785,12 +3779,18 @@
             0.999772,
             14876233741,
             73685679746
+          ],
+          [
+            1788383195799,
+            0.999772,
+            14876233741,
+            73685679746
           ]
         ]
       },
       "ethereum": {
         "firstSeenAt": "2026-09-01T14:29:51.460Z",
-        "lastSeenAt": "2026-09-02T16:38:24.017Z",
+        "lastSeenAt": "2026-09-02T21:06:35.799Z",
         "points": [
           [
             1788272991460,
@@ -3839,12 +3839,18 @@
             2396.62,
             14895907818,
             292658562249
+          ],
+          [
+            1788383195799,
+            2396.62,
+            14895907818,
+            292658562249
           ]
         ]
       },
       "solana": {
         "firstSeenAt": "2026-09-01T14:29:51.460Z",
-        "lastSeenAt": "2026-09-02T16:38:24.017Z",
+        "lastSeenAt": "2026-09-02T21:06:35.799Z",
         "points": [
           [
             1788272991460,
@@ -3893,12 +3899,18 @@
             99.28,
             3440011701,
             58161445599
+          ],
+          [
+            1788383195799,
+            99.28,
+            3440011701,
+            58161445599
           ]
         ]
       },
       "ripple": {
         "firstSeenAt": "2026-09-01T14:29:51.460Z",
-        "lastSeenAt": "2026-09-02T16:38:24.017Z",
+        "lastSeenAt": "2026-09-02T21:06:35.799Z",
         "points": [
           [
             1788272991460,
@@ -3947,12 +3959,18 @@
             1.34,
             2508555853,
             83903001692
+          ],
+          [
+            1788383195799,
+            1.34,
+            2508555853,
+            83903001692
           ]
         ]
       },
       "global-dollar": {
         "firstSeenAt": "2026-09-01T14:29:51.460Z",
-        "lastSeenAt": "2026-09-02T16:38:24.017Z",
+        "lastSeenAt": "2026-09-02T21:06:35.799Z",
         "points": [
           [
             1788272991460,
@@ -4001,12 +4019,18 @@
             1,
             1740015932,
             3219712497
+          ],
+          [
+            1788383195799,
+            1,
+            1740015932,
+            3219712497
           ]
         ]
       },
       "hyperliquid": {
         "firstSeenAt": "2026-09-01T14:29:51.460Z",
-        "lastSeenAt": "2026-09-02T16:38:24.017Z",
+        "lastSeenAt": "2026-09-02T21:06:35.799Z",
         "points": [
           [
             1788272991460,
@@ -4055,12 +4079,18 @@
             81.85,
             1199230147,
             18212397645
+          ],
+          [
+            1788383195799,
+            81.85,
+            1199230147,
+            18212397645
           ]
         ]
       },
       "usd1-wlfi": {
         "firstSeenAt": "2026-09-01T14:29:51.460Z",
-        "lastSeenAt": "2026-09-02T16:38:24.017Z",
+        "lastSeenAt": "2026-09-02T21:06:35.799Z",
         "points": [
           [
             1788272991460,
@@ -4109,12 +4139,18 @@
             0.999454,
             1219981278,
             4195442349
+          ],
+          [
+            1788383195799,
+            0.999454,
+            1219981278,
+            4195442349
           ]
         ]
       },
       "uniswap": {
         "firstSeenAt": "2026-09-01T14:29:51.460Z",
-        "lastSeenAt": "2026-09-02T16:38:24.017Z",
+        "lastSeenAt": "2026-09-02T21:06:35.799Z",
         "points": [
           [
             1788272991460,
@@ -4163,12 +4199,18 @@
             5.84,
             1109132485,
             3643151040
+          ],
+          [
+            1788383195799,
+            5.84,
+            1109132485,
+            3643151040
           ]
         ]
       },
       "binancecoin": {
         "firstSeenAt": "2026-09-01T14:29:51.460Z",
-        "lastSeenAt": "2026-09-02T16:38:24.017Z",
+        "lastSeenAt": "2026-09-02T21:06:35.799Z",
         "points": [
           [
             1788272991460,
@@ -4217,12 +4259,18 @@
             687.39,
             871726378,
             91543020498
+          ],
+          [
+            1788383195799,
+            687.39,
+            871726378,
+            91543020498
           ]
         ]
       },
       "ethena": {
         "firstSeenAt": "2026-09-01T14:29:51.460Z",
-        "lastSeenAt": "2026-09-02T16:38:24.017Z",
+        "lastSeenAt": "2026-09-02T21:06:35.799Z",
         "points": [
           [
             1788272991460,
@@ -4271,12 +4319,18 @@
             0.150097,
             587610152,
             1477418069
+          ],
+          [
+            1788383195799,
+            0.150097,
+            587610152,
+            1477418069
           ]
         ]
       },
       "zcash": {
         "firstSeenAt": "2026-09-01T14:29:51.460Z",
-        "lastSeenAt": "2026-09-02T16:38:24.017Z",
+        "lastSeenAt": "2026-09-02T21:06:35.799Z",
         "points": [
           [
             1788272991460,
@@ -4325,12 +4379,18 @@
             816.02,
             537556108,
             13810257922
+          ],
+          [
+            1788383195799,
+            816.02,
+            537556108,
+            13810257922
           ]
         ]
       },
       "arbitrum": {
         "firstSeenAt": "2026-09-01T14:29:51.460Z",
-        "lastSeenAt": "2026-09-02T16:38:24.017Z",
+        "lastSeenAt": "2026-09-02T21:06:35.799Z",
         "points": [
           [
             1788272991460,
@@ -4379,12 +4439,18 @@
             0.124347,
             313937564,
             830687565
+          ],
+          [
+            1788383195799,
+            0.124347,
+            313937564,
+            830687565
           ]
         ]
       },
       "tron": {
         "firstSeenAt": "2026-09-01T14:29:51.460Z",
-        "lastSeenAt": "2026-09-02T16:38:24.017Z",
+        "lastSeenAt": "2026-09-02T21:06:35.799Z",
         "points": [
           [
             1788272991460,
@@ -4433,12 +4499,18 @@
             0.323734,
             457111756,
             30730891403
+          ],
+          [
+            1788383195799,
+            0.323734,
+            457111756,
+            30730891403
           ]
         ]
       },
       "dogecoin": {
         "firstSeenAt": "2026-09-01T14:29:51.460Z",
-        "lastSeenAt": "2026-09-02T16:38:24.017Z",
+        "lastSeenAt": "2026-09-02T21:06:35.799Z",
         "points": [
           [
             1788272991460,
@@ -4487,12 +4559,18 @@
             0.08168,
             572018719,
             12727434407
+          ],
+          [
+            1788383195799,
+            0.08168,
+            572018719,
+            12727434407
           ]
         ]
       },
       "chainlink": {
         "firstSeenAt": "2026-09-01T14:29:51.460Z",
-        "lastSeenAt": "2026-09-02T16:38:24.017Z",
+        "lastSeenAt": "2026-09-02T21:06:35.799Z",
         "points": [
           [
             1788272991460,
@@ -4541,12 +4619,18 @@
             11.14,
             384388626,
             8334248051
+          ],
+          [
+            1788383195799,
+            11.14,
+            384388626,
+            8334248051
           ]
         ]
       },
       "sui": {
         "firstSeenAt": "2026-09-01T14:29:51.460Z",
-        "lastSeenAt": "2026-09-02T16:38:24.017Z",
+        "lastSeenAt": "2026-09-02T21:06:35.799Z",
         "points": [
           [
             1788272991460,
@@ -4595,12 +4679,18 @@
             0.725465,
             421845267,
             2973868489
+          ],
+          [
+            1788383195799,
+            0.725465,
+            421845267,
+            2973868489
           ]
         ]
       },
       "cardano": {
         "firstSeenAt": "2026-09-01T14:29:51.460Z",
-        "lastSeenAt": "2026-09-02T16:38:24.017Z",
+        "lastSeenAt": "2026-09-02T21:06:35.799Z",
         "points": [
           [
             1788272991460,
@@ -4649,12 +4739,18 @@
             0.196455,
             340007440,
             7374606225
+          ],
+          [
+            1788383195799,
+            0.196455,
+            340007440,
+            7374606225
           ]
         ]
       },
       "near": {
         "firstSeenAt": "2026-09-01T14:29:51.460Z",
-        "lastSeenAt": "2026-09-02T16:38:24.017Z",
+        "lastSeenAt": "2026-09-02T21:06:35.799Z",
         "points": [
           [
             1788272991460,
@@ -4703,12 +4799,18 @@
             1.86,
             250613370,
             2423789281
+          ],
+          [
+            1788383195799,
+            1.86,
+            250613370,
+            2423789281
           ]
         ]
       },
       "dai": {
         "firstSeenAt": "2026-09-01T14:29:51.460Z",
-        "lastSeenAt": "2026-09-02T16:38:24.017Z",
+        "lastSeenAt": "2026-09-02T21:06:35.799Z",
         "points": [
           [
             1788272991460,
@@ -4757,12 +4859,18 @@
             1,
             171519921,
             4572801565
+          ],
+          [
+            1788383195799,
+            1,
+            171519921,
+            4572801565
           ]
         ]
       },
       "tether-gold": {
         "firstSeenAt": "2026-09-01T14:29:51.460Z",
-        "lastSeenAt": "2026-09-02T16:38:24.017Z",
+        "lastSeenAt": "2026-09-02T21:06:35.799Z",
         "points": [
           [
             1788272991460,
@@ -4811,12 +4919,18 @@
             4366.24,
             324650124,
             2675751865
+          ],
+          [
+            1788383195799,
+            4366.24,
+            324650124,
+            2675751865
           ]
         ]
       },
       "aave": {
         "firstSeenAt": "2026-09-01T14:29:51.460Z",
-        "lastSeenAt": "2026-09-02T16:38:24.017Z",
+        "lastSeenAt": "2026-09-02T21:06:35.799Z",
         "points": [
           [
             1788272991460,
@@ -4865,12 +4979,18 @@
             127.11,
             329813965,
             1962115700
+          ],
+          [
+            1788383195799,
+            127.11,
+            329813965,
+            1962115700
           ]
         ]
       },
       "litecoin": {
         "firstSeenAt": "2026-09-01T14:29:51.460Z",
-        "lastSeenAt": "2026-09-02T16:38:24.017Z",
+        "lastSeenAt": "2026-09-02T21:06:35.799Z",
         "points": [
           [
             1788272991460,
@@ -4919,12 +5039,18 @@
             49.43,
             271688415,
             3835350114
+          ],
+          [
+            1788383195799,
+            49.43,
+            271688415,
+            3835350114
           ]
         ]
       },
       "official-trump": {
         "firstSeenAt": "2026-09-01T14:29:51.460Z",
-        "lastSeenAt": "2026-09-02T16:38:24.017Z",
+        "lastSeenAt": "2026-09-02T21:06:35.799Z",
         "points": [
           [
             1788272991460,
@@ -4973,12 +5099,18 @@
             2.2,
             245040645,
             577418971
+          ],
+          [
+            1788383195799,
+            2.2,
+            245040645,
+            577418971
           ]
         ]
       },
       "pepe": {
         "firstSeenAt": "2026-09-01T14:29:51.460Z",
-        "lastSeenAt": "2026-09-02T16:38:24.017Z",
+        "lastSeenAt": "2026-09-02T21:06:35.799Z",
         "points": [
           [
             1788272991460,
@@ -5027,12 +5159,18 @@
             0.00000341,
             182272258,
             1434776435
+          ],
+          [
+            1788383195799,
+            0.00000341,
+            182272258,
+            1434776435
           ]
         ]
       },
       "teller": {
         "firstSeenAt": "2026-09-01T14:29:51.460Z",
-        "lastSeenAt": "2026-09-02T16:38:24.017Z",
+        "lastSeenAt": "2026-09-02T21:06:35.799Z",
         "points": [
           [
             1788272991460,
@@ -5081,12 +5219,18 @@
             2.04,
             223289043,
             35195355
+          ],
+          [
+            1788383195799,
+            2.04,
+            223289043,
+            35195355
           ]
         ]
       },
       "monad": {
         "firstSeenAt": "2026-09-01T14:29:51.460Z",
-        "lastSeenAt": "2026-09-02T16:38:24.017Z",
+        "lastSeenAt": "2026-09-02T21:06:35.799Z",
         "points": [
           [
             1788272991460,
@@ -5135,12 +5279,18 @@
             0.02575379,
             78100241,
             304853134
+          ],
+          [
+            1788383195799,
+            0.02575379,
+            78100241,
+            304853134
           ]
         ]
       },
       "dash": {
         "firstSeenAt": "2026-09-01T14:29:51.460Z",
-        "lastSeenAt": "2026-09-02T16:38:24.017Z",
+        "lastSeenAt": "2026-09-02T21:06:35.799Z",
         "points": [
           [
             1788272991460,
@@ -5189,12 +5339,18 @@
             42.35,
             79866351,
             543421421
+          ],
+          [
+            1788383195799,
+            42.35,
+            79866351,
+            543421421
           ]
         ]
       },
       "united-stables": {
         "firstSeenAt": "2026-09-01T14:29:51.460Z",
-        "lastSeenAt": "2026-09-02T16:38:24.017Z",
+        "lastSeenAt": "2026-09-02T21:06:35.799Z",
         "points": [
           [
             1788272991460,
@@ -5243,12 +5399,18 @@
             0.999248,
             177379431,
             1271629838
+          ],
+          [
+            1788383195799,
+            0.999248,
+            177379431,
+            1271629838
           ]
         ]
       },
       "curve-dao-token": {
         "firstSeenAt": "2026-09-01T14:29:51.460Z",
-        "lastSeenAt": "2026-09-02T16:38:24.017Z",
+        "lastSeenAt": "2026-09-02T21:06:35.799Z",
         "points": [
           [
             1788272991460,
@@ -5297,12 +5459,18 @@
             0.359177,
             128036309,
             558308400
+          ],
+          [
+            1788383195799,
+            0.359177,
+            128036309,
+            558308400
           ]
         ]
       },
       "usds": {
         "firstSeenAt": "2026-09-01T14:29:51.460Z",
-        "lastSeenAt": "2026-09-02T16:38:24.017Z",
+        "lastSeenAt": "2026-09-02T21:06:35.799Z",
         "points": [
           [
             1788272991460,
@@ -5351,12 +5519,18 @@
             0.999875,
             177391400,
             9822127199
+          ],
+          [
+            1788383195799,
+            0.999875,
+            177391400,
+            9822127199
           ]
         ]
       },
       "little-john": {
         "firstSeenAt": "2026-09-01T14:29:51.460Z",
-        "lastSeenAt": "2026-09-02T16:38:24.017Z",
+        "lastSeenAt": "2026-09-02T21:06:35.799Z",
         "points": [
           [
             1788272991460,
@@ -5405,12 +5579,18 @@
             0.01719516,
             167501374,
             17195155
+          ],
+          [
+            1788383195799,
+            0.01719516,
+            167501374,
+            17195155
           ]
         ]
       },
       "pump-fun": {
         "firstSeenAt": "2026-09-01T14:29:51.460Z",
-        "lastSeenAt": "2026-09-02T16:38:24.017Z",
+        "lastSeenAt": "2026-09-02T21:06:35.799Z",
         "points": [
           [
             1788272991460,
@@ -5459,12 +5639,18 @@
             0.0041966,
             129261031,
             1663690880
+          ],
+          [
+            1788383195799,
+            0.0041966,
+            129261031,
+            1663690880
           ]
         ]
       },
       "avalanche-2": {
         "firstSeenAt": "2026-09-01T14:29:51.460Z",
-        "lastSeenAt": "2026-09-02T16:38:24.017Z",
+        "lastSeenAt": "2026-09-02T21:06:35.799Z",
         "points": [
           [
             1788272991460,
@@ -5513,12 +5699,18 @@
             7.16,
             184981536,
             3092376062
+          ],
+          [
+            1788383195799,
+            7.16,
+            184981536,
+            3092376062
           ]
         ]
       },
       "monero": {
         "firstSeenAt": "2026-09-01T14:29:51.460Z",
-        "lastSeenAt": "2026-09-02T16:38:24.017Z",
+        "lastSeenAt": "2026-09-02T21:06:35.799Z",
         "points": [
           [
             1788272991460,
@@ -5567,12 +5759,18 @@
             515.72,
             133308709,
             9693345835
+          ],
+          [
+            1788383195799,
+            515.72,
+            133308709,
+            9693345835
           ]
         ]
       },
       "pudgy-penguins": {
         "firstSeenAt": "2026-09-01T14:29:51.460Z",
-        "lastSeenAt": "2026-09-02T16:38:24.017Z",
+        "lastSeenAt": "2026-09-02T21:06:35.799Z",
         "points": [
           [
             1788272991460,
@@ -5621,12 +5819,18 @@
             0.00822733,
             165141166,
             519401570
+          ],
+          [
+            1788383195799,
+            0.00822733,
+            165141166,
+            519401570
           ]
         ]
       },
       "ripple-usd": {
         "firstSeenAt": "2026-09-01T14:29:51.460Z",
-        "lastSeenAt": "2026-09-02T16:38:24.017Z",
+        "lastSeenAt": "2026-09-02T21:06:35.799Z",
         "points": [
           [
             1788272991460,
@@ -5675,12 +5879,18 @@
             1,
             149529529,
             2387579310
+          ],
+          [
+            1788383195799,
+            1,
+            149529529,
+            2387579310
           ]
         ]
       },
       "optimism": {
         "firstSeenAt": "2026-09-01T14:29:51.460Z",
-        "lastSeenAt": "2026-09-02T16:38:24.017Z",
+        "lastSeenAt": "2026-09-02T21:06:35.799Z",
         "points": [
           [
             1788272991460,
@@ -5729,12 +5939,18 @@
             0.098288,
             84511786,
             224711869
+          ],
+          [
+            1788383195799,
+            0.098288,
+            84511786,
+            224711869
           ]
         ]
       },
       "pax-gold": {
         "firstSeenAt": "2026-09-01T14:29:51.460Z",
-        "lastSeenAt": "2026-09-02T16:38:24.017Z",
+        "lastSeenAt": "2026-09-02T21:06:35.799Z",
         "points": [
           [
             1788272991460,
@@ -5783,12 +5999,18 @@
             4376.95,
             231301402,
             1887801759
+          ],
+          [
+            1788383195799,
+            4376.95,
+            231301402,
+            1887801759
           ]
         ]
       },
       "first-digital-usd": {
         "firstSeenAt": "2026-09-01T14:29:51.460Z",
-        "lastSeenAt": "2026-09-02T16:38:24.017Z",
+        "lastSeenAt": "2026-09-02T21:06:35.799Z",
         "points": [
           [
             1788272991460,
@@ -5837,12 +6059,18 @@
             0.99857,
             130901620,
             333927936
+          ],
+          [
+            1788383195799,
+            0.99857,
+            130901620,
+            333927936
           ]
         ]
       },
       "polkadot": {
         "firstSeenAt": "2026-09-01T14:29:51.460Z",
-        "lastSeenAt": "2026-09-02T16:38:24.017Z",
+        "lastSeenAt": "2026-09-02T21:06:35.799Z",
         "points": [
           [
             1788272991460,
@@ -5891,12 +6119,18 @@
             0.854314,
             135494388,
             1453597322
+          ],
+          [
+            1788383195799,
+            0.854314,
+            135494388,
+            1453597322
           ]
         ]
       },
       "worldcoin-wld": {
         "firstSeenAt": "2026-09-01T14:29:51.460Z",
-        "lastSeenAt": "2026-09-02T16:38:24.017Z",
+        "lastSeenAt": "2026-09-02T21:06:35.799Z",
         "points": [
           [
             1788272991460,
@@ -5945,12 +6179,18 @@
             0.360392,
             126877277,
             1309209446
+          ],
+          [
+            1788383195799,
+            0.360392,
+            126877277,
+            1309209446
           ]
         ]
       },
       "stellar": {
         "firstSeenAt": "2026-09-01T14:29:51.460Z",
-        "lastSeenAt": "2026-09-02T16:38:24.017Z",
+        "lastSeenAt": "2026-09-02T21:06:35.799Z",
         "points": [
           [
             1788272991460,
@@ -5999,12 +6239,18 @@
             0.173544,
             106011300,
             6023700218
+          ],
+          [
+            1788383195799,
+            0.173544,
+            106011300,
+            6023700218
           ]
         ]
       },
       "bitcoin-cash": {
         "firstSeenAt": "2026-09-01T14:29:51.460Z",
-        "lastSeenAt": "2026-09-02T16:38:24.017Z",
+        "lastSeenAt": "2026-09-02T21:06:35.799Z",
         "points": [
           [
             1788272991460,
@@ -6053,12 +6299,18 @@
             243.35,
             107410577,
             4888525740
+          ],
+          [
+            1788383195799,
+            243.35,
+            107410577,
+            4888525740
           ]
         ]
       },
       "pons": {
         "firstSeenAt": "2026-09-01T14:29:51.460Z",
-        "lastSeenAt": "2026-09-02T16:38:24.017Z",
+        "lastSeenAt": "2026-09-02T21:06:35.799Z",
         "points": [
           [
             1788272991460,
@@ -6107,12 +6359,18 @@
             0.384355,
             103253627,
             274605500
+          ],
+          [
+            1788383195799,
+            0.384355,
+            103253627,
+            274605500
           ]
         ]
       },
       "bittensor": {
         "firstSeenAt": "2026-09-01T14:29:51.460Z",
-        "lastSeenAt": "2026-09-02T16:38:24.017Z",
+        "lastSeenAt": "2026-09-02T21:06:35.799Z",
         "points": [
           [
             1788272991460,
@@ -6161,12 +6419,18 @@
             217.84,
             105656866,
             2091871500
+          ],
+          [
+            1788383195799,
+            217.84,
+            105656866,
+            2091871500
           ]
         ]
       },
       "polygon-ecosystem-token": {
         "firstSeenAt": "2026-09-01T14:29:51.460Z",
-        "lastSeenAt": "2026-09-02T16:38:24.017Z",
+        "lastSeenAt": "2026-09-02T21:06:35.799Z",
         "points": [
           [
             1788272991460,
@@ -6215,12 +6479,18 @@
             0.091188,
             46648289,
             977155940
+          ],
+          [
+            1788383195799,
+            0.091188,
+            46648289,
+            977155940
           ]
         ]
       },
       "dgrid-ai": {
         "firstSeenAt": "2026-09-01T14:29:51.460Z",
-        "lastSeenAt": "2026-09-02T16:38:24.017Z",
+        "lastSeenAt": "2026-09-02T21:06:35.799Z",
         "points": [
           [
             1788272991460,
@@ -6269,12 +6539,18 @@
             0.664138,
             117855897,
             100067539
+          ],
+          [
+            1788383195799,
+            0.664138,
+            117855897,
+            100067539
           ]
         ]
       },
       "aster-2": {
         "firstSeenAt": "2026-09-01T14:29:51.460Z",
-        "lastSeenAt": "2026-09-02T16:38:24.017Z",
+        "lastSeenAt": "2026-09-02T21:06:35.799Z",
         "points": [
           [
             1788272991460,
@@ -6323,12 +6599,18 @@
             0.735946,
             126638759,
             1985617362
+          ],
+          [
+            1788383195799,
+            0.735946,
+            126638759,
+            1985617362
           ]
         ]
       },
       "useless-3": {
         "firstSeenAt": "2026-09-01T14:29:51.460Z",
-        "lastSeenAt": "2026-09-02T16:38:24.017Z",
+        "lastSeenAt": "2026-09-02T21:06:35.799Z",
         "points": [
           [
             1788272991460,
@@ -6377,12 +6659,18 @@
             0.124127,
             80500678,
             124680757
+          ],
+          [
+            1788383195799,
+            0.124127,
+            80500678,
+            124680757
           ]
         ]
       },
       "fidelity-digital-dollar": {
         "firstSeenAt": "2026-09-01T14:29:51.460Z",
-        "lastSeenAt": "2026-09-02T16:38:24.017Z",
+        "lastSeenAt": "2026-09-02T21:06:35.799Z",
         "points": [
           [
             1788272991460,
@@ -6431,12 +6719,18 @@
             0.999607,
             102332174,
             49269925
+          ],
+          [
+            1788383195799,
+            0.999607,
+            102332174,
+            49269925
           ]
         ]
       },
       "whitebit": {
         "firstSeenAt": "2026-09-01T14:29:51.460Z",
-        "lastSeenAt": "2026-09-02T16:38:24.017Z",
+        "lastSeenAt": "2026-09-02T21:06:35.799Z",
         "points": [
           [
             1788272991460,
@@ -6485,12 +6779,18 @@
             70.93,
             96983625,
             8378721551
+          ],
+          [
+            1788383195799,
+            70.93,
+            96983625,
+            8378721551
           ]
         ]
       },
       "the-open-network": {
         "firstSeenAt": "2026-09-01T14:29:51.460Z",
-        "lastSeenAt": "2026-09-02T16:38:24.017Z",
+        "lastSeenAt": "2026-09-02T21:06:35.799Z",
         "points": [
           [
             1788272991460,
@@ -6539,12 +6839,18 @@
             1.33,
             43296496,
             3696541286
+          ],
+          [
+            1788383195799,
+            1.33,
+            43296496,
+            3696541286
           ]
         ]
       },
       "paypal-usd": {
         "firstSeenAt": "2026-09-01T14:29:51.460Z",
-        "lastSeenAt": "2026-09-02T16:38:24.017Z",
+        "lastSeenAt": "2026-09-02T21:06:35.799Z",
         "points": [
           [
             1788272991460,
@@ -6593,12 +6899,18 @@
             0.999965,
             91015622,
             2773577116
+          ],
+          [
+            1788383195799,
+            0.999965,
+            91015622,
+            2773577116
           ]
         ]
       },
       "injective-protocol": {
         "firstSeenAt": "2026-09-01T14:29:51.460Z",
-        "lastSeenAt": "2026-09-02T16:38:24.017Z",
+        "lastSeenAt": "2026-09-02T21:06:35.799Z",
         "points": [
           [
             1788272991460,
@@ -6647,12 +6959,18 @@
             4.76,
             61825201,
             476761137
+          ],
+          [
+            1788383195799,
+            4.76,
+            61825201,
+            476761137
           ]
         ]
       },
       "spdr-s-p-500-etf-trust-robinhood-tokenized-stock": {
         "firstSeenAt": "2026-09-01T14:29:51.460Z",
-        "lastSeenAt": "2026-09-02T16:38:24.017Z",
+        "lastSeenAt": "2026-09-02T21:06:35.799Z",
         "points": [
           [
             1788272991460,
@@ -6701,12 +7019,18 @@
             765.51,
             89357960,
             11997345
+          ],
+          [
+            1788383195799,
+            765.51,
+            89357960,
+            11997345
           ]
         ]
       },
       "bonk": {
         "firstSeenAt": "2026-09-01T14:29:51.460Z",
-        "lastSeenAt": "2026-09-02T16:38:24.017Z",
+        "lastSeenAt": "2026-09-02T21:06:35.799Z",
         "points": [
           [
             1788272991460,
@@ -6755,12 +7079,18 @@
             0.00000297,
             38348036,
             261448086
+          ],
+          [
+            1788383195799,
+            0.00000297,
+            38348036,
+            261448086
           ]
         ]
       },
       "maya-preferred-223": {
         "firstSeenAt": "2026-09-01T14:29:51.460Z",
-        "lastSeenAt": "2026-09-02T16:38:24.017Z",
+        "lastSeenAt": "2026-09-02T21:06:35.799Z",
         "points": [
           [
             1788272991460,
@@ -6809,12 +7139,18 @@
             3747719934,
             75910442,
             0
+          ],
+          [
+            1788383195799,
+            3747719934,
+            75910442,
+            0
           ]
         ]
       },
       "aptos": {
         "firstSeenAt": "2026-09-01T14:29:51.460Z",
-        "lastSeenAt": "2026-09-02T16:38:24.017Z",
+        "lastSeenAt": "2026-09-02T21:06:35.799Z",
         "points": [
           [
             1788272991460,
@@ -6863,12 +7199,18 @@
             0.558489,
             75126061,
             479491961
+          ],
+          [
+            1788383195799,
+            0.558489,
+            75126061,
+            479491961
           ]
         ]
       },
       "hemi": {
         "firstSeenAt": "2026-09-01T14:29:51.460Z",
-        "lastSeenAt": "2026-09-02T16:38:24.017Z",
+        "lastSeenAt": "2026-09-02T21:06:35.799Z",
         "points": [
           [
             1788272991460,
@@ -6917,12 +7259,18 @@
             0.01502648,
             124392608,
             14637081
+          ],
+          [
+            1788383195799,
+            0.01502648,
+            124392608,
+            14637081
           ]
         ]
       },
       "ondo-finance": {
         "firstSeenAt": "2026-09-01T14:29:51.460Z",
-        "lastSeenAt": "2026-09-02T16:38:24.017Z",
+        "lastSeenAt": "2026-09-02T21:06:35.799Z",
         "points": [
           [
             1788272991460,
@@ -6971,12 +7319,18 @@
             0.341272,
             68479100,
             1663052189
+          ],
+          [
+            1788383195799,
+            0.341272,
+            68479100,
+            1663052189
           ]
         ]
       },
       "bitlayer-bitvm": {
         "firstSeenAt": "2026-09-01T14:29:51.460Z",
-        "lastSeenAt": "2026-09-02T16:38:24.017Z",
+        "lastSeenAt": "2026-09-02T21:06:35.799Z",
         "points": [
           [
             1788272991460,
@@ -7025,12 +7379,18 @@
             0.050548,
             76389683,
             13257119
+          ],
+          [
+            1788383195799,
+            0.050548,
+            76389683,
+            13257119
           ]
         ]
       },
       "shiba-inu": {
         "firstSeenAt": "2026-09-01T14:29:51.460Z",
-        "lastSeenAt": "2026-09-02T16:38:24.017Z",
+        "lastSeenAt": "2026-09-02T21:06:35.799Z",
         "points": [
           [
             1788272991460,
@@ -7079,12 +7439,18 @@
             0.0000052,
             61601472,
             3067357535
+          ],
+          [
+            1788383195799,
+            0.0000052,
+            61601472,
+            3067357535
           ]
         ]
       },
       "filecoin": {
         "firstSeenAt": "2026-09-01T14:29:51.460Z",
-        "lastSeenAt": "2026-09-02T16:38:24.017Z",
+        "lastSeenAt": "2026-09-02T21:06:35.799Z",
         "points": [
           [
             1788272991460,
@@ -7133,12 +7499,18 @@
             0.786404,
             250790456,
             654748692
+          ],
+          [
+            1788383195799,
+            0.786404,
+            250790456,
+            654748692
           ]
         ]
       },
       "fetch-ai": {
         "firstSeenAt": "2026-09-01T14:29:51.460Z",
-        "lastSeenAt": "2026-09-02T16:38:24.017Z",
+        "lastSeenAt": "2026-09-02T21:06:35.799Z",
         "points": [
           [
             1788272991460,
@@ -7187,12 +7559,18 @@
             0.152298,
             61971254,
             344503215
+          ],
+          [
+            1788383195799,
+            0.152298,
+            61971254,
+            344503215
           ]
         ]
       },
       "jupiter-exchange-solana": {
         "firstSeenAt": "2026-09-01T14:29:51.460Z",
-        "lastSeenAt": "2026-09-02T16:38:24.017Z",
+        "lastSeenAt": "2026-09-02T21:06:35.799Z",
         "points": [
           [
             1788272991460,
@@ -7241,12 +7619,18 @@
             0.213742,
             55453343,
             710355243
+          ],
+          [
+            1788383195799,
+            0.213742,
+            55453343,
+            710355243
           ]
         ]
       },
       "pancakeswap-token": {
         "firstSeenAt": "2026-09-01T14:29:51.460Z",
-        "lastSeenAt": "2026-09-02T16:38:24.017Z",
+        "lastSeenAt": "2026-09-02T21:06:35.799Z",
         "points": [
           [
             1788272991460,
@@ -7295,12 +7679,18 @@
             1.81,
             52109123,
             580660635
+          ],
+          [
+            1788383195799,
+            1.81,
+            52109123,
+            580660635
           ]
         ]
       },
       "virtual-protocol": {
         "firstSeenAt": "2026-09-01T14:29:51.460Z",
-        "lastSeenAt": "2026-09-02T16:38:24.017Z",
+        "lastSeenAt": "2026-09-02T21:06:35.799Z",
         "points": [
           [
             1788272991460,
@@ -7349,12 +7739,18 @@
             0.677274,
             55642236,
             446037722
+          ],
+          [
+            1788383195799,
+            0.677274,
+            55642236,
+            446037722
           ]
         ]
       },
       "lighter": {
         "firstSeenAt": "2026-09-01T14:29:51.460Z",
-        "lastSeenAt": "2026-09-02T16:38:24.017Z",
+        "lastSeenAt": "2026-09-02T21:06:35.799Z",
         "points": [
           [
             1788272991460,
@@ -7403,12 +7799,18 @@
             3.72,
             96190519,
             930157000
+          ],
+          [
+            1788383195799,
+            3.72,
+            96190519,
+            930157000
           ]
         ]
       },
       "hedera-hashgraph": {
         "firstSeenAt": "2026-09-01T14:29:51.460Z",
-        "lastSeenAt": "2026-09-02T16:38:24.017Z",
+        "lastSeenAt": "2026-09-02T21:06:35.799Z",
         "points": [
           [
             1788272991460,
@@ -7457,12 +7859,18 @@
             0.073531,
             47441155,
             3224930971
+          ],
+          [
+            1788383195799,
+            0.073531,
+            47441155,
+            3224930971
           ]
         ]
       },
       "plasma": {
         "firstSeenAt": "2026-09-01T14:29:51.460Z",
-        "lastSeenAt": "2026-09-02T16:38:24.017Z",
+        "lastSeenAt": "2026-09-02T21:06:35.799Z",
         "points": [
           [
             1788272991460,
@@ -7511,12 +7919,18 @@
             0.082978,
             51237453,
             230622710
+          ],
+          [
+            1788383195799,
+            0.082978,
+            51237453,
+            230622710
           ]
         ]
       },
       "ether-fi": {
         "firstSeenAt": "2026-09-01T14:29:51.460Z",
-        "lastSeenAt": "2026-09-02T16:38:24.017Z",
+        "lastSeenAt": "2026-09-02T21:06:35.799Z",
         "points": [
           [
             1788272991460,
@@ -7565,12 +7979,18 @@
             0.550216,
             67754040,
             531515022
+          ],
+          [
+            1788383195799,
+            0.550216,
+            67754040,
+            531515022
           ]
         ]
       },
       "dogwifcoin": {
         "firstSeenAt": "2026-09-01T14:29:51.460Z",
-        "lastSeenAt": "2026-09-02T16:38:24.017Z",
+        "lastSeenAt": "2026-09-02T21:06:35.799Z",
         "points": [
           [
             1788272991460,
@@ -7619,12 +8039,18 @@
             0.198385,
             55865906,
             198509696
+          ],
+          [
+            1788383195799,
+            0.198385,
+            55865906,
+            198509696
           ]
         ]
       },
       "cash-cat": {
         "firstSeenAt": "2026-09-01T14:29:51.460Z",
-        "lastSeenAt": "2026-09-02T16:38:24.017Z",
+        "lastSeenAt": "2026-09-02T21:06:35.799Z",
         "points": [
           [
             1788272991460,
@@ -7673,12 +8099,18 @@
             0.255476,
             100322725,
             252228717
+          ],
+          [
+            1788383195799,
+            0.255476,
+            100322725,
+            252228717
           ]
         ]
       },
       "ethena-usde": {
         "firstSeenAt": "2026-09-01T14:29:51.460Z",
-        "lastSeenAt": "2026-09-02T16:38:24.017Z",
+        "lastSeenAt": "2026-09-02T21:06:35.799Z",
         "points": [
           [
             1788272991460,
@@ -7727,12 +8159,18 @@
             0.999366,
             105884155,
             4239123411
+          ],
+          [
+            1788383195799,
+            0.999366,
+            105884155,
+            4239123411
           ]
         ]
       },
       "usdgo": {
         "firstSeenAt": "2026-09-01T14:29:51.460Z",
-        "lastSeenAt": "2026-09-02T16:38:24.017Z",
+        "lastSeenAt": "2026-09-02T21:06:35.799Z",
         "points": [
           [
             1788272991460,
@@ -7781,12 +8219,18 @@
             1,
             51125156,
             1254855180
+          ],
+          [
+            1788383195799,
+            1,
+            51125156,
+            1254855180
           ]
         ]
       },
       "nvidia-robinhood-tokenized-stock": {
         "firstSeenAt": "2026-09-01T14:29:51.460Z",
-        "lastSeenAt": "2026-09-02T16:38:24.017Z",
+        "lastSeenAt": "2026-09-02T21:06:35.799Z",
         "points": [
           [
             1788272991460,
@@ -7835,12 +8279,18 @@
             227.36,
             57969468,
             14170055
+          ],
+          [
+            1788383195799,
+            227.36,
+            57969468,
+            14170055
           ]
         ]
       },
       "helium": {
         "firstSeenAt": "2026-09-01T14:29:51.460Z",
-        "lastSeenAt": "2026-09-02T16:38:24.017Z",
+        "lastSeenAt": "2026-09-02T21:06:35.799Z",
         "points": [
           [
             1788272991460,
@@ -7889,12 +8339,18 @@
             0.540218,
             25121594,
             100846555
+          ],
+          [
+            1788383195799,
+            0.540218,
+            25121594,
+            100846555
           ]
         ]
       },
       "pendle": {
         "firstSeenAt": "2026-09-01T14:29:51.460Z",
-        "lastSeenAt": "2026-09-02T16:38:24.017Z",
+        "lastSeenAt": "2026-09-02T21:06:35.799Z",
         "points": [
           [
             1788272991460,
@@ -7943,12 +8399,18 @@
             1.8,
             56044897,
             310587714
+          ],
+          [
+            1788383195799,
+            1.8,
+            56044897,
+            310587714
           ]
         ]
       },
       "pyth-network": {
         "firstSeenAt": "2026-09-01T14:29:51.460Z",
-        "lastSeenAt": "2026-09-02T16:38:24.017Z",
+        "lastSeenAt": "2026-09-02T21:06:35.799Z",
         "points": [
           [
             1788272991460,
@@ -7997,12 +8459,18 @@
             0.058438,
             77409553,
             460498435
+          ],
+          [
+            1788383195799,
+            0.058438,
+            77409553,
+            460498435
           ]
         ]
       },
       "endurance": {
         "firstSeenAt": "2026-09-01T19:25:20.444Z",
-        "lastSeenAt": "2026-09-02T16:38:24.017Z",
+        "lastSeenAt": "2026-09-02T21:06:35.799Z",
         "points": [
           [
             1788290720444,
@@ -8039,12 +8507,18 @@
             0.186894,
             82299052,
             20667003
+          ],
+          [
+            1788383195799,
+            0.186894,
+            82299052,
+            20667003
           ]
         ]
       },
       "falcon-finance-ff": {
         "firstSeenAt": "2026-09-01T19:25:20.444Z",
-        "lastSeenAt": "2026-09-02T16:38:24.017Z",
+        "lastSeenAt": "2026-09-02T21:06:35.799Z",
         "points": [
           [
             1788290720444,
@@ -8081,12 +8555,18 @@
             0.10788,
             42882475,
             330702196
+          ],
+          [
+            1788383195799,
+            0.10788,
+            42882475,
+            330702196
           ]
         ]
       },
       "thorchain": {
         "firstSeenAt": "2026-09-01T19:25:20.444Z",
-        "lastSeenAt": "2026-09-02T16:38:24.017Z",
+        "lastSeenAt": "2026-09-02T21:06:35.799Z",
         "points": [
           [
             1788290720444,
@@ -8123,12 +8603,18 @@
             0.472631,
             72883464,
             155437210
+          ],
+          [
+            1788383195799,
+            0.472631,
+            72883464,
+            155437210
           ]
         ]
       },
       "dex:robinhood:0x0e0d2c89a5a019fe1cf762e5e33187631dacc21b": {
         "firstSeenAt": "2026-09-01T19:25:20.444Z",
-        "lastSeenAt": "2026-09-02T16:38:24.017Z",
+        "lastSeenAt": "2026-09-02T21:06:35.799Z",
         "points": [
           [
             1788290720444,
@@ -8165,12 +8651,18 @@
             0.0272,
             3536774.98,
             27200335
+          ],
+          [
+            1788383195799,
+            0.03805,
+            4848120.09,
+            38054290
           ]
         ]
       },
       "sei-network": {
         "firstSeenAt": "2026-09-01T22:38:10.569Z",
-        "lastSeenAt": "2026-09-02T16:38:24.017Z",
+        "lastSeenAt": "2026-09-02T21:06:35.799Z",
         "points": [
           [
             1788302290569,
@@ -8201,12 +8693,18 @@
             0.04815837,
             56481236,
             324339135
+          ],
+          [
+            1788383195799,
+            0.04815837,
+            56481236,
+            324339135
           ]
         ]
       },
       "dex:robinhood:0xbd6638ba50ce2f139d4f30eeaa03bd2533bb8e0c": {
         "firstSeenAt": "2026-09-01T22:38:10.569Z",
-        "lastSeenAt": "2026-09-02T16:38:24.017Z",
+        "lastSeenAt": "2026-09-02T21:06:35.799Z",
         "points": [
           [
             1788302290569,
@@ -8237,12 +8735,18 @@
             0.0002215,
             5124371.78,
             221595
+          ],
+          [
+            1788383195799,
+            0.00009636,
+            5178234.08,
+            96367
           ]
         ]
       },
       "seeker": {
         "firstSeenAt": "2026-09-02T01:47:27.252Z",
-        "lastSeenAt": "2026-09-02T16:38:24.017Z",
+        "lastSeenAt": "2026-09-02T21:06:35.799Z",
         "points": [
           [
             1788313647252,
@@ -8267,12 +8771,18 @@
             0.02465278,
             88928979,
             171935827
+          ],
+          [
+            1788383195799,
+            0.02465278,
+            88928979,
+            171935827
           ]
         ]
       },
       "celestia": {
         "firstSeenAt": "2026-09-02T01:47:27.252Z",
-        "lastSeenAt": "2026-09-02T16:38:24.017Z",
+        "lastSeenAt": "2026-09-02T21:06:35.799Z",
         "points": [
           [
             1788313647252,
@@ -8297,12 +8807,18 @@
             0.351952,
             45196582,
             339336503
+          ],
+          [
+            1788383195799,
+            0.351952,
+            45196582,
+            339336503
           ]
         ]
       },
       "internet-computer": {
         "firstSeenAt": "2026-09-02T01:47:27.252Z",
-        "lastSeenAt": "2026-09-02T16:38:24.017Z",
+        "lastSeenAt": "2026-09-02T21:06:35.799Z",
         "points": [
           [
             1788313647252,
@@ -8327,12 +8843,18 @@
             2.49,
             62204418,
             1383367972
+          ],
+          [
+            1788383195799,
+            2.49,
+            62204418,
+            1383367972
           ]
         ]
       },
       "dex:solana:h76u9jttbmtef5jgmqxm2ww6xqmxpvtdvyer4rvkpump": {
         "firstSeenAt": "2026-09-02T04:41:09.324Z",
-        "lastSeenAt": "2026-09-02T16:38:24.017Z",
+        "lastSeenAt": "2026-09-02T21:06:35.799Z",
         "points": [
           [
             1788324069324,
@@ -8351,12 +8873,18 @@
             0.0004809,
             4913629.27,
             476690
+          ],
+          [
+            1788383195799,
+            0.0006359,
+            5333060.35,
+            630426
           ]
         ]
       },
       "threshold-network-token": {
         "firstSeenAt": "2026-09-02T11:25:05.701Z",
-        "lastSeenAt": "2026-09-02T16:38:24.017Z",
+        "lastSeenAt": "2026-09-02T21:06:35.799Z",
         "points": [
           [
             1788348305701,
@@ -8369,12 +8897,18 @@
             0.00514268,
             142961213,
             57573838
+          ],
+          [
+            1788383195799,
+            0.00514268,
+            142961213,
+            57573838
           ]
         ]
       },
       "lagrange": {
         "firstSeenAt": "2026-09-02T11:25:05.701Z",
-        "lastSeenAt": "2026-09-02T16:38:24.017Z",
+        "lastSeenAt": "2026-09-02T21:06:35.799Z",
         "points": [
           [
             1788348305701,
@@ -8387,12 +8921,18 @@
             0.064291,
             80054393,
             12413235
+          ],
+          [
+            1788383195799,
+            0.064291,
+            80054393,
+            12413235
           ]
         ]
       },
       "lido-dao": {
         "firstSeenAt": "2026-09-02T11:25:05.701Z",
-        "lastSeenAt": "2026-09-02T16:38:24.017Z",
+        "lastSeenAt": "2026-09-02T21:06:35.799Z",
         "points": [
           [
             1788348305701,
@@ -8405,12 +8945,18 @@
             0.363049,
             40705977,
             303082105
+          ],
+          [
+            1788383195799,
+            0.363049,
+            40705977,
+            303082105
           ]
         ]
       },
       "book-of-meme": {
         "firstSeenAt": "2026-09-02T11:25:05.701Z",
-        "lastSeenAt": "2026-09-02T16:38:24.017Z",
+        "lastSeenAt": "2026-09-02T21:06:35.799Z",
         "points": [
           [
             1788348305701,
@@ -8423,12 +8969,18 @@
             0.0008872,
             45247779,
             61299456
+          ],
+          [
+            1788383195799,
+            0.0008872,
+            45247779,
+            61299456
           ]
         ]
       },
       "sandisk-bstocks-tokenized-stock": {
         "firstSeenAt": "2026-09-02T11:25:05.701Z",
-        "lastSeenAt": "2026-09-02T16:38:24.017Z",
+        "lastSeenAt": "2026-09-02T21:06:35.799Z",
         "points": [
           [
             1788348305701,
@@ -8441,12 +8993,18 @@
             1544.19,
             35988760,
             38373685
+          ],
+          [
+            1788383195799,
+            1544.19,
+            35988760,
+            38373685
           ]
         ]
       },
       "rain": {
         "firstSeenAt": "2026-09-02T11:25:05.701Z",
-        "lastSeenAt": "2026-09-02T16:38:24.017Z",
+        "lastSeenAt": "2026-09-02T21:06:35.799Z",
         "points": [
           [
             1788348305701,
@@ -8459,12 +9017,18 @@
             0.01678467,
             36429595,
             11908433674
+          ],
+          [
+            1788383195799,
+            0.01678467,
+            36429595,
+            11908433674
           ]
         ]
       },
       "morpho": {
         "firstSeenAt": "2026-09-02T11:25:05.701Z",
-        "lastSeenAt": "2026-09-02T16:38:24.017Z",
+        "lastSeenAt": "2026-09-02T21:06:35.799Z",
         "points": [
           [
             1788348305701,
@@ -8477,12 +9041,18 @@
             2.51,
             37927047,
             1731981275
+          ],
+          [
+            1788383195799,
+            2.51,
+            37927047,
+            1731981275
           ]
         ]
       },
       "spx6900": {
         "firstSeenAt": "2026-09-02T11:25:05.701Z",
-        "lastSeenAt": "2026-09-02T16:38:24.017Z",
+        "lastSeenAt": "2026-09-02T21:06:35.799Z",
         "points": [
           [
             1788348305701,
@@ -8495,12 +9065,18 @@
             0.549711,
             9509372,
             512678074
+          ],
+          [
+            1788383195799,
+            0.549711,
+            9509372,
+            512678074
           ]
         ]
       },
       "syrup": {
         "firstSeenAt": "2026-09-02T11:25:05.701Z",
-        "lastSeenAt": "2026-09-02T16:38:24.017Z",
+        "lastSeenAt": "2026-09-02T21:06:35.799Z",
         "points": [
           [
             1788348305701,
@@ -8513,15 +9089,27 @@
             0.211516,
             26655737,
             247027368
+          ],
+          [
+            1788383195799,
+            0.211516,
+            26655737,
+            247027368
           ]
         ]
       },
       "akedo": {
         "firstSeenAt": "2026-09-02T16:38:24.017Z",
-        "lastSeenAt": "2026-09-02T16:38:24.017Z",
+        "lastSeenAt": "2026-09-02T21:06:35.799Z",
         "points": [
           [
             1788367104017,
+            0.01238177,
+            71367748,
+            282947885
+          ],
+          [
+            1788383195799,
             0.01238177,
             71367748,
             282947885
@@ -8530,10 +9118,16 @@
       },
       "bubblemaps": {
         "firstSeenAt": "2026-09-02T16:38:24.017Z",
-        "lastSeenAt": "2026-09-02T16:38:24.017Z",
+        "lastSeenAt": "2026-09-02T21:06:35.799Z",
         "points": [
           [
             1788367104017,
+            0.01991355,
+            46885697,
+            14347228
+          ],
+          [
+            1788383195799,
             0.01991355,
             46885697,
             14347228
@@ -8542,10 +9136,16 @@
       },
       "niu-lai": {
         "firstSeenAt": "2026-09-02T16:38:24.017Z",
-        "lastSeenAt": "2026-09-02T16:38:24.017Z",
+        "lastSeenAt": "2026-09-02T21:06:35.799Z",
         "points": [
           [
             1788367104017,
+            0.072456,
+            39484870,
+            72462629
+          ],
+          [
+            1788383195799,
             0.072456,
             39484870,
             72462629
@@ -8554,10 +9154,16 @@
       },
       "prometeus": {
         "firstSeenAt": "2026-09-02T16:38:24.017Z",
-        "lastSeenAt": "2026-09-02T16:38:24.017Z",
+        "lastSeenAt": "2026-09-02T21:06:35.799Z",
         "points": [
           [
             1788367104017,
+            4.84,
+            38575864,
+            88444420
+          ],
+          [
+            1788383195799,
             4.84,
             38575864,
             88444420
@@ -8566,10 +9172,16 @@
       },
       "usd-coinvertible": {
         "firstSeenAt": "2026-09-02T16:38:24.017Z",
-        "lastSeenAt": "2026-09-02T16:38:24.017Z",
+        "lastSeenAt": "2026-09-02T21:06:35.799Z",
         "points": [
           [
             1788367104017,
+            0.999957,
+            37561388,
+            12545638
+          ],
+          [
+            1788383195799,
             0.999957,
             37561388,
             12545638
@@ -8578,97 +9190,115 @@
       },
       "algorand": {
         "firstSeenAt": "2026-09-02T16:38:24.017Z",
-        "lastSeenAt": "2026-09-02T16:38:24.017Z",
+        "lastSeenAt": "2026-09-02T21:06:35.799Z",
         "points": [
           [
             1788367104017,
             0.091567,
             34875622,
             827276046
-          ]
-        ]
-      },
-      "dex:solana:6dqocvgfwqybnvrf8srja5swvn7rrpfnzexaoejlpump": {
-        "firstSeenAt": "2026-09-02T16:38:24.017Z",
-        "lastSeenAt": "2026-09-02T16:38:24.017Z",
-        "points": [
+          ],
           [
-            1788367104017,
-            0.0003052,
-            1253051.63,
-            302914
+            1788383195799,
+            0.091567,
+            34875622,
+            827276046
           ]
         ]
       },
       "dex:robinhood:0x5f038759f6de38fd3a85c0440daff1240238bac8": {
         "firstSeenAt": "2026-09-02T16:38:24.017Z",
-        "lastSeenAt": "2026-09-02T16:38:24.017Z",
+        "lastSeenAt": "2026-09-02T21:06:35.799Z",
         "points": [
           [
             1788367104017,
             0.06251,
             812739.49,
             2570483
+          ],
+          [
+            1788383195799,
+            0.0522,
+            1219986.54,
+            2146516
           ]
         ]
       },
       "dex:solana:dgxnfqdqqlxcdrnzrbca9autx2cobj7nx4dpjmdvpump": {
         "firstSeenAt": "2026-09-02T16:38:24.017Z",
-        "lastSeenAt": "2026-09-02T16:38:24.017Z",
+        "lastSeenAt": "2026-09-02T21:06:35.799Z",
         "points": [
           [
             1788367104017,
             0.0002422,
             495268.25,
             239288
+          ],
+          [
+            1788383195799,
+            0.0002629,
+            1352389.11,
+            259754
           ]
         ]
       },
       "dex:robinhood:0xe9ae0b4ee3afc555cca8c54a974c06f4f0a41e18": {
         "firstSeenAt": "2026-09-02T16:38:24.017Z",
-        "lastSeenAt": "2026-09-02T16:38:24.017Z",
+        "lastSeenAt": "2026-09-02T21:06:35.799Z",
         "points": [
           [
             1788367104017,
             0.0002803,
             954305.41,
             280389
+          ],
+          [
+            1788383195799,
+            0.000309,
+            1002844.04,
+            309019
           ]
         ]
       },
       "dex:solana:hmjdgky11u77hpbss6d8sjnpypd5b6fwgsvdj58jpump": {
         "firstSeenAt": "2026-09-02T16:38:24.017Z",
-        "lastSeenAt": "2026-09-02T16:38:24.017Z",
+        "lastSeenAt": "2026-09-02T21:06:35.799Z",
         "points": [
           [
             1788367104017,
             0.002054,
             6413308.14,
             2033100
+          ],
+          [
+            1788383195799,
+            0.0008212,
+            7851693.09,
+            812610
           ]
         ]
       },
-      "dex:solana:5ehz51kdjgqmq7sh287dihskz2gkjziwlupfpdrvpump": {
-        "firstSeenAt": "2026-09-02T16:38:24.017Z",
-        "lastSeenAt": "2026-09-02T16:38:24.017Z",
+      "dex:robinhood:0xd35bf82b1b324b46b566c49e0a9cda8ef04556b8": {
+        "firstSeenAt": "2026-09-02T21:06:35.799Z",
+        "lastSeenAt": "2026-09-02T21:06:35.799Z",
         "points": [
           [
-            1788367104017,
-            0.0005276,
-            1505788.36,
-            518599
+            1788383195799,
+            0.01169,
+            25270839.35,
+            11637454
           ]
         ]
       },
-      "dex:solana:7gihstjv9zmvbeafu85sxrmuaoslyfjvrurbpqmvpump": {
-        "firstSeenAt": "2026-09-02T16:38:24.017Z",
-        "lastSeenAt": "2026-09-02T16:38:24.017Z",
+      "dex:solana:jaun3rkzr9kskdmbch83vxgmtvkbobulrawz5g3upump": {
+        "firstSeenAt": "2026-09-02T21:06:35.799Z",
+        "lastSeenAt": "2026-09-02T21:06:35.799Z",
         "points": [
           [
-            1788367104017,
-            0.0003608,
-            1037263.16,
-            351191
+            1788383195799,
+            0.0003008,
+            1260341.44,
+            297508
           ]
         ]
       }
@@ -8676,7 +9306,7 @@
     "categories": {
       "smart-contract-platform": {
         "firstSeenAt": "2026-09-01T14:29:51.460Z",
-        "lastSeenAt": "2026-09-02T16:38:24.017Z",
+        "lastSeenAt": "2026-09-02T21:06:35.799Z",
         "points": [
           [
             1788272991460,
@@ -8725,12 +9355,18 @@
             59665405388.945114,
             2253290570879.316,
             -0.21104520560326878
+          ],
+          [
+            1788383195799,
+            59665405388.945114,
+            2253290570879.316,
+            -0.21104520560326878
           ]
         ]
       },
       "layer-1": {
         "firstSeenAt": "2026-09-01T14:29:51.460Z",
-        "lastSeenAt": "2026-09-02T16:38:24.017Z",
+        "lastSeenAt": "2026-09-02T21:06:35.799Z",
         "points": [
           [
             1788272991460,
@@ -8779,12 +9415,18 @@
             57175604194.7839,
             2222455721030.1475,
             -0.20722807067540322
+          ],
+          [
+            1788383195799,
+            57175604194.7839,
+            2222455721030.1475,
+            -0.20722807067540322
           ]
         ]
       },
       "proof-of-work-pow": {
         "firstSeenAt": "2026-09-01T14:29:51.460Z",
-        "lastSeenAt": "2026-09-02T16:38:24.017Z",
+        "lastSeenAt": "2026-09-02T21:06:35.799Z",
         "points": [
           [
             1788272991460,
@@ -8833,12 +9475,18 @@
             31747336007.75521,
             1605696422237.5317,
             -0.08328230249728942
+          ],
+          [
+            1788383195799,
+            31747336007.75521,
+            1605696422237.5317,
+            -0.08328230249728942
           ]
         ]
       },
       "world-liberty-financial-portfolio": {
         "firstSeenAt": "2026-09-01T14:29:51.460Z",
-        "lastSeenAt": "2026-09-02T16:38:24.017Z",
+        "lastSeenAt": "2026-09-02T21:06:35.799Z",
         "points": [
           [
             1788272991460,
@@ -8887,12 +9535,18 @@
             86821101914.82472,
             603671961537.8408,
             -0.09625497310225255
+          ],
+          [
+            1788383195799,
+            86821101914.82472,
+            603671961537.8408,
+            -0.09625497310225255
           ]
         ]
       },
       "proof-of-stake-pos": {
         "firstSeenAt": "2026-09-01T14:29:51.460Z",
-        "lastSeenAt": "2026-09-02T16:38:24.017Z",
+        "lastSeenAt": "2026-09-02T21:06:35.799Z",
         "points": [
           [
             1788272991460,
@@ -8941,12 +9595,18 @@
             22719029344.080254,
             520910515520.275,
             -0.2913722975563458
+          ],
+          [
+            1788383195799,
+            22719029344.080254,
+            520910515520.275,
+            -0.2913722975563458
           ]
         ]
       },
       "made-in-usa": {
         "firstSeenAt": "2026-09-01T14:29:51.460Z",
-        "lastSeenAt": "2026-09-02T16:38:24.017Z",
+        "lastSeenAt": "2026-09-02T21:06:35.799Z",
         "points": [
           [
             1788272991460,
@@ -8995,12 +9655,18 @@
             27129045871.34041,
             318885138906.71704,
             -0.8592339556270617
+          ],
+          [
+            1788383195799,
+            27129045871.34041,
+            318885138906.71704,
+            -0.8592339556270617
           ]
         ]
       },
       "stablecoins": {
         "firstSeenAt": "2026-09-01T14:29:51.460Z",
-        "lastSeenAt": "2026-09-02T16:38:24.017Z",
+        "lastSeenAt": "2026-09-02T21:06:35.799Z",
         "points": [
           [
             1788272991460,
@@ -9049,12 +9715,18 @@
             72845143979.4304,
             289992607415.1894,
             0.15237672096035645
+          ],
+          [
+            1788383195799,
+            72845143979.4304,
+            289992607415.1894,
+            0.15237672096035645
           ]
         ]
       },
       "usd-stablecoin": {
         "firstSeenAt": "2026-09-01T14:29:51.460Z",
-        "lastSeenAt": "2026-09-02T16:38:24.017Z",
+        "lastSeenAt": "2026-09-02T21:06:35.799Z",
         "points": [
           [
             1788272991460,
@@ -9103,12 +9775,18 @@
             72746288715.67442,
             287275844086.6506,
             0.1215651246579469
+          ],
+          [
+            1788383195799,
+            72746288715.67442,
+            287275844086.6506,
+            0.1215651246579469
           ]
         ]
       },
       "fiat-backed-stablecoin": {
         "firstSeenAt": "2026-09-01T14:29:51.460Z",
-        "lastSeenAt": "2026-09-02T16:38:24.017Z",
+        "lastSeenAt": "2026-09-02T21:06:35.799Z",
         "points": [
           [
             1788272991460,
@@ -9157,12 +9835,18 @@
             71168411040.52078,
             276615925440.44495,
             0.15625325014219177
+          ],
+          [
+            1788383195799,
+            71168411040.52078,
+            276615925440.44495,
+            0.15625325014219177
           ]
         ]
       },
       "exchange-based-tokens": {
         "firstSeenAt": "2026-09-01T14:29:51.460Z",
-        "lastSeenAt": "2026-09-02T16:38:24.017Z",
+        "lastSeenAt": "2026-09-02T21:06:35.799Z",
         "points": [
           [
             1788272991460,
@@ -9211,12 +9895,18 @@
             4298116607.76739,
             150569026369.52524,
             0.09278289592041608
+          ],
+          [
+            1788383195799,
+            4298116607.76739,
+            150569026369.52524,
+            0.09278289592041608
           ]
         ]
       },
       "made-in-china": {
         "firstSeenAt": "2026-09-01T14:29:51.460Z",
-        "lastSeenAt": "2026-09-02T16:38:24.017Z",
+        "lastSeenAt": "2026-09-02T21:06:35.799Z",
         "points": [
           [
             1788272991460,
@@ -9265,12 +9955,18 @@
             1571233625.2221522,
             134860063328.43893,
             0.39917741449052513
+          ],
+          [
+            1788383195799,
+            1571233625.2221522,
+            134860063328.43893,
+            0.39917741449052513
           ]
         ]
       },
       "alleged-sec-securities": {
         "firstSeenAt": "2026-09-01T14:29:51.460Z",
-        "lastSeenAt": "2026-09-02T16:38:24.017Z",
+        "lastSeenAt": "2026-09-02T21:06:35.799Z",
         "points": [
           [
             1788272991460,
@@ -9319,12 +10015,18 @@
             2170433649.5783095,
             133834458546.3426,
             0.2543289984833638
+          ],
+          [
+            1788383195799,
+            2170433649.5783095,
+            133834458546.3426,
+            0.2543289984833638
           ]
         ]
       },
       "centralized-exchange-token-cex": {
         "firstSeenAt": "2026-09-01T14:29:51.460Z",
-        "lastSeenAt": "2026-09-02T16:38:24.017Z",
+        "lastSeenAt": "2026-09-02T21:06:35.799Z",
         "points": [
           [
             1788272991460,
@@ -9373,12 +10075,18 @@
             1120287402.1031642,
             119867769718.4918,
             0.12447386708366107
+          ],
+          [
+            1788383195799,
+            1120287402.1031642,
+            119867769718.4918,
+            0.12447386708366107
           ]
         ]
       },
       "base-native": {
         "firstSeenAt": "2026-09-01T14:29:51.460Z",
-        "lastSeenAt": "2026-09-02T16:38:24.017Z",
+        "lastSeenAt": "2026-09-02T21:06:35.799Z",
         "points": [
           [
             1788272991460,
@@ -9427,12 +10135,18 @@
             18063793787.769196,
             109618412537.71043,
             0.00806730255375632
+          ],
+          [
+            1788383195799,
+            18063793787.769196,
+            109618412537.71043,
+            0.00806730255375632
           ]
         ]
       },
       "decentralized-finance-defi": {
         "firstSeenAt": "2026-09-01T14:29:51.460Z",
-        "lastSeenAt": "2026-09-02T16:38:24.017Z",
+        "lastSeenAt": "2026-09-02T21:06:35.799Z",
         "points": [
           [
             1788272991460,
@@ -9481,12 +10195,18 @@
             6409822301.296949,
             74409338079.23979,
             0.13993866733384008
+          ],
+          [
+            1788383195799,
+            6409822301.296949,
+            74409338079.23979,
+            0.13993866733384008
           ]
         ]
       },
       "mica-compliant-stablecoin": {
         "firstSeenAt": "2026-09-01T14:29:51.460Z",
-        "lastSeenAt": "2026-09-02T16:38:24.017Z",
+        "lastSeenAt": "2026-09-02T21:06:35.799Z",
         "points": [
           [
             1788272991460,
@@ -9535,12 +10255,18 @@
             14924119132.146296,
             74411411964.01382,
             0.39848604622893213
+          ],
+          [
+            1788383195799,
+            14924119132.146296,
+            74411411964.01382,
+            0.39848604622893213
           ]
         ]
       },
       "genius-act-compliant-stablecoin": {
         "firstSeenAt": "2026-09-01T14:29:51.460Z",
-        "lastSeenAt": "2026-09-02T16:38:24.017Z",
+        "lastSeenAt": "2026-09-02T21:06:35.799Z",
         "points": [
           [
             1788272991460,
@@ -9589,12 +10315,18 @@
             14950743723.493189,
             73899942241.6472,
             0.4072110250126266
+          ],
+          [
+            1788383195799,
+            14950743723.493189,
+            73899942241.6472,
+            0.4072110250126266
           ]
         ]
       },
       "real-world-assets-rwa": {
         "firstSeenAt": "2026-09-01T14:29:51.460Z",
-        "lastSeenAt": "2026-09-02T16:38:24.017Z",
+        "lastSeenAt": "2026-09-02T21:06:35.799Z",
         "points": [
           [
             1788272991460,
@@ -9643,12 +10375,18 @@
             2534583816.167041,
             68873406784.85753,
             -0.3577523123623448
+          ],
+          [
+            1788383195799,
+            2534583816.167041,
+            68873406784.85753,
+            -0.3577523123623448
           ]
         ]
       },
       "coinlist-launchpad": {
         "firstSeenAt": "2026-09-01T14:29:51.460Z",
-        "lastSeenAt": "2026-09-02T16:38:24.017Z",
+        "lastSeenAt": "2026-09-02T21:06:35.799Z",
         "points": [
           [
             1788272991460,
@@ -9697,12 +10435,18 @@
             4383761467.741943,
             67354390600.13254,
             -1.6831140710898542
+          ],
+          [
+            1788383195799,
+            4383761467.741943,
+            67354390600.13254,
+            -1.6831140710898542
           ]
         ]
       },
       "tokenized-products": {
         "firstSeenAt": "2026-09-01T14:29:51.460Z",
-        "lastSeenAt": "2026-09-02T16:38:24.017Z",
+        "lastSeenAt": "2026-09-02T21:06:35.799Z",
         "points": [
           [
             1788272991460,
@@ -9751,12 +10495,18 @@
             1592062333.609214,
             46315493800.28033,
             0.1017623911969521
+          ],
+          [
+            1788383195799,
+            1592062333.609214,
+            46315493800.28033,
+            0.1017623911969521
           ]
         ]
       },
       "privacy": {
         "firstSeenAt": "2026-09-01T14:29:51.460Z",
-        "lastSeenAt": "2026-09-02T16:38:24.017Z",
+        "lastSeenAt": "2026-09-02T21:06:35.799Z",
         "points": [
           [
             1788272991460,
@@ -9805,12 +10555,18 @@
             1800659774.9852097,
             41333969709.312744,
             -1.3677404936855084
+          ],
+          [
+            1788383195799,
+            1800659774.9852097,
+            41333969709.312744,
+            -1.3677404936855084
           ]
         ]
       },
       "governance": {
         "firstSeenAt": "2026-09-01T14:29:51.460Z",
-        "lastSeenAt": "2026-09-02T16:38:24.017Z",
+        "lastSeenAt": "2026-09-02T21:06:35.799Z",
         "points": [
           [
             1788272991460,
@@ -9859,12 +10615,18 @@
             4734192885.42562,
             39927144059.85278,
             -0.10657022059706829
+          ],
+          [
+            1788383195799,
+            4734192885.42562,
+            39927144059.85278,
+            -0.10657022059706829
           ]
         ]
       },
       "decentralized-exchange": {
         "firstSeenAt": "2026-09-01T14:29:51.460Z",
-        "lastSeenAt": "2026-09-02T16:38:24.017Z",
+        "lastSeenAt": "2026-09-02T21:06:35.799Z",
         "points": [
           [
             1788272991460,
@@ -9913,12 +10675,18 @@
             3307099518.6326256,
             32074871768.39428,
             -0.010496951811371558
+          ],
+          [
+            1788383195799,
+            3307099518.6326256,
+            32074871768.39428,
+            -0.010496951811371558
           ]
         ]
       },
       "meme-token": {
         "firstSeenAt": "2026-09-01T14:29:51.460Z",
-        "lastSeenAt": "2026-09-02T16:38:24.017Z",
+        "lastSeenAt": "2026-09-02T21:06:35.799Z",
         "points": [
           [
             1788272991460,
@@ -9967,12 +10735,18 @@
             2368217778.608828,
             30781538722.350132,
             -1.3744031905304903
+          ],
+          [
+            1788383195799,
+            2368217778.608828,
+            30781538722.350132,
+            -1.3744031905304903
           ]
         ]
       },
       "privacy-coins": {
         "firstSeenAt": "2026-09-01T14:29:51.460Z",
-        "lastSeenAt": "2026-09-02T16:38:24.017Z",
+        "lastSeenAt": "2026-09-02T21:06:35.799Z",
         "points": [
           [
             1788272991460,
@@ -10021,12 +10795,18 @@
             676440265.4670556,
             23879089783.206287,
             -0.9634177128351598
+          ],
+          [
+            1788383195799,
+            676440265.4670556,
+            23879089783.206287,
+            -0.9634177128351598
           ]
         ]
       },
       "decentralized-perpetuals": {
         "firstSeenAt": "2026-09-01T14:29:51.460Z",
-        "lastSeenAt": "2026-09-02T16:38:24.017Z",
+        "lastSeenAt": "2026-09-02T21:06:35.799Z",
         "points": [
           [
             1788272991460,
@@ -10075,12 +10855,18 @@
             1666657008.9484959,
             23571771597.605568,
             -0.08326883608632926
+          ],
+          [
+            1788383195799,
+            1666657008.9484959,
+            23571771597.605568,
+            -0.08326883608632926
           ]
         ]
       },
       "infrastructure": {
         "firstSeenAt": "2026-09-01T14:29:51.460Z",
-        "lastSeenAt": "2026-09-02T16:38:24.017Z",
+        "lastSeenAt": "2026-09-02T21:06:35.799Z",
         "points": [
           [
             1788272991460,
@@ -10129,12 +10915,18 @@
             1788279686.427659,
             22244204677.940937,
             -0.22027846632514544
+          ],
+          [
+            1788383195799,
+            1788279686.427659,
+            22244204677.940937,
+            -0.22027846632514544
           ]
         ]
       },
       "tokenized-private-credit": {
         "firstSeenAt": "2026-09-01T14:29:51.460Z",
-        "lastSeenAt": "2026-09-02T16:38:24.017Z",
+        "lastSeenAt": "2026-09-02T21:06:35.799Z",
         "points": [
           [
             1788272991460,
@@ -10183,12 +10975,18 @@
             16990543.512471933,
             22393966654.077427,
             0.3476339299605067
+          ],
+          [
+            1788383195799,
+            16990543.512471933,
+            22393966654.077427,
+            0.3476339299605067
           ]
         ]
       },
       "decentralized-derivatives": {
         "firstSeenAt": "2026-09-01T14:29:51.460Z",
-        "lastSeenAt": "2026-09-02T16:38:24.017Z",
+        "lastSeenAt": "2026-09-02T21:06:35.799Z",
         "points": [
           [
             1788272991460,
@@ -10237,12 +11035,18 @@
             1466098662.1894624,
             20506752698.25087,
             -0.5869193749713743
+          ],
+          [
+            1788383195799,
+            1466098662.1894624,
+            20506752698.25087,
+            -0.5869193749713743
           ]
         ]
       },
       "binance-alpha-spotlight": {
         "firstSeenAt": "2026-09-01T14:29:51.460Z",
-        "lastSeenAt": "2026-09-02T16:38:24.017Z",
+        "lastSeenAt": "2026-09-02T21:06:35.799Z",
         "points": [
           [
             1788272991460,
@@ -10291,12 +11095,18 @@
             1656080769.212347,
             18066811339.822598,
             0.6642154648243421
+          ],
+          [
+            1788383195799,
+            1656080769.212347,
+            18066811339.822598,
+            0.6642154648243421
           ]
         ]
       },
       "zero-knowledge-zk": {
         "firstSeenAt": "2026-09-01T14:29:51.460Z",
-        "lastSeenAt": "2026-09-02T16:38:24.017Z",
+        "lastSeenAt": "2026-09-02T21:06:35.799Z",
         "points": [
           [
             1788272991460,
@@ -10345,12 +11155,18 @@
             921279100.8946056,
             17158668192.64213,
             -2.502690547539229
+          ],
+          [
+            1788383195799,
+            921279100.8946056,
+            17158668192.64213,
+            -2.502690547539229
           ]
         ]
       },
       "dog-themed-coins": {
         "firstSeenAt": "2026-09-01T14:29:51.460Z",
-        "lastSeenAt": "2026-09-02T16:38:24.017Z",
+        "lastSeenAt": "2026-09-02T21:06:35.799Z",
         "points": [
           [
             1788272991460,
@@ -10399,12 +11215,18 @@
             796709410.6092288,
             17311217666.50691,
             -0.3434928343683558
+          ],
+          [
+            1788383195799,
+            796709410.6092288,
+            17311217666.50691,
+            -0.3434928343683558
           ]
         ]
       },
       "artificial-intelligence": {
         "firstSeenAt": "2026-09-01T14:29:51.460Z",
-        "lastSeenAt": "2026-09-02T16:38:24.017Z",
+        "lastSeenAt": "2026-09-02T21:06:35.799Z",
         "points": [
           [
             1788272991460,
@@ -10453,12 +11275,18 @@
             1441036768.7877164,
             15647193257.301607,
             -1.0741445289542155
+          ],
+          [
+            1788383195799,
+            1441036768.7877164,
+            15647193257.301607,
+            -1.0741445289542155
           ]
         ]
       },
       "4chan-themed": {
         "firstSeenAt": "2026-09-01T14:29:51.460Z",
-        "lastSeenAt": "2026-09-02T16:38:24.017Z",
+        "lastSeenAt": "2026-09-02T21:06:35.799Z",
         "points": [
           [
             1788272991460,
@@ -10507,12 +11335,18 @@
             934398860.1660126,
             15609854910.341185,
             -0.315033190099652
+          ],
+          [
+            1788383195799,
+            934398860.1660126,
+            15609854910.341185,
+            -0.315033190099652
           ]
         ]
       },
       "quantum-resistant": {
         "firstSeenAt": "2026-09-01T14:29:51.460Z",
-        "lastSeenAt": "2026-09-02T16:38:24.017Z",
+        "lastSeenAt": "2026-09-02T21:06:35.799Z",
         "points": [
           [
             1788272991460,
@@ -10561,12 +11395,18 @@
             595596969.9265649,
             15043876021.334852,
             -2.4451544806648204
+          ],
+          [
+            1788383195799,
+            595596969.9265649,
+            15043876021.334852,
+            -2.4451544806648204
           ]
         ]
       },
       "privacy-infrastructure": {
         "firstSeenAt": "2026-09-01T14:29:51.460Z",
-        "lastSeenAt": "2026-09-02T16:38:24.017Z",
+        "lastSeenAt": "2026-09-02T21:06:35.799Z",
         "points": [
           [
             1788272991460,
@@ -10615,12 +11455,18 @@
             765944622.3880508,
             12871591571.295025,
             -2.5060765094530013
+          ],
+          [
+            1788383195799,
+            765944622.3880508,
+            12871591571.295025,
+            -2.5060765094530013
           ]
         ]
       },
       "elon-musk-inspired-coins": {
         "firstSeenAt": "2026-09-01T14:29:51.460Z",
-        "lastSeenAt": "2026-09-02T16:38:24.017Z",
+        "lastSeenAt": "2026-09-02T21:06:35.799Z",
         "points": [
           [
             1788272991460,
@@ -10669,12 +11515,18 @@
             579583814.4526304,
             12807252886.7636,
             -0.4160507366327049
+          ],
+          [
+            1788383195799,
+            579583814.4526304,
+            12807252886.7636,
+            -0.4160507366327049
           ]
         ]
       },
       "gambling": {
         "firstSeenAt": "2026-09-01T14:29:51.460Z",
-        "lastSeenAt": "2026-09-02T16:38:24.017Z",
+        "lastSeenAt": "2026-09-02T21:06:35.799Z",
         "points": [
           [
             1788272991460,
@@ -10723,12 +11575,18 @@
             41946090.06006151,
             12478787632.77502,
             1.5096644928113097
+          ],
+          [
+            1788383195799,
+            41946090.06006151,
+            12478787632.77502,
+            1.5096644928113097
           ]
         ]
       },
       "decentralized-options": {
         "firstSeenAt": "2026-09-01T14:29:51.460Z",
-        "lastSeenAt": "2026-09-02T16:38:24.017Z",
+        "lastSeenAt": "2026-09-02T21:06:35.799Z",
         "points": [
           [
             1788272991460,
@@ -10777,12 +11635,18 @@
             40393201.60870022,
             12067601179.469465,
             1.3960763115691717
+          ],
+          [
+            1788383195799,
+            40393201.60870022,
+            12067601179.469465,
+            1.3960763115691717
           ]
         ]
       },
       "prediction-markets": {
         "firstSeenAt": "2026-09-01T14:29:51.460Z",
-        "lastSeenAt": "2026-09-02T16:38:24.017Z",
+        "lastSeenAt": "2026-09-02T21:06:35.799Z",
         "points": [
           [
             1788272991460,
@@ -10831,12 +11695,18 @@
             42015450.564484715,
             11990424712.599028,
             1.3797183838055664
+          ],
+          [
+            1788383195799,
+            42015450.564484715,
+            11990424712.599028,
+            1.3797183838055664
           ]
         ]
       },
       "rwa-protocol": {
         "firstSeenAt": "2026-09-01T14:29:51.460Z",
-        "lastSeenAt": "2026-09-02T16:38:24.017Z",
+        "lastSeenAt": "2026-09-02T21:06:35.799Z",
         "points": [
           [
             1788272991460,
@@ -10885,12 +11755,18 @@
             557280023.282947,
             11127159422.085451,
             -1.5746556603545367
+          ],
+          [
+            1788383195799,
+            557280023.282947,
+            11127159422.085451,
+            -1.5746556603545367
           ]
         ]
       },
       "chain-abstraction": {
         "firstSeenAt": "2026-09-01T14:29:51.460Z",
-        "lastSeenAt": "2026-09-02T16:38:24.017Z",
+        "lastSeenAt": "2026-09-02T21:06:35.799Z",
         "points": [
           [
             1788272991460,
@@ -10939,12 +11815,18 @@
             659995841.2337905,
             10912807434.419765,
             -2.6444327069897224
+          ],
+          [
+            1788383195799,
+            659995841.2337905,
+            10912807434.419765,
+            -2.6444327069897224
           ]
         ]
       },
       "tokenized-treasuries": {
         "firstSeenAt": "2026-09-01T14:29:51.460Z",
-        "lastSeenAt": "2026-09-02T16:38:24.017Z",
+        "lastSeenAt": "2026-09-02T21:06:35.799Z",
         "points": [
           [
             1788272991460,
@@ -10993,12 +11875,18 @@
             1906503.531541864,
             10977972749.493393,
             -0.5613420035602261
+          ],
+          [
+            1788383195799,
+            1906503.531541864,
+            10977972749.493393,
+            -0.5613420035602261
           ]
         ]
       },
       "yzi-labs-portfolio": {
         "firstSeenAt": "2026-09-01T14:29:51.460Z",
-        "lastSeenAt": "2026-09-02T16:38:24.017Z",
+        "lastSeenAt": "2026-09-02T21:06:35.799Z",
         "points": [
           [
             1788272991460,
@@ -11047,12 +11935,18 @@
             2147764223.439419,
             10616029318.690134,
             -0.8073568398049119
+          ],
+          [
+            1788383195799,
+            2147764223.439419,
+            10616029318.690134,
+            -0.8073568398049119
           ]
         ]
       },
       "cross-chain-communication": {
         "firstSeenAt": "2026-09-01T14:29:51.460Z",
-        "lastSeenAt": "2026-09-02T16:38:24.017Z",
+        "lastSeenAt": "2026-09-02T21:06:35.799Z",
         "points": [
           [
             1788272991460,
@@ -11101,12 +11995,18 @@
             672617222.5060424,
             9689897019.78634,
             -1.3067485238056615
+          ],
+          [
+            1788383195799,
+            672617222.5060424,
+            9689897019.78634,
+            -1.3067485238056615
           ]
         ]
       },
       "yield-farming": {
         "firstSeenAt": "2026-09-01T14:29:51.460Z",
-        "lastSeenAt": "2026-09-02T16:38:24.017Z",
+        "lastSeenAt": "2026-09-02T21:06:35.799Z",
         "points": [
           [
             1788272991460,
@@ -11155,12 +12055,18 @@
             1866067144.5981073,
             9959276833.29656,
             2.745941218617963
+          ],
+          [
+            1788383195799,
+            1866067144.5981073,
+            9959276833.29656,
+            2.745941218617963
           ]
         ]
       },
       "oracle": {
         "firstSeenAt": "2026-09-01T14:29:51.460Z",
-        "lastSeenAt": "2026-09-02T16:38:24.017Z",
+        "lastSeenAt": "2026-09-02T21:06:35.799Z",
         "points": [
           [
             1788272991460,
@@ -11209,12 +12115,18 @@
             542173555.9160298,
             9270843544.962574,
             -0.9818571041392132
+          ],
+          [
+            1788383195799,
+            542173555.9160298,
+            9270843544.962574,
+            -0.9818571041392132
           ]
         ]
       },
       "x402-ecosystem": {
         "firstSeenAt": "2026-09-01T14:29:51.460Z",
-        "lastSeenAt": "2026-09-02T16:38:24.017Z",
+        "lastSeenAt": "2026-09-02T21:06:35.799Z",
         "points": [
           [
             1788272991460,
@@ -11263,12 +12175,18 @@
             475614770.30277115,
             9127006895.844053,
             -1.8648444677164866
+          ],
+          [
+            1788383195799,
+            475614770.30277115,
+            9127006895.844053,
+            -1.8648444677164866
           ]
         ]
       },
       "layer-2": {
         "firstSeenAt": "2026-09-01T14:29:51.460Z",
-        "lastSeenAt": "2026-09-02T16:38:24.017Z",
+        "lastSeenAt": "2026-09-02T21:06:35.799Z",
         "points": [
           [
             1788272991460,
@@ -11317,12 +12235,18 @@
             846898215.5219177,
             8413670864.677197,
             0.28029117652991437
+          ],
+          [
+            1788383195799,
+            846898215.5219177,
+            8413670864.677197,
+            0.28029117652991437
           ]
         ]
       },
       "stablecoin-issuer": {
         "firstSeenAt": "2026-09-01T14:29:51.460Z",
-        "lastSeenAt": "2026-09-02T16:38:24.017Z",
+        "lastSeenAt": "2026-09-02T21:06:35.799Z",
         "points": [
           [
             1788272991460,
@@ -11371,12 +12295,18 @@
             1183926438.0228913,
             8107353639.495848,
             -2.13538683378064
+          ],
+          [
+            1788383195799,
+            1183926438.0228913,
+            8107353639.495848,
+            -2.13538683378064
           ]
         ]
       },
       "automated-market-maker-amm": {
         "firstSeenAt": "2026-09-01T14:29:51.460Z",
-        "lastSeenAt": "2026-09-02T16:38:24.017Z",
+        "lastSeenAt": "2026-09-02T21:06:35.799Z",
         "points": [
           [
             1788272991460,
@@ -11425,12 +12355,18 @@
             1603579473.0083683,
             8071529747.430402,
             0.3523477859613087
+          ],
+          [
+            1788383195799,
+            1603579473.0083683,
+            8071529747.430402,
+            0.3523477859613087
           ]
         ]
       },
       "depin": {
         "firstSeenAt": "2026-09-01T14:29:51.460Z",
-        "lastSeenAt": "2026-09-02T16:38:24.017Z",
+        "lastSeenAt": "2026-09-02T21:06:35.799Z",
         "points": [
           [
             1788272991460,
@@ -11479,12 +12415,18 @@
             666701057.959896,
             7745363757.526752,
             -1.1281077765508414
+          ],
+          [
+            1788383195799,
+            666701057.959896,
+            7745363757.526752,
+            -1.1281077765508414
           ]
         ]
       },
       "privacy-blockchain": {
         "firstSeenAt": "2026-09-01T14:29:51.460Z",
-        "lastSeenAt": "2026-09-02T16:38:24.017Z",
+        "lastSeenAt": "2026-09-02T21:06:35.799Z",
         "points": [
           [
             1788272991460,
@@ -11533,12 +12475,18 @@
             106983123.60496041,
             6522843105.527123,
             -2.7413672258686153
+          ],
+          [
+            1788383195799,
+            106983123.60496041,
+            6522843105.527123,
+            -2.7413672258686153
           ]
         ]
       },
       "trump-affiliated-tokens": {
         "firstSeenAt": "2026-09-01T14:29:51.460Z",
-        "lastSeenAt": "2026-09-02T16:38:24.017Z",
+        "lastSeenAt": "2026-09-02T21:06:35.799Z",
         "points": [
           [
             1788272991460,
@@ -11587,12 +12535,18 @@
             1514011060.742378,
             6672818899.357152,
             -0.8291513102812107
+          ],
+          [
+            1788383195799,
+            1514011060.742378,
+            6672818899.357152,
+            -0.8291513102812107
           ]
         ]
       },
       "defi-pulse-index-dpi": {
         "firstSeenAt": "2026-09-01T14:29:51.460Z",
-        "lastSeenAt": "2026-09-02T16:38:24.017Z",
+        "lastSeenAt": "2026-09-02T21:06:35.799Z",
         "points": [
           [
             1788272991460,
@@ -11641,12 +12595,18 @@
             1912264017.0898552,
             6365909316.84997,
             2.4101660544303765
+          ],
+          [
+            1788383195799,
+            1912264017.0898552,
+            6365909316.84997,
+            2.4101660544303765
           ]
         ]
       },
       "binance-launchpool": {
         "firstSeenAt": "2026-09-01T14:29:51.460Z",
-        "lastSeenAt": "2026-09-02T16:38:24.017Z",
+        "lastSeenAt": "2026-09-02T21:06:35.799Z",
         "points": [
           [
             1788272991460,
@@ -11695,12 +12655,18 @@
             1369194662.6135192,
             5837256099.136307,
             -1.8552878068354066
+          ],
+          [
+            1788383195799,
+            1369194662.6135192,
+            5837256099.136307,
+            -1.8552878068354066
           ]
         ]
       },
       "bitcoin-fork": {
         "firstSeenAt": "2026-09-01T14:29:51.460Z",
-        "lastSeenAt": "2026-09-02T16:38:24.017Z",
+        "lastSeenAt": "2026-09-02T21:06:35.799Z",
         "points": [
           [
             1788272991460,
@@ -11749,12 +12715,18 @@
             112574774.00657994,
             5344102077.691133,
             -1.048315110951432
+          ],
+          [
+            1788383195799,
+            112574774.00657994,
+            5344102077.691133,
+            -1.048315110951432
           ]
         ]
       },
       "tokenized-commodities": {
         "firstSeenAt": "2026-09-01T14:29:51.460Z",
-        "lastSeenAt": "2026-09-02T16:38:24.017Z",
+        "lastSeenAt": "2026-09-02T21:06:35.799Z",
         "points": [
           [
             1788272991460,
@@ -11803,12 +12775,18 @@
             574158429.2800329,
             5382168017.00667,
             0.28156232002199727
+          ],
+          [
+            1788383195799,
+            574158429.2800329,
+            5382168017.00667,
+            0.28156232002199727
           ]
         ]
       },
       "lending-borrowing": {
         "firstSeenAt": "2026-09-01T14:29:51.460Z",
-        "lastSeenAt": "2026-09-02T16:38:24.017Z",
+        "lastSeenAt": "2026-09-02T21:06:35.799Z",
         "points": [
           [
             1788272991460,
@@ -11857,12 +12835,18 @@
             726972814.151533,
             5151506049.377958,
             1.136201180181634
+          ],
+          [
+            1788383195799,
+            726972814.151533,
+            5151506049.377958,
+            1.136201180181634
           ]
         ]
       },
       "tokenized-gold": {
         "firstSeenAt": "2026-09-01T14:29:51.460Z",
-        "lastSeenAt": "2026-09-02T16:38:24.017Z",
+        "lastSeenAt": "2026-09-02T21:06:35.799Z",
         "points": [
           [
             1788272991460,
@@ -11911,12 +12895,18 @@
             571071782.8770323,
             5095672069.691353,
             0.3296930927773079
+          ],
+          [
+            1788383195799,
+            571071782.8770323,
+            5095672069.691353,
+            0.3296930927773079
           ]
         ]
       },
       "launchpad": {
         "firstSeenAt": "2026-09-01T14:29:51.460Z",
-        "lastSeenAt": "2026-09-02T16:38:24.017Z",
+        "lastSeenAt": "2026-09-02T21:06:35.799Z",
         "points": [
           [
             1788272991460,
@@ -11965,12 +12955,18 @@
             522637366.35038805,
             4746187416.529471,
             -2.1442593099280836
+          ],
+          [
+            1788383195799,
+            522637366.35038805,
+            4746187416.529471,
+            -2.1442593099280836
           ]
         ]
       },
       "non-fungible-tokens-nft": {
         "firstSeenAt": "2026-09-01T14:29:51.460Z",
-        "lastSeenAt": "2026-09-02T16:38:24.017Z",
+        "lastSeenAt": "2026-09-02T21:06:35.799Z",
         "points": [
           [
             1788272991460,
@@ -12019,12 +13015,18 @@
             671517674.9379865,
             4498782375.496253,
             -0.8331454767052616
+          ],
+          [
+            1788383195799,
+            671517674.9379865,
+            4498782375.496253,
+            -0.8331454767052616
           ]
         ]
       },
       "directed-acyclic-graph-dag": {
         "firstSeenAt": "2026-09-01T14:29:51.460Z",
-        "lastSeenAt": "2026-09-02T16:38:24.017Z",
+        "lastSeenAt": "2026-09-02T21:06:35.799Z",
         "points": [
           [
             1788272991460,
@@ -12073,12 +13075,18 @@
             69382311.74529211,
             4263604089.529081,
             -0.467644974880414
+          ],
+          [
+            1788383195799,
+            69382311.74529211,
+            4263604089.529081,
+            -0.467644974880414
           ]
         ]
       },
       "crypto-backed-stablecoin": {
         "firstSeenAt": "2026-09-01T14:29:51.460Z",
-        "lastSeenAt": "2026-09-02T16:38:24.017Z",
+        "lastSeenAt": "2026-09-02T21:06:35.799Z",
         "points": [
           [
             1788272991460,
@@ -12127,12 +13135,18 @@
             202318877.9515079,
             4344402509.641677,
             0.6062290440023207
+          ],
+          [
+            1788383195799,
+            202318877.9515079,
+            4344402509.641677,
+            0.6062290440023207
           ]
         ]
       },
       "tokenized-money-market-fund-mmfs": {
         "firstSeenAt": "2026-09-01T14:29:51.460Z",
-        "lastSeenAt": "2026-09-02T16:38:24.017Z",
+        "lastSeenAt": "2026-09-02T21:06:35.799Z",
         "points": [
           [
             1788272991460,
@@ -12181,12 +13195,18 @@
             0,
             3991774633.692095,
             -1.1057458090713563
+          ],
+          [
+            1788383195799,
+            0,
+            3991774633.692095,
+            -1.1057458090713563
           ]
         ]
       },
       "layer-0-l0": {
         "firstSeenAt": "2026-09-01T14:29:51.460Z",
-        "lastSeenAt": "2026-09-02T16:38:24.017Z",
+        "lastSeenAt": "2026-09-02T21:06:35.799Z",
         "points": [
           [
             1788272991460,
@@ -12235,12 +13255,18 @@
             255216654.87075078,
             3737822633.744422,
             -0.19825371983336615
+          ],
+          [
+            1788383195799,
+            255216654.87075078,
+            3737822633.744422,
+            -0.19825371983336615
           ]
         ]
       },
       "solana-meme-coins": {
         "firstSeenAt": "2026-09-01T14:29:51.460Z",
-        "lastSeenAt": "2026-09-02T16:38:24.017Z",
+        "lastSeenAt": "2026-09-02T21:06:35.799Z",
         "points": [
           [
             1788272991460,
@@ -12289,12 +13315,18 @@
             840253545.3918767,
             3425914903.1287646,
             -3.460544010856047
+          ],
+          [
+            1788383195799,
+            840253545.3918767,
+            3425914903.1287646,
+            -3.460544010856047
           ]
         ]
       },
       "crypto-card-issuer": {
         "firstSeenAt": "2026-09-01T14:29:51.460Z",
-        "lastSeenAt": "2026-09-02T16:38:24.017Z",
+        "lastSeenAt": "2026-09-02T21:06:35.799Z",
         "points": [
           [
             1788272991460,
@@ -12343,12 +13375,18 @@
             9497823.73544086,
             3469843389.967894,
             -1.6142439316783497
+          ],
+          [
+            1788383195799,
+            9497823.73544086,
+            3469843389.967894,
+            -1.6142439316783497
           ]
         ]
       },
       "data-availability": {
         "firstSeenAt": "2026-09-01T14:29:51.460Z",
-        "lastSeenAt": "2026-09-02T16:38:24.017Z",
+        "lastSeenAt": "2026-09-02T21:06:35.799Z",
         "points": [
           [
             1788272991460,
@@ -12397,12 +13435,18 @@
             325179579.72773457,
             3267182909.349092,
             -4.9306201515078785
+          ],
+          [
+            1788383195799,
+            325179579.72773457,
+            3267182909.349092,
+            -4.9306201515078785
           ]
         ]
       },
       "gaming": {
         "firstSeenAt": "2026-09-01T14:29:51.460Z",
-        "lastSeenAt": "2026-09-02T16:38:24.017Z",
+        "lastSeenAt": "2026-09-02T21:06:35.799Z",
         "points": [
           [
             1788272991460,
@@ -12451,12 +13495,18 @@
             516003099.9046038,
             3247141886.3362484,
             0.07644725037383548
+          ],
+          [
+            1788383195799,
+            516003099.9046038,
+            3247141886.3362484,
+            0.07644725037383548
           ]
         ]
       },
       "ai-agents": {
         "firstSeenAt": "2026-09-01T14:29:51.460Z",
-        "lastSeenAt": "2026-09-02T16:38:24.017Z",
+        "lastSeenAt": "2026-09-02T21:06:35.799Z",
         "points": [
           [
             1788272991460,
@@ -12505,12 +13555,18 @@
             281428237.0660374,
             2987593197.7623186,
             0.2162282880005059
+          ],
+          [
+            1788383195799,
+            281428237.0660374,
+            2987593197.7623186,
+            0.2162282880005059
           ]
         ]
       },
       "yield-bearing-stablecoins": {
         "firstSeenAt": "2026-09-01T14:29:51.460Z",
-        "lastSeenAt": "2026-09-02T16:38:24.017Z",
+        "lastSeenAt": "2026-09-02T21:06:35.799Z",
         "points": [
           [
             1788272991460,
@@ -12559,12 +13615,18 @@
             25534916.746626265,
             2847710360.771449,
             -0.08588973550958234
+          ],
+          [
+            1788383195799,
+            25534916.746626265,
+            2847710360.771449,
+            -0.08588973550958234
           ]
         ]
       },
       "neobank": {
         "firstSeenAt": "2026-09-01T14:29:51.460Z",
-        "lastSeenAt": "2026-09-02T16:38:24.017Z",
+        "lastSeenAt": "2026-09-02T21:06:35.799Z",
         "points": [
           [
             1788272991460,
@@ -12613,12 +13675,18 @@
             150590024.87644807,
             2799521902.1948705,
             1.4238404793498174
+          ],
+          [
+            1788383195799,
+            150590024.87644807,
+            2799521902.1948705,
+            1.4238404793498174
           ]
         ]
       },
       "payment-solutions": {
         "firstSeenAt": "2026-09-01T14:29:51.460Z",
-        "lastSeenAt": "2026-09-02T16:38:24.017Z",
+        "lastSeenAt": "2026-09-02T21:06:35.799Z",
         "points": [
           [
             1788272991460,
@@ -12667,12 +13735,18 @@
             141580017.09901014,
             2648891971.1789303,
             -0.8653403060035028
+          ],
+          [
+            1788383195799,
+            141580017.09901014,
+            2648891971.1789303,
+            -0.8653403060035028
           ]
         ]
       },
       "wallets": {
         "firstSeenAt": "2026-09-01T14:29:51.460Z",
-        "lastSeenAt": "2026-09-02T16:38:24.017Z",
+        "lastSeenAt": "2026-09-02T21:06:35.799Z",
         "points": [
           [
             1788272991460,
@@ -12721,12 +13795,18 @@
             83025023.1699897,
             2640668664.7169223,
             0.7884469272970364
+          ],
+          [
+            1788383195799,
+            83025023.1699897,
+            2640668664.7169223,
+            0.7884469272970364
           ]
         ]
       },
       "socialfi": {
         "firstSeenAt": "2026-09-01T14:29:51.460Z",
-        "lastSeenAt": "2026-09-02T16:38:24.017Z",
+        "lastSeenAt": "2026-09-02T21:06:35.799Z",
         "points": [
           [
             1788272991460,
@@ -12775,12 +13855,18 @@
             202483817.5757922,
             2464326344.633585,
             -3.4814011067360315
+          ],
+          [
+            1788383195799,
+            202483817.5757922,
+            2464326344.633585,
+            -3.4814011067360315
           ]
         ]
       },
       "yield-bearing-tokens": {
         "firstSeenAt": "2026-09-01T14:29:51.460Z",
-        "lastSeenAt": "2026-09-02T16:38:24.017Z",
+        "lastSeenAt": "2026-09-02T21:06:35.799Z",
         "points": [
           [
             1788272991460,
@@ -12829,12 +13915,18 @@
             5480337.860315308,
             2541281452.4435554,
             -0.22607705738011247
+          ],
+          [
+            1788383195799,
+            5480337.860315308,
+            2541281452.4435554,
+            -0.22607705738011247
           ]
         ]
       },
       "binance-hodler-airdrops": {
         "firstSeenAt": "2026-09-01T14:29:51.460Z",
-        "lastSeenAt": "2026-09-02T16:38:24.017Z",
+        "lastSeenAt": "2026-09-02T21:06:35.799Z",
         "points": [
           [
             1788272991460,
@@ -12883,12 +13975,18 @@
             826440195.0379452,
             2337870876.4638386,
             -0.7462786484507253
+          ],
+          [
+            1788383195799,
+            826440195.0379452,
+            2337870876.4638386,
+            -0.7462786484507253
           ]
         ]
       },
       "us-treasury-backed-stablecoin": {
         "firstSeenAt": "2026-09-01T14:29:51.460Z",
-        "lastSeenAt": "2026-09-02T16:38:24.017Z",
+        "lastSeenAt": "2026-09-02T21:06:35.799Z",
         "points": [
           [
             1788272991460,
@@ -12937,12 +14035,18 @@
             2046959.6021895923,
             2188774611.5064974,
             -0.25398689628243604
+          ],
+          [
+            1788383195799,
+            2046959.6021895923,
+            2188774611.5064974,
+            -0.25398689628243604
           ]
         ]
       },
       "ai-applications": {
         "firstSeenAt": "2026-09-01T14:29:51.460Z",
-        "lastSeenAt": "2026-09-02T16:38:24.017Z",
+        "lastSeenAt": "2026-09-02T21:06:35.799Z",
         "points": [
           [
             1788272991460,
@@ -12991,12 +14095,18 @@
             169977586.1049182,
             2095564917.957199,
             3.2194987598633413
+          ],
+          [
+            1788383195799,
+            169977586.1049182,
+            2095564917.957199,
+            3.2194987598633413
           ]
         ]
       },
       "tokenized-credit": {
         "firstSeenAt": "2026-09-01T14:29:51.460Z",
-        "lastSeenAt": "2026-09-02T16:38:24.017Z",
+        "lastSeenAt": "2026-09-02T21:06:35.799Z",
         "points": [
           [
             1788272991460,
@@ -13045,12 +14155,18 @@
             0,
             2039493941.1334648,
             0.11153650467159856
+          ],
+          [
+            1788383195799,
+            0,
+            2039493941.1334648,
+            0.11153650467159856
           ]
         ]
       },
       "binance-launchpad": {
         "firstSeenAt": "2026-09-01T14:29:51.460Z",
-        "lastSeenAt": "2026-09-02T16:38:24.017Z",
+        "lastSeenAt": "2026-09-02T21:06:35.799Z",
         "points": [
           [
             1788272991460,
@@ -13099,12 +14215,18 @@
             323654083.2060614,
             2034786726.2614098,
             0.9766948238326314
+          ],
+          [
+            1788383195799,
+            323654083.2060614,
+            2034786726.2614098,
+            0.9766948238326314
           ]
         ]
       },
       "identity": {
         "firstSeenAt": "2026-09-01T14:29:51.460Z",
-        "lastSeenAt": "2026-09-02T16:38:24.017Z",
+        "lastSeenAt": "2026-09-02T21:06:35.799Z",
         "points": [
           [
             1788272991460,
@@ -13153,12 +14275,18 @@
             182012912.37605044,
             1935685076.3196216,
             -2.511219770751568
+          ],
+          [
+            1788383195799,
+            182012912.37605044,
+            1935685076.3196216,
+            -2.511219770751568
           ]
         ]
       },
       "metaverse": {
         "firstSeenAt": "2026-09-01T14:29:51.460Z",
-        "lastSeenAt": "2026-09-02T16:38:24.017Z",
+        "lastSeenAt": "2026-09-02T21:06:35.799Z",
         "points": [
           [
             1788272991460,
@@ -13207,12 +14335,18 @@
             168025166.54918253,
             1940210515.6104732,
             -1.167475493956082
+          ],
+          [
+            1788383195799,
+            168025166.54918253,
+            1940210515.6104732,
+            -1.167475493956082
           ]
         ]
       },
       "frog-themed-coins": {
         "firstSeenAt": "2026-09-01T14:29:51.460Z",
-        "lastSeenAt": "2026-09-02T16:38:24.017Z",
+        "lastSeenAt": "2026-09-02T21:06:35.799Z",
         "points": [
           [
             1788272991460,
@@ -13261,12 +14395,18 @@
             260502696.6661972,
             1950104158.6587148,
             -0.06987070172756914
+          ],
+          [
+            1788383195799,
+            260502696.6661972,
+            1950104158.6587148,
+            -0.06987070172756914
           ]
         ]
       },
       "tokenized-stock": {
         "firstSeenAt": "2026-09-01T14:29:51.460Z",
-        "lastSeenAt": "2026-09-02T16:38:24.017Z",
+        "lastSeenAt": "2026-09-02T21:06:35.799Z",
         "points": [
           [
             1788272991460,
@@ -13315,12 +14455,18 @@
             694853183.5566491,
             1894959249.8960857,
             0.32905684208886654
+          ],
+          [
+            1788383195799,
+            694853183.5566491,
+            1894959249.8960857,
+            0.32905684208886654
           ]
         ]
       },
       "the-boy-s-club": {
         "firstSeenAt": "2026-09-01T14:29:51.460Z",
-        "lastSeenAt": "2026-09-02T16:38:24.017Z",
+        "lastSeenAt": "2026-09-02T21:06:35.799Z",
         "points": [
           [
             1788272991460,
@@ -13369,12 +14515,18 @@
             205644397.99189767,
             1818429758.123471,
             -0.2701944074446473
+          ],
+          [
+            1788383195799,
+            205644397.99189767,
+            1818429758.123471,
+            -0.2701944074446473
           ]
         ]
       },
       "morpho-ecosystem": {
         "firstSeenAt": "2026-09-01T14:29:51.460Z",
-        "lastSeenAt": "2026-09-02T16:38:24.017Z",
+        "lastSeenAt": "2026-09-02T21:06:35.799Z",
         "points": [
           [
             1788272991460,
@@ -13423,12 +14575,18 @@
             38529328.147249274,
             1732826445.5847685,
             0.10498119196790305
+          ],
+          [
+            1788383195799,
+            38529328.147249274,
+            1732826445.5847685,
+            0.10498119196790305
           ]
         ]
       },
       "ai-framework": {
         "firstSeenAt": "2026-09-01T14:29:51.460Z",
-        "lastSeenAt": "2026-09-02T16:38:24.017Z",
+        "lastSeenAt": "2026-09-02T21:06:35.799Z",
         "points": [
           [
             1788272991460,
@@ -13477,12 +14635,18 @@
             208128284.79551178,
             1744809596.4203103,
             0.9738734294400555
+          ],
+          [
+            1788383195799,
+            208128284.79551178,
+            1744809596.4203103,
+            0.9738734294400555
           ]
         ]
       },
       "superchain-ecosystem": {
         "firstSeenAt": "2026-09-01T14:29:51.460Z",
-        "lastSeenAt": "2026-09-02T16:38:24.017Z",
+        "lastSeenAt": "2026-09-02T21:06:35.799Z",
         "points": [
           [
             1788272991460,
@@ -13531,12 +14695,18 @@
             238967930.53024945,
             1640525566.9702623,
             -1.2299109024733355
+          ],
+          [
+            1788383195799,
+            238967930.53024945,
+            1640525566.9702623,
+            -1.2299109024733355
           ]
         ]
       },
       "play-to-earn": {
         "firstSeenAt": "2026-09-01T14:29:51.460Z",
-        "lastSeenAt": "2026-09-02T16:38:24.017Z",
+        "lastSeenAt": "2026-09-02T21:06:35.799Z",
         "points": [
           [
             1788272991460,
@@ -13585,12 +14755,18 @@
             219972527.6691567,
             1579140927.520468,
             -0.5948545259426593
+          ],
+          [
+            1788383195799,
+            219972527.6691567,
+            1579140927.520468,
+            -0.5948545259426593
           ]
         ]
       },
       "rollup": {
         "firstSeenAt": "2026-09-01T14:29:51.460Z",
-        "lastSeenAt": "2026-09-02T16:38:24.017Z",
+        "lastSeenAt": "2026-09-02T21:06:35.799Z",
         "points": [
           [
             1788272991460,
@@ -13639,12 +14815,18 @@
             469236876.6671886,
             1605588354.5145109,
             4.096640124223313
+          ],
+          [
+            1788383195799,
+            469236876.6671886,
+            1605588354.5145109,
+            4.096640124223313
           ]
         ]
       },
       "pump-fun": {
         "firstSeenAt": "2026-09-01T14:29:51.460Z",
-        "lastSeenAt": "2026-09-02T16:38:24.017Z",
+        "lastSeenAt": "2026-09-02T21:06:35.799Z",
         "points": [
           [
             1788272991460,
@@ -13693,12 +14875,18 @@
             204544174.1766491,
             1452977901.4383643,
             -4.725626600098475
+          ],
+          [
+            1788383195799,
+            204544174.1766491,
+            1452977901.4383643,
+            -4.725626600098475
           ]
         ]
       },
       "algorithmic-stablecoin": {
         "firstSeenAt": "2026-09-01T14:29:51.460Z",
-        "lastSeenAt": "2026-09-02T16:38:24.017Z",
+        "lastSeenAt": "2026-09-02T21:06:35.799Z",
         "points": [
           [
             1788272991460,
@@ -13747,12 +14935,18 @@
             3504550.253759582,
             1533525342.7333543,
             0.6427442236621829
+          ],
+          [
+            1788383195799,
+            3504550.253759582,
+            1533525342.7333543,
+            0.6427442236621829
           ]
         ]
       },
       "binance-wallet-ido": {
         "firstSeenAt": "2026-09-01T14:29:51.460Z",
-        "lastSeenAt": "2026-09-02T16:38:24.017Z",
+        "lastSeenAt": "2026-09-02T21:06:35.799Z",
         "points": [
           [
             1788272991460,
@@ -13801,12 +14995,18 @@
             452655006.39231217,
             1588693384.8389916,
             4.407283005741061
+          ],
+          [
+            1788383195799,
+            452655006.39231217,
+            1588693384.8389916,
+            4.407283005741061
           ]
         ]
       },
       "synthetic-dollar": {
         "firstSeenAt": "2026-09-01T14:29:51.460Z",
-        "lastSeenAt": "2026-09-02T16:38:24.017Z",
+        "lastSeenAt": "2026-09-02T21:06:35.799Z",
         "points": [
           [
             1788272991460,
@@ -13855,12 +15055,18 @@
             113957730.9002022,
             1453782173.4399967,
             0.002379766816843159
+          ],
+          [
+            1788383195799,
+            113957730.9002022,
+            1453782173.4399967,
+            0.002379766816843159
           ]
         ]
       },
       "storage": {
         "firstSeenAt": "2026-09-01T14:29:51.460Z",
-        "lastSeenAt": "2026-09-02T16:38:24.017Z",
+        "lastSeenAt": "2026-09-02T21:06:35.799Z",
         "points": [
           [
             1788272991460,
@@ -13909,12 +15115,18 @@
             318644946.2519987,
             1491641590.7469182,
             4.083532097739341
+          ],
+          [
+            1788383195799,
+            318644946.2519987,
+            1491641590.7469182,
+            4.083532097739341
           ]
         ]
       },
       "analytics": {
         "firstSeenAt": "2026-09-01T14:29:51.460Z",
-        "lastSeenAt": "2026-09-02T16:38:24.017Z",
+        "lastSeenAt": "2026-09-02T21:06:35.799Z",
         "points": [
           [
             1788272991460,
@@ -13963,12 +15175,18 @@
             207445201.22914487,
             1455601454.9404027,
             4.770775233355978
+          ],
+          [
+            1788383195799,
+            207445201.22914487,
+            1455601454.9404027,
+            4.770775233355978
           ]
         ]
       },
       "liquid-staking": {
         "firstSeenAt": "2026-09-01T14:29:51.460Z",
-        "lastSeenAt": "2026-09-02T16:38:24.017Z",
+        "lastSeenAt": "2026-09-02T21:06:35.799Z",
         "points": [
           [
             1788272991460,
@@ -14017,12 +15235,18 @@
             301012266.5177588,
             1323408864.244665,
             0.0753676780557688
+          ],
+          [
+            1788383195799,
+            301012266.5177588,
+            1323408864.244665,
+            0.0753676780557688
           ]
         ]
       },
       "masternodes": {
         "firstSeenAt": "2026-09-01T14:29:51.460Z",
-        "lastSeenAt": "2026-09-02T16:38:24.017Z",
+        "lastSeenAt": "2026-09-02T21:06:35.799Z",
         "points": [
           [
             1788272991460,
@@ -14071,12 +15295,18 @@
             100566523.05085798,
             1275652681.3867044,
             -1.5216463463800474
+          ],
+          [
+            1788383195799,
+            100566523.05085798,
+            1275652681.3867044,
+            -1.5216463463800474
           ]
         ]
       },
       "restaking": {
         "firstSeenAt": "2026-09-01T14:29:51.460Z",
-        "lastSeenAt": "2026-09-02T16:38:24.017Z",
+        "lastSeenAt": "2026-09-02T21:06:35.799Z",
         "points": [
           [
             1788272991460,
@@ -14125,12 +15355,18 @@
             180534664.94015566,
             1189861120.6047747,
             -1.5878619196274015
+          ],
+          [
+            1788383195799,
+            180534664.94015566,
+            1189861120.6047747,
+            -1.5878619196274015
           ]
         ]
       },
       "tradable-ecosystem": {
         "firstSeenAt": "2026-09-01T14:29:51.460Z",
-        "lastSeenAt": "2026-09-02T16:38:24.017Z",
+        "lastSeenAt": "2026-09-02T21:06:35.799Z",
         "points": [
           [
             1788272991460,
@@ -14179,12 +15415,18 @@
             0,
             1212569053.6341949,
             0
+          ],
+          [
+            1788383195799,
+            0,
+            1212569053.6341949,
+            0
           ]
         ]
       },
       "internet-of-things-iot": {
         "firstSeenAt": "2026-09-01T14:29:51.460Z",
-        "lastSeenAt": "2026-09-02T16:38:24.017Z",
+        "lastSeenAt": "2026-09-02T21:06:35.799Z",
         "points": [
           [
             1788272991460,
@@ -14233,12 +15475,18 @@
             66794754.919910125,
             1145285158.4577937,
             -4.887076288566803
+          ],
+          [
+            1788383195799,
+            66794754.919910125,
+            1145285158.4577937,
+            -4.887076288566803
           ]
         ]
       },
       "sidechain": {
         "firstSeenAt": "2026-09-01T14:29:51.460Z",
-        "lastSeenAt": "2026-09-02T16:38:24.017Z",
+        "lastSeenAt": "2026-09-02T21:06:35.799Z",
         "points": [
           [
             1788272991460,
@@ -14287,12 +15535,18 @@
             120274574.42430396,
             1152105327.7927325,
             -2.560089590020916
+          ],
+          [
+            1788383195799,
+            120274574.42430396,
+            1152105327.7927325,
+            -2.560089590020916
           ]
         ]
       },
       "ai-agent-launchpad": {
         "firstSeenAt": "2026-09-01T14:29:51.460Z",
-        "lastSeenAt": "2026-09-02T16:38:24.017Z",
+        "lastSeenAt": "2026-09-02T21:06:35.799Z",
         "points": [
           [
             1788272991460,
@@ -14341,12 +15595,18 @@
             144553237.62471116,
             1146855850.3469937,
             -1.2976841479964696
+          ],
+          [
+            1788383195799,
+            144553237.62471116,
+            1146855850.3469937,
+            -1.2976841479964696
           ]
         ]
       },
       "mobile-mining": {
         "firstSeenAt": "2026-09-01T14:29:51.460Z",
-        "lastSeenAt": "2026-09-02T16:38:24.017Z",
+        "lastSeenAt": "2026-09-02T21:06:35.799Z",
         "points": [
           [
             1788272991460,
@@ -14395,12 +15655,18 @@
             8822948.510506047,
             1107127850.3809593,
             2.6652373943726158
+          ],
+          [
+            1788383195799,
+            8822948.510506047,
+            1107127850.3809593,
+            2.6652373943726158
           ]
         ]
       },
       "bittensor-subnets": {
         "firstSeenAt": "2026-09-01T14:29:51.460Z",
-        "lastSeenAt": "2026-09-02T16:38:24.017Z",
+        "lastSeenAt": "2026-09-02T21:06:35.799Z",
         "points": [
           [
             1788272991460,
@@ -14449,12 +15715,18 @@
             48326250.53871341,
             985359023.0230376,
             -3.5403042489469847
+          ],
+          [
+            1788383195799,
+            48326250.53871341,
+            985359023.0230376,
+            -3.5403042489469847
           ]
         ]
       },
       "dex-aggregator": {
         "firstSeenAt": "2026-09-01T14:29:51.460Z",
-        "lastSeenAt": "2026-09-02T16:38:24.017Z",
+        "lastSeenAt": "2026-09-02T21:06:35.799Z",
         "points": [
           [
             1788272991460,
@@ -14503,12 +15775,18 @@
             106563846.4440982,
             970800600.5356126,
             -1.468844494248851
+          ],
+          [
+            1788383195799,
+            106563846.4440982,
+            970800600.5356126,
+            -1.468844494248851
           ]
         ]
       },
       "ondo-tokenized-assets": {
         "firstSeenAt": "2026-09-01T14:29:51.460Z",
-        "lastSeenAt": "2026-09-02T16:38:24.017Z",
+        "lastSeenAt": "2026-09-02T21:06:35.799Z",
         "points": [
           [
             1788272991460,
@@ -14557,12 +15835,18 @@
             164629591.44712827,
             962656253.1510905,
             -0.3536280120132097
+          ],
+          [
+            1788383195799,
+            164629591.44712827,
+            962656253.1510905,
+            -0.3536280120132097
           ]
         ]
       },
       "ip-meme": {
         "firstSeenAt": "2026-09-01T14:29:51.460Z",
-        "lastSeenAt": "2026-09-02T16:38:24.017Z",
+        "lastSeenAt": "2026-09-02T21:06:35.799Z",
         "points": [
           [
             1788272991460,
@@ -14611,12 +15895,18 @@
             204360778.82331863,
             862050806.7290201,
             -3.0076649326373346
+          ],
+          [
+            1788383195799,
+            204360778.82331863,
+            862050806.7290201,
+            -3.0076649326373346
           ]
         ]
       },
       "name-service": {
         "firstSeenAt": "2026-09-01T14:29:51.460Z",
-        "lastSeenAt": "2026-09-02T16:38:24.017Z",
+        "lastSeenAt": "2026-09-02T21:06:35.799Z",
         "points": [
           [
             1788272991460,
@@ -14665,12 +15955,18 @@
             37240266.79127952,
             871750427.5617352,
             -2.817004529213114
+          ],
+          [
+            1788383195799,
+            37240266.79127952,
+            871750427.5617352,
+            -2.817004529213114
           ]
         ]
       },
       "liquid-restaking-governance-token": {
         "firstSeenAt": "2026-09-01T14:29:51.460Z",
-        "lastSeenAt": "2026-09-02T16:38:24.017Z",
+        "lastSeenAt": "2026-09-02T21:06:35.799Z",
         "points": [
           [
             1788272991460,
@@ -14719,12 +16015,18 @@
             130664093.16131918,
             872687815.6649896,
             -2.2338984785613905
+          ],
+          [
+            1788383195799,
+            130664093.16131918,
+            872687815.6649896,
+            -2.2338984785613905
           ]
         ]
       },
       "venice-ecosystem": {
         "firstSeenAt": "2026-09-01T14:29:51.460Z",
-        "lastSeenAt": "2026-09-02T16:38:24.017Z",
+        "lastSeenAt": "2026-09-02T21:06:35.799Z",
         "points": [
           [
             1788272991460,
@@ -14773,12 +16075,18 @@
             13401084.62777827,
             850500992.6228353,
             -0.6097202626535184
+          ],
+          [
+            1788383195799,
+            13401084.62777827,
+            850500992.6228353,
+            -0.6097202626535184
           ]
         ]
       },
       "curve-ecosystem": {
         "firstSeenAt": "2026-09-01T14:29:51.460Z",
-        "lastSeenAt": "2026-09-02T16:38:24.017Z",
+        "lastSeenAt": "2026-09-02T21:06:35.799Z",
         "points": [
           [
             1788272991460,
@@ -14827,12 +16135,18 @@
             142670337.45986372,
             829470651.7004887,
             -3.702643210365972
+          ],
+          [
+            1788383195799,
+            142670337.45986372,
+            829470651.7004887,
+            -3.702643210365972
           ]
         ]
       },
       "liquid-staking-governance-tokens": {
         "firstSeenAt": "2026-09-01T14:29:51.460Z",
-        "lastSeenAt": "2026-09-02T16:38:24.017Z",
+        "lastSeenAt": "2026-09-02T21:06:35.799Z",
         "points": [
           [
             1788272991460,
@@ -14881,12 +16195,18 @@
             111438164.36741558,
             837083620.5976465,
             -0.2369382045374771
+          ],
+          [
+            1788383195799,
+            111438164.36741558,
+            837083620.5976465,
+            -0.2369382045374771
           ]
         ]
       },
       "gaming-blockchains": {
         "firstSeenAt": "2026-09-01T14:29:51.460Z",
-        "lastSeenAt": "2026-09-02T16:38:24.017Z",
+        "lastSeenAt": "2026-09-02T21:06:35.799Z",
         "points": [
           [
             1788272991460,
@@ -14935,12 +16255,18 @@
             104504357.0979829,
             824119225.5880517,
             -0.2966236635896362
+          ],
+          [
+            1788383195799,
+            104504357.0979829,
+            824119225.5880517,
+            -0.2966236635896362
           ]
         ]
       },
       "ai-meme-coins": {
         "firstSeenAt": "2026-09-01T14:29:51.460Z",
-        "lastSeenAt": "2026-09-02T16:38:24.017Z",
+        "lastSeenAt": "2026-09-02T21:06:35.799Z",
         "points": [
           [
             1788272991460,
@@ -14989,12 +16315,18 @@
             92192152.48960191,
             759120920.9485017,
             -5.75157842047313
+          ],
+          [
+            1788383195799,
+            92192152.48960191,
+            759120920.9485017,
+            -5.75157842047313
           ]
         ]
       },
       "superstate-ecosystem": {
         "firstSeenAt": "2026-09-01T14:29:51.460Z",
-        "lastSeenAt": "2026-09-02T16:38:24.017Z",
+        "lastSeenAt": "2026-09-02T21:06:35.799Z",
         "points": [
           [
             1788272991460,
@@ -15043,12 +16375,18 @@
             0,
             836310638.1202794,
             1.573529907092471
+          ],
+          [
+            1788383195799,
+            0,
+            836310638.1202794,
+            1.573529907092471
           ]
         ]
       },
       "bitcoin-layer-2": {
         "firstSeenAt": "2026-09-01T14:29:51.460Z",
-        "lastSeenAt": "2026-09-02T16:38:24.017Z",
+        "lastSeenAt": "2026-09-02T21:06:35.799Z",
         "points": [
           [
             1788272991460,
@@ -15097,12 +16435,18 @@
             117709764.96529564,
             809471414.9451816,
             -2.6767401744057677
+          ],
+          [
+            1788383195799,
+            117709764.96529564,
+            809471414.9451816,
+            -2.6767401744057677
           ]
         ]
       },
       "defai": {
         "firstSeenAt": "2026-09-01T14:29:51.460Z",
-        "lastSeenAt": "2026-09-02T16:38:24.017Z",
+        "lastSeenAt": "2026-09-02T21:06:35.799Z",
         "points": [
           [
             1788272991460,
@@ -15151,12 +16495,18 @@
             51288570.06242183,
             771362648.5733407,
             -4.516734813357094
+          ],
+          [
+            1788383195799,
+            51288570.06242183,
+            771362648.5733407,
+            -4.516734813357094
           ]
         ]
       },
       "xstocks-ecosystem": {
         "firstSeenAt": "2026-09-01T14:29:51.460Z",
-        "lastSeenAt": "2026-09-02T16:38:24.017Z",
+        "lastSeenAt": "2026-09-02T21:06:35.799Z",
         "points": [
           [
             1788272991460,
@@ -15205,12 +16555,18 @@
             103997086.40788245,
             811123993.7404908,
             0.33259476242738956
+          ],
+          [
+            1788383195799,
+            103997086.40788245,
+            811123993.7404908,
+            0.33259476242738956
           ]
         ]
       },
       "virtuals-protocol-ecosystem": {
         "firstSeenAt": "2026-09-01T14:29:51.460Z",
-        "lastSeenAt": "2026-09-02T16:38:24.017Z",
+        "lastSeenAt": "2026-09-02T21:06:35.799Z",
         "points": [
           [
             1788272991460,
@@ -15259,12 +16615,18 @@
             88522425.45345289,
             752363174.0803294,
             -4.890431747504981
+          ],
+          [
+            1788383195799,
+            88522425.45345289,
+            752363174.0803294,
+            -4.890431747504981
           ]
         ]
       },
       "airdropped-tokens-by-nft-projects": {
         "firstSeenAt": "2026-09-01T14:29:51.460Z",
-        "lastSeenAt": "2026-09-02T16:38:24.017Z",
+        "lastSeenAt": "2026-09-02T21:06:35.799Z",
         "points": [
           [
             1788272991460,
@@ -15313,12 +16675,18 @@
             203045547.77837124,
             762911573.3974515,
             -3.270487487471537
+          ],
+          [
+            1788383195799,
+            203045547.77837124,
+            762911573.3974515,
+            -3.270487487471537
           ]
         ]
       },
       "politifi": {
         "firstSeenAt": "2026-09-01T14:29:51.460Z",
-        "lastSeenAt": "2026-09-02T16:38:24.017Z",
+        "lastSeenAt": "2026-09-02T21:06:35.799Z",
         "points": [
           [
             1788272991460,
@@ -15367,12 +16735,18 @@
             279785814.6773727,
             743491112.2608687,
             -4.957982439090666
+          ],
+          [
+            1788383195799,
+            279785814.6773727,
+            743491112.2608687,
+            -4.957982439090666
           ]
         ]
       },
       "cat-themed-coins": {
         "firstSeenAt": "2026-09-01T14:29:51.460Z",
-        "lastSeenAt": "2026-09-02T16:38:24.017Z",
+        "lastSeenAt": "2026-09-02T21:06:35.799Z",
         "points": [
           [
             1788272991460,
@@ -15421,12 +16795,18 @@
             155994782.5187901,
             765335884.137702,
             3.986750940031805
+          ],
+          [
+            1788383195799,
+            155994782.5187901,
+            765335884.137702,
+            3.986750940031805
           ]
         ]
       },
       "eur-stablecoin": {
         "firstSeenAt": "2026-09-01T14:29:51.460Z",
-        "lastSeenAt": "2026-09-02T16:38:24.017Z",
+        "lastSeenAt": "2026-09-02T21:06:35.799Z",
         "points": [
           [
             1788272991460,
@@ -15475,12 +16855,18 @@
             68608280.79210491,
             752823351.1256592,
             -0.5718169888535324
+          ],
+          [
+            1788383195799,
+            68608280.79210491,
+            752823351.1256592,
+            -0.5718169888535324
           ]
         ]
       },
       "robotics": {
         "firstSeenAt": "2026-09-01T14:29:51.460Z",
-        "lastSeenAt": "2026-09-02T16:38:24.017Z",
+        "lastSeenAt": "2026-09-02T21:06:35.799Z",
         "points": [
           [
             1788272991460,
@@ -15529,12 +16915,18 @@
             93038826.120589,
             722673815.2400249,
             -1.4099041477705028
+          ],
+          [
+            1788383195799,
+            93038826.120589,
+            722673815.2400249,
+            -1.4099041477705028
           ]
         ]
       },
       "chinese-meme": {
         "firstSeenAt": "2026-09-01T14:29:51.460Z",
-        "lastSeenAt": "2026-09-02T16:38:24.017Z",
+        "lastSeenAt": "2026-09-02T21:06:35.799Z",
         "points": [
           [
             1788272991460,
@@ -15583,12 +16975,18 @@
             48061103.662220284,
             673920324.0399301,
             -6.70621683993482
+          ],
+          [
+            1788383195799,
+            48061103.662220284,
+            673920324.0399301,
+            -6.70621683993482
           ]
         ]
       },
       "murad-picks": {
         "firstSeenAt": "2026-09-01T14:29:51.460Z",
-        "lastSeenAt": "2026-09-02T16:38:24.017Z",
+        "lastSeenAt": "2026-09-02T21:06:35.799Z",
         "points": [
           [
             1788272991460,
@@ -15637,12 +17035,18 @@
             31732496.430650685,
             662014545.8553046,
             -1.627836244002883
+          ],
+          [
+            1788383195799,
+            31732496.430650685,
+            662014545.8553046,
+            -1.627836244002883
           ]
         ]
       },
       "parallel-evm": {
         "firstSeenAt": "2026-09-01T14:29:51.460Z",
-        "lastSeenAt": "2026-09-02T16:38:24.017Z",
+        "lastSeenAt": "2026-09-02T21:06:35.799Z",
         "points": [
           [
             1788272991460,
@@ -15691,12 +17095,18 @@
             136686274.14733955,
             698293181.8640873,
             1.7286878871934543
+          ],
+          [
+            1788383195799,
+            136686274.14733955,
+            698293181.8640873,
+            1.7286878871934543
           ]
         ]
       },
       "four-meme-ecosystem": {
         "firstSeenAt": "2026-09-01T14:29:51.460Z",
-        "lastSeenAt": "2026-09-02T16:38:24.017Z",
+        "lastSeenAt": "2026-09-02T21:06:35.799Z",
         "points": [
           [
             1788272991460,
@@ -15745,12 +17155,18 @@
             73331346.88926215,
             696807175.7933457,
             -2.210554686397794
+          ],
+          [
+            1788383195799,
+            73331346.88926215,
+            696807175.7933457,
+            -2.210554686397794
           ]
         ]
       },
       "bridged-tokens": {
         "firstSeenAt": "2026-09-01T14:29:51.460Z",
-        "lastSeenAt": "2026-09-02T16:38:24.017Z",
+        "lastSeenAt": "2026-09-02T21:06:35.799Z",
         "points": [
           [
             1788272991460,
@@ -15799,12 +17215,18 @@
             2795345235.955142,
             605121845.5449815,
             -1.5147442985700232
+          ],
+          [
+            1788383195799,
+            2795345235.955142,
+            605121845.5449815,
+            -1.5147442985700232
           ]
         ]
       },
       "vpn": {
         "firstSeenAt": "2026-09-01T14:29:51.460Z",
-        "lastSeenAt": "2026-09-02T16:38:24.017Z",
+        "lastSeenAt": "2026-09-02T21:06:35.799Z",
         "points": [
           [
             1788272991460,
@@ -15853,12 +17275,18 @@
             9786243.389299681,
             644676477.0495704,
             1.2992723192178313
+          ],
+          [
+            1788383195799,
+            9786243.389299681,
+            644676477.0495704,
+            1.2992723192178313
           ]
         ]
       },
       "gaming-utility-token": {
         "firstSeenAt": "2026-09-01T14:29:51.460Z",
-        "lastSeenAt": "2026-09-02T16:38:24.017Z",
+        "lastSeenAt": "2026-09-02T21:06:35.799Z",
         "points": [
           [
             1788272991460,
@@ -15907,12 +17335,18 @@
             124819587.2304292,
             629723780.19928,
             -0.5736308307936557
+          ],
+          [
+            1788383195799,
+            124819587.2304292,
+            629723780.19928,
+            -0.5736308307936557
           ]
         ]
       },
       "btcfi": {
         "firstSeenAt": "2026-09-01T14:29:51.460Z",
-        "lastSeenAt": "2026-09-02T16:38:24.017Z",
+        "lastSeenAt": "2026-09-02T21:06:35.799Z",
         "points": [
           [
             1788272991460,
@@ -15961,12 +17395,18 @@
             429224501.6785123,
             621528282.8390375,
             1.119502279532504
+          ],
+          [
+            1788383195799,
+            429224501.6785123,
+            621528282.8390375,
+            1.119502279532504
           ]
         ]
       },
       "tokenized-exchange-traded-product-etps": {
         "firstSeenAt": "2026-09-01T14:29:51.460Z",
-        "lastSeenAt": "2026-09-02T16:38:24.017Z",
+        "lastSeenAt": "2026-09-02T21:06:35.799Z",
         "points": [
           [
             1788272991460,
@@ -16015,12 +17455,18 @@
             264853595.20952338,
             598658624.4249648,
             0.35809975699314983
+          ],
+          [
+            1788383195799,
+            264853595.20952338,
+            598658624.4249648,
+            0.35809975699314983
           ]
         ]
       },
       "tokenized-exchange-traded-funds-etfs": {
         "firstSeenAt": "2026-09-01T14:29:51.460Z",
-        "lastSeenAt": "2026-09-02T16:38:24.017Z",
+        "lastSeenAt": "2026-09-02T21:06:35.799Z",
         "points": [
           [
             1788272991460,
@@ -16069,12 +17515,18 @@
             264852929.62940454,
             598647453.9733608,
             0.3581131622615179
+          ],
+          [
+            1788383195799,
+            264852929.62940454,
+            598647453.9733608,
+            0.3581131622615179
           ]
         ]
       },
       "stock-market-themed": {
         "firstSeenAt": "2026-09-01T14:29:51.460Z",
-        "lastSeenAt": "2026-09-02T16:38:24.017Z",
+        "lastSeenAt": "2026-09-02T21:06:35.799Z",
         "points": [
           [
             1788272991460,
@@ -16123,12 +17575,18 @@
             10420237.482457424,
             529015053.1998318,
             -1.3471397964426026
+          ],
+          [
+            1788383195799,
+            10420237.482457424,
+            529015053.1998318,
+            -1.3471397964426026
           ]
         ]
       },
       "ether-fi-ecosystem": {
         "firstSeenAt": "2026-09-01T14:29:51.460Z",
-        "lastSeenAt": "2026-09-02T16:38:24.017Z",
+        "lastSeenAt": "2026-09-02T21:06:35.799Z",
         "points": [
           [
             1788272991460,
@@ -16177,12 +17635,18 @@
             73655478.91198993,
             531893576.374398,
             -4.422331170795212
+          ],
+          [
+            1788383195799,
+            73655478.91198993,
+            531893576.374398,
+            -4.422331170795212
           ]
         ]
       },
       "mev-protection": {
         "firstSeenAt": "2026-09-01T14:29:51.460Z",
-        "lastSeenAt": "2026-09-02T16:38:24.017Z",
+        "lastSeenAt": "2026-09-02T21:06:35.799Z",
         "points": [
           [
             1788272991460,
@@ -16231,12 +17695,18 @@
             9032313.03231984,
             527960271.1263827,
             -2.937710395989815
+          ],
+          [
+            1788383195799,
+            9032313.03231984,
+            527960271.1263827,
+            -2.937710395989815
           ]
         ]
       },
       "robinhood-chain-meme": {
         "firstSeenAt": "2026-09-01T14:29:51.460Z",
-        "lastSeenAt": "2026-09-02T16:38:24.017Z",
+        "lastSeenAt": "2026-09-02T21:06:35.799Z",
         "points": [
           [
             1788272991460,
@@ -16285,12 +17755,18 @@
             176511179.64595896,
             581951597.5393229,
             11.225074672214395
+          ],
+          [
+            1788383195799,
+            176511179.64595896,
+            581951597.5393229,
+            11.225074672214395
           ]
         ]
       },
       "modular-blockchain": {
         "firstSeenAt": "2026-09-01T14:29:51.460Z",
-        "lastSeenAt": "2026-09-02T16:38:24.017Z",
+        "lastSeenAt": "2026-09-02T21:06:35.799Z",
         "points": [
           [
             1788272991460,
@@ -16339,12 +17815,18 @@
             232922753.77002668,
             527142238.2297781,
             -0.10154332072328161
+          ],
+          [
+            1788383195799,
+            232922753.77002668,
+            527142238.2297781,
+            -0.10154332072328161
           ]
         ]
       },
       "bstocks-ecosystem": {
         "firstSeenAt": "2026-09-01T14:29:51.460Z",
-        "lastSeenAt": "2026-09-02T16:38:24.017Z",
+        "lastSeenAt": "2026-09-02T21:06:35.799Z",
         "points": [
           [
             1788272991460,
@@ -16393,12 +17875,18 @@
             233025627.72989923,
             504170941.01187307,
             -0.5014291013711265
+          ],
+          [
+            1788383195799,
+            233025627.72989923,
+            504170941.01187307,
+            -0.5014291013711265
           ]
         ]
       },
       "telegram_apps": {
         "firstSeenAt": "2026-09-01T14:29:51.460Z",
-        "lastSeenAt": "2026-09-02T16:38:24.017Z",
+        "lastSeenAt": "2026-09-02T21:06:35.799Z",
         "points": [
           [
             1788272991460,
@@ -16447,12 +17935,18 @@
             40801742.5010367,
             489618113.7476005,
             -0.3556370044770457
+          ],
+          [
+            1788383195799,
+            40801742.5010367,
+            489618113.7476005,
+            -0.3556370044770457
           ]
         ]
       },
       "entertainment": {
         "firstSeenAt": "2026-09-01T14:29:51.460Z",
-        "lastSeenAt": "2026-09-02T16:38:24.017Z",
+        "lastSeenAt": "2026-09-02T21:06:35.799Z",
         "points": [
           [
             1788272991460,
@@ -16501,12 +17995,18 @@
             42436921.4752324,
             479844762.09495515,
             -0.040062339879637025
+          ],
+          [
+            1788383195799,
+            42436921.4752324,
+            479844762.09495515,
+            -0.040062339879637025
           ]
         ]
       },
       "gaming-governance-token": {
         "firstSeenAt": "2026-09-01T14:29:51.460Z",
-        "lastSeenAt": "2026-09-02T16:38:24.017Z",
+        "lastSeenAt": "2026-09-02T21:06:35.799Z",
         "points": [
           [
             1788272991460,
@@ -16555,12 +18055,18 @@
             116078279.57113625,
             454010381.97345734,
             -1.678466856233138
+          ],
+          [
+            1788383195799,
+            116078279.57113625,
+            454010381.97345734,
+            -1.678466856233138
           ]
         ]
       },
       "rub-stablecoin": {
         "firstSeenAt": "2026-09-01T14:29:51.460Z",
-        "lastSeenAt": "2026-09-02T16:38:24.017Z",
+        "lastSeenAt": "2026-09-02T21:06:35.799Z",
         "points": [
           [
             1788272991460,
@@ -16609,12 +18115,18 @@
             3943.152443261394,
             453397653.33615637,
             20.41841574309442
+          ],
+          [
+            1788383195799,
+            3943.152443261394,
+            453397653.33615637,
+            20.41841574309442
           ]
         ]
       },
       "bridge-governance-tokens": {
         "firstSeenAt": "2026-09-01T14:29:51.460Z",
-        "lastSeenAt": "2026-09-02T16:38:24.017Z",
+        "lastSeenAt": "2026-09-02T21:06:35.799Z",
         "points": [
           [
             1788272991460,
@@ -16663,12 +18175,18 @@
             108550695.8959834,
             427762476.2006375,
             -0.30015465023413834
+          ],
+          [
+            1788383195799,
+            108550695.8959834,
+            427762476.2006375,
+            -0.30015465023413834
           ]
         ]
       },
       "asset-backed-tokens": {
         "firstSeenAt": "2026-09-01T14:29:51.460Z",
-        "lastSeenAt": "2026-09-02T16:38:24.017Z",
+        "lastSeenAt": "2026-09-02T21:06:35.799Z",
         "points": [
           [
             1788272991460,
@@ -16717,12 +18235,18 @@
             1975718987.3270104,
             415144233.19644135,
             -0.9653152493143472
+          ],
+          [
+            1788383195799,
+            1975718987.3270104,
+            415144233.19644135,
+            -0.9653152493143472
           ]
         ]
       },
       "buidlpad-launchpad": {
         "firstSeenAt": "2026-09-01T14:29:51.460Z",
-        "lastSeenAt": "2026-09-02T16:38:24.017Z",
+        "lastSeenAt": "2026-09-02T21:06:35.799Z",
         "points": [
           [
             1788272991460,
@@ -16771,12 +18295,18 @@
             61536465.74169113,
             418891507.30478317,
             5.067647931477861
+          ],
+          [
+            1788383195799,
+            61536465.74169113,
+            418891507.30478317,
+            5.067647931477861
           ]
         ]
       },
       "cefi": {
         "firstSeenAt": "2026-09-01T14:29:51.460Z",
-        "lastSeenAt": "2026-09-02T16:38:24.017Z",
+        "lastSeenAt": "2026-09-02T21:06:35.799Z",
         "points": [
           [
             1788272991460,
@@ -16825,12 +18355,18 @@
             8555106.574500926,
             396150175.48457444,
             -0.2848505441103641
+          ],
+          [
+            1788383195799,
+            8555106.574500926,
+            396150175.48457444,
+            -0.2848505441103641
           ]
         ]
       },
       "lsdfi": {
         "firstSeenAt": "2026-09-01T14:29:51.460Z",
-        "lastSeenAt": "2026-09-02T16:38:24.017Z",
+        "lastSeenAt": "2026-09-02T21:06:35.799Z",
         "points": [
           [
             1788272991460,
@@ -16879,12 +18415,18 @@
             71841815.09668574,
             397456699.15754795,
             -1.9319467957774685
+          ],
+          [
+            1788383195799,
+            71841815.09668574,
+            397456699.15754795,
+            -1.9319467957774685
           ]
         ]
       },
       "yield-aggregator": {
         "firstSeenAt": "2026-09-01T14:29:51.460Z",
-        "lastSeenAt": "2026-09-02T16:38:24.017Z",
+        "lastSeenAt": "2026-09-02T21:06:35.799Z",
         "points": [
           [
             1788272991460,
@@ -16933,12 +18475,18 @@
             37085449.23155556,
             358602036.96069366,
             -1.2389831537037967
+          ],
+          [
+            1788383195799,
+            37085449.23155556,
+            358602036.96069366,
+            -1.2389831537037967
           ]
         ]
       },
       "sports": {
         "firstSeenAt": "2026-09-01T14:29:51.460Z",
-        "lastSeenAt": "2026-09-02T16:38:24.017Z",
+        "lastSeenAt": "2026-09-02T21:06:35.799Z",
         "points": [
           [
             1788272991460,
@@ -16987,12 +18535,18 @@
             59525569.87796248,
             364412574.39107263,
             0.7281513012787582
+          ],
+          [
+            1788383195799,
+            59525569.87796248,
+            364412574.39107263,
+            0.7281513012787582
           ]
         ]
       },
       "account-abstraction": {
         "firstSeenAt": "2026-09-01T14:29:51.460Z",
-        "lastSeenAt": "2026-09-02T16:38:24.017Z",
+        "lastSeenAt": "2026-09-02T21:06:35.799Z",
         "points": [
           [
             1788272991460,
@@ -17041,12 +18595,18 @@
             87186937.32502578,
             358912590.42389405,
             -1.8381812994829712
+          ],
+          [
+            1788383195799,
+            87186937.32502578,
+            358912590.42389405,
+            -1.8381812994829712
           ]
         ]
       },
       "fixed-interest": {
         "firstSeenAt": "2026-09-01T14:29:51.460Z",
-        "lastSeenAt": "2026-09-02T16:38:24.017Z",
+        "lastSeenAt": "2026-09-02T21:06:35.799Z",
         "points": [
           [
             1788272991460,
@@ -17095,12 +18655,18 @@
             72420061.3091946,
             354823694.6341019,
             3.032912772106897
+          ],
+          [
+            1788383195799,
+            72420061.3091946,
+            354823694.6341019,
+            3.032912772106897
           ]
         ]
       },
       "rpg": {
         "firstSeenAt": "2026-09-01T14:29:51.460Z",
-        "lastSeenAt": "2026-09-02T16:38:24.017Z",
+        "lastSeenAt": "2026-09-02T21:06:35.799Z",
         "points": [
           [
             1788272991460,
@@ -17149,12 +18715,18 @@
             121398448.16940314,
             334624548.69976056,
             -0.3030134207484795
+          ],
+          [
+            1788383195799,
+            121398448.16940314,
+            334624548.69976056,
+            -0.3030134207484795
           ]
         ]
       },
       "lrtfi": {
         "firstSeenAt": "2026-09-01T14:29:51.460Z",
-        "lastSeenAt": "2026-09-02T16:38:24.017Z",
+        "lastSeenAt": "2026-09-02T21:06:35.799Z",
         "points": [
           [
             1788272991460,
@@ -17203,12 +18775,18 @@
             56084529.95140737,
             314285287.6528019,
             1.5364918028219419
+          ],
+          [
+            1788383195799,
+            56084529.95140737,
+            314285287.6528019,
+            1.5364918028219419
           ]
         ]
       },
       "decentralized-science-desci": {
         "firstSeenAt": "2026-09-02T11:25:05.701Z",
-        "lastSeenAt": "2026-09-02T16:38:24.017Z",
+        "lastSeenAt": "2026-09-02T21:06:35.799Z",
         "points": [
           [
             1788348305701,
@@ -17221,15 +18799,27 @@
             13156340.81541276,
             313258192.3114208,
             -2.791999247063418
+          ],
+          [
+            1788383195799,
+            13156340.81541276,
+            313258192.3114208,
+            -2.791999247063418
           ]
         ]
       },
       "yield-tokenization": {
         "firstSeenAt": "2026-09-02T16:38:24.017Z",
-        "lastSeenAt": "2026-09-02T16:38:24.017Z",
+        "lastSeenAt": "2026-09-02T21:06:35.799Z",
         "points": [
           [
             1788367104017,
+            56080039.43290981,
+            312790094.9111771,
+            1.7310231277035408
+          ],
+          [
+            1788383195799,
             56080039.43290981,
             312790094.9111771,
             1.7310231277035408
